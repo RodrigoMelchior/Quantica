@@ -1,0 +1,64 @@
+{
+    "CLIENT": {
+        "BASCIC_INFO": "Informações Básicas",
+        "UNITS": "Unidades",
+        "UNIT": "Unidade",
+        "UNIT_TOP": "Unidade Superior",
+        "INITIALS":"Sigla",
+        "NAME": "Nome",
+        "CNPJ": "CNPJ",
+        "TEL": "Telefone",
+        "CODSONDA": "C\u00f3digo Sonda",
+        "ADDRESS": "Endere\u00e7o",
+        "NUMBER": "N\u00famero",
+        "COMPLEMENT": "Complemento",
+        "LOGRADOURO": "Logradouro",
+        "CEP": "CEP",
+        "UF": "UF",
+        "COUNTY": "Municipio",
+        "ACTIVE": "Ativo",
+        "ERROR": {
+            "NAME": "Digite o nome.",
+            "CNPJ": "Digite o CNPJ",
+            "CNPJ_EXISTENTE": "CNPJ já cadastrado",
+            "INVALID_CNPJ": "CNPJ inv\u00e1lido",
+            "TEL": "Digite o telefone",
+            "CODSONDA": "Digite o c\u00f3digo Sonda",
+            "UF": "Escolha um UF",
+            "CITY": "Escolha uma cidade",
+            "CEP": "Digite um CEP",
+            "NUMBER": "Digite o numero",
+            "LOGRADOURO": "Digite o lougradouro",
+            "COMLEMENT": "Digite o complemento",
+            "ATIVO": "Selecione uma op\u00e7\u00e3o",
+            "REQUIRED_CEP": "Digite um CEP",
+            "REQUIRED_CIDADE": "Digite um logradouro",
+            "UNIT": "Digite uma unidade",
+            "UNIT_TOP": "Digite uma unidade superior",
+            "INITIALS": "Digite a sigla"
+        }
+    },
+    "ACTION": {
+        "TAX_ADD":"Adicionar Fiscal",
+        "CONSULT": "Pesquisar",
+        "INCLUDE": "Incluir",
+        "CLEAR": "Limpar",
+        "SAVE": "Salvar",
+        "ALTERAR": "Alterar",
+        "CANCEL": "Cancelar",
+        "BACK": "Voltar",
+        "ACTION": "A\u00e7\u00e3o"
+    },
+    "HINT": {
+        "SEARCH": "Por favor, informe ao menos algum dos par\u00e2metros!",
+        "CLEAR": "Limpar",
+        "INCLUDE": "Incluir Novo Registro.",
+        "EDIT": "Editar",
+        "VIEW": "Vizualizar",
+        "DELETE": "Deletar"
+    },
+    "TITLES": {
+        "INCLUDE_CLIENT": "PROSERV - Incluir Cliente",
+        "EDIT_CLIENT": "PROSERV - Editar Cliente"
+    }
+}

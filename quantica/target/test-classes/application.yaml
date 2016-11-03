@@ -1,0 +1,87 @@
+spring:
+    profiles: default
+        active: memoryTokenStorage
+    application:
+        name: PROSERV
+    messages:
+        basename: classpath:/i18n/messages
+    mail:
+        host: localhost
+        port: 25
+        username:
+        password:
+    datasource:
+        driver-class-name: org.postgresql.ds.PGPoolingDataSource
+        url: jdbc:postgresql://localhost/projetoprs
+        name: default
+        username: projetoprs
+        password: projetoprs
+        initialConnections: 5
+        maxConnections: 15          
+    jpa:
+        generate-ddl: false
+        open-in-view: false
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        format_sql:  true
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+    batch:
+        initializer:
+            enabled: false
+        job:
+            enabled: false
+    dao:
+        exceptiontranslation:
+            enable: true
+management:
+    context-path: /admin
+    port:  9090        
+endpoints:
+    health:
+        id: health
+        enabled: true
+        sensitive: true
+server:
+    port: 8080
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        
+applicationProperties:
+    security:
+        authentication:
+            oauth:
+                clientid: proserv
+                secret:  proserv
+    mail:
+        from: teste2@localhost
+    cors: 
+        allowed-origins: "*"
+        allowed-methods: GET, PUT, POST, DELETE
+        allowed-headers: "*"
+        exposed-headers: "X-Validation-Error, X-Business-Error, X-Total-Count" 
+        allow-credentials: true
+        max-age: 1800
+    async:
+        corePoolSize: 2
+        maxPoolSize: 50
+        queueCapacity: 10000        
+    cache: 
+        timeToLiveSeconds: 3600
+        ehcache:
+            maxBytesLocalHeap: 64M
+    metrics: 
+        jmx.enabled: false
+        spark:
+            enabled: false
+            host: localhost
+            port: 9999
+        graphite:
+            enabled: false
+            host: localhost
+            port: 2003
+            prefix: teste2

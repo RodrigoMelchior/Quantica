@@ -1,0 +1,44 @@
+<md-dialog aria-label="Esqueci minha senha" flex="50"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools md-red-A700-bg">
+                <h2>Esqueci minha senha</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="recuperarSenhaForm" novalidate>
+                    <md-input-container class="md-block" md-no-float>
+                        <input type="text" name="email" ng-model="vm.form.email" placeholder="Email"
+                               ng-pattern="/^.+@.+\..+$/" required>
+
+                    </md-input-container>
+
+                    <div ng-messages="recuperarSenhaForm.email.$error"ng-show="recuperarSenhaForm.email.$touched" role="alert" multiple>
+                        <div ng-message="required">
+                            <span>Digite um E-mail</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span>Digite um E-mail valido</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-raised md-orange-600-bg white-text">
+                Enviar
+            </md-button>
+            <md-button class="md-raised md-red-A700-bg white-text" ng-click="hide()" style="margin-right:20px;">
+                Cancelar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

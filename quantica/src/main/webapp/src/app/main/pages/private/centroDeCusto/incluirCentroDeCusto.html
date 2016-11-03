@@ -1,0 +1,89 @@
+<div class="content">
+    <div class="form-wrapper md-whiteframe-1dp" flex="100">
+        <form name="incluirCTRL.cdcForm" class="md-inline-form" novalidate>
+            <div class="form-title lightGray-text" translate="COSTCENTER.TITLES.INCLUDE">Proserv - Incluir Centro de Custo</div>
+            <div layout="row" flex="100" layout-xs="column">
+                <md-input-container class="margin-right-10" flex>
+                    <label><span translate="COSTCENTER.COD"></span><strong>*</strong></label>
+                    <input type="text" name="cod" ng-model="incluirCTRL.cdc.numeroCentroCusto" maxlength="15" ng-required="true" 
+                           ng-change="incluirCTRL.verificarCentroCusto(incluirCTRL.cdc.numeroCentroCusto)">
+                    <div ng-messages="incluirCTRL.cdcForm.cod.$error" ng-show="incluirCTRL.cdcForm.cod.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="COSTCENTER.ERROR.COD">erro</span>
+                        </div>
+                        <div ng-show="incluirCTRL.centroCustoExistente">
+                            <span class="red-text h6" translate="COSTCENTER.ERROR.EXISTENT_COD">Existente</span>
+                        </div>
+                    </div>
+
+                </md-input-container>
+                <md-input-container flex>
+                    <label><span translate="COSTCENTER.COD_FATHER"></span><strong>*</strong></label>
+                    <!--<input type="text" name="codPai" ng-model="cdc.codRegistroPai" maxlength="15" required>-->
+                    {{autocomplete}}
+                    <md-autocomplete 
+                        ng-required="true" md-selected-item="autocomplete" md-input-name="autocomplete"
+                        md-search-text="searchText" md-items="item in incluirCTRL.autoComplete(searchText)"
+                        md-item-text="item.numerocentrocusto" md-no-cache="true"
+                        md-selected-item-change="incluirCTRL.verificarAutocomplete()">
+                        <md-item-template>
+                            <span md-highlight-text="searchText">{{item.numerocentrocusto}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            Registro não encontrado.
+                        </md-not-found>
+                    </md-autocomplete>
+                    <div class="h6 red-text" layout="row" layout-align="start" ng-show="incluirCTRL.autocompleteInvalid">
+                        <span translate="COSTCENTER.ERROR.COD_FATHER">centro de custo pai</span>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-gt-sm="column" flex="100">
+                <md-input-container flex>
+                    <label><span translate="COSTCENTER.DESCRIPTION"></span><strong>*</strong></label>
+                    <input type="text" name="nome" ng-model="incluirCTRL.cdc.nome"
+                           maxlength="50" ng-required="true">
+                    <div ng-messages="incluirCTRL.cdcForm.nome.$error" ng-show="incluirCTRL.cdcForm.nome.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="COSTCENTER.ERROR.DESCRIPTION">Digite o CNPJ.</span>
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row" layout-align-xs="column">
+                <md-input-container>
+                    <md-radio-group name="ativo" class="lightGray-text" ng-required="true" ng-model="incluirCTRL.cdc.ativo" ng-required="true">
+                        <!--Ativo: * {{cdcForm | json}}-->
+                        <md-radio-button value="true" ng-value="true" class="md-primary" checked>Sim</md-radio-button>
+                        <md-radio-button value="false" ng-value="false" class="md-primary"> Não </md-radio-button>
+                        <div ng-messages="incluirCTRL.cdcForm.ativo.$error" ng-show="incluirCTRL.cdcForm.ativo.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>Selecione uma opção</span>
+                            </div>
+                        </div>
+                    </md-radio-group>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="end" >
+                <md-button class="md-raised white-text md-orange-A400-bg" translate="ACTION.SAVE" ng-click="incluirCTRL.save(incluirCTRL.cdc)">
+                    Salvar
+                </md-button>
+
+                <md-button class="md-raised md-blue-grey-500-bg white-text" translate="ACTION.CLEAR" ng-click="incluirCTRL.limparCampos()">
+                    Limpar
+                </md-button>
+
+                <a ng-click="incluirCTRL.cancelar($event)" class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+                    <span class="ng-scope" translate="ACTION.CANCEL">Cancelar</span>
+                </a>
+            </div>
+
+
+        </form>
+    </div>
+</div>

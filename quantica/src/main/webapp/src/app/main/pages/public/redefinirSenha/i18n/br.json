@@ -1,0 +1,29 @@
+{
+    "LOGIN": {
+        "TITLE": "",
+        "EMAIL": "Email",
+        "PASSWORD": "Senha",
+        "REMEMBER_ME": "Lembrar-me",
+        "FORGOT_PASSWORD": "Esqueceu sua senha?",
+        "LOG_IN": "Entrar",
+        "ERRORS": {
+            "USER_REQUIRED": "Digite o seu usu\u00e1rio",
+            "PASSWORD_REQUIRED": "Digite a sua senha."
+        }
+    },
+    "NEWPASSWORD":{
+        "TITLE":"Redefinir Senha",
+        "CPF":"CPF",
+        "PASSWORD":"Senha",
+        "REPASSWORD":"Repita a Senha",
+        "REDEFINE":"Redefinir",
+        "ERRORS":{
+            "CPF_REQUIRED":"Digite o CPF.",
+            "INVALID_CPF":"Digite um CPF v\u00e1lido",
+            "PASSWORD_REQUIRED":"Digite a nova senha.",
+            "REPASSWORD_REQUIRED":"Repita a nova senha.",
+            "PASSWORD":"A nova senha dever\u00e1 ter no m\u00ednimo 06 (seis) d\u00edgitos e conter letras e n\u00fameros.",
+            "DIFERENT_PASSWORDS":"As novas senhas digitadas, n\u00e3o coincidem, por favor, verifique e digite novamente!"
+        }
+    }
+}

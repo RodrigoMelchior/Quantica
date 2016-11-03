@@ -1,0 +1,148 @@
+<div class="content">
+    <div class="form-wrapper md-whiteframe-1dp" flex="100">
+
+        <form name="vm.pesquisaForm" class="md-inline-form" novalidate>
+            <div layout="column" layout-gt-sm="row" layout-align="end" flex="100">
+                <a ui-sref=".incluir" class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+                    <span translate="ACTION.INCLUDE">Incluir</span>
+                    <md-tooltip class="h5">
+                        <label translate="HINT.INCLUDE"></label>
+                    </md-tooltip>
+                </a>
+            </div>
+
+            <div layout="column" layout-gt-sm="row" flex>
+                <md-input-container class="margin-right-10" flex="50">
+                    <label><span translate="FERIADO.UNIT"></span><strong>*</strong></label> 
+                    <md-autocomplete 
+                        md-selected-item="pesquisa.unidade" md-input-name="unidade"
+                        md-search-text="searchText.unidade" md-items="item in incluirCTRL.autoComplete(searchText)"
+                        md-item-text="item.numerocentrocusto" md-no-cache="true"
+                        md-selected-item-change="incluirCTRL.verificarAutocomplete()"
+                        md-input-maxlength="100">
+                        <md-item-template>
+                            <span md-highlight-text="searchText">{{item.numerocentrocusto}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <label translate="AUTOCOMPLETE.NOT_FOUND"></label>
+                        </md-not-found>
+                </md-input-container>
+                <md-input-container flex="50">
+                    <label><span translate="FERIADO.DESCRIPTION"></span><strong>*</strong></label>
+                    <md-autocomplete 
+                        md-selected-item="vm.pesquisa.descricao" md-input-name="descricao"
+                        md-search-text="searchText.descricao" md-items="item in incluirCTRL.autoComplete(searchText)"
+                        md-item-text="item.numerocentrocusto" md-no-cache="true"
+                        md-selected-item-change="incluirCTRL.verificarAutocomplete()"
+                        md-input-maxlength="200">
+                        <md-item-template>
+                            <span md-highlight-text="searchText">{{item.numerocentrocusto}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <label translate="AUTOCOMPLETE.NOT_FOUND"></label>
+                        </md-not-found>
+                </md-input-container>
+
+            </div>
+
+            <div layout="column" layout-gt-sm="row" flex="100">
+                <div layout="row"  flex="10">
+                    <md-input-container class="margin-right-10">
+                        <label translate="FERIADO.HOLIDAY">feriado</label>
+                        <input type="date" name="tipoFeriado" ng-model="vm.pesquisa.feriado">
+                    </md-input-container> 
+                </div>
+                <div layout="column" layout-gt-sm="row" flex="100">
+                    <md-input-container flex="20">
+                        <md-radio-group class="lightGray-text" ng-model="vm.pesquisa.tipoFeriado">
+                            Tipo de Feriado:
+                            <md-radio-button value="nacional" class="md-primary"><span translate="FERIADO.NATIONAL"></span></md-radio-button>
+                            <md-radio-button value="estadual" class="md-primary"><span translate="FERIADO.STATE"></span></md-radio-button>
+                            <md-radio-button value="municipal" class="md-primary"><span translate="FERIADO.MUNICIPAL"></span> </md-radio-button>
+                            <md-radio-button value="unidade" class="md-primary"><span translate="FERIADO.SPECIFIC_UNIT"></span> </md-radio-button>
+                        </md-radio-group>
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div layout="column" layout-gt-sm="row" flex>
+                <div layout="row" layout-gt-sm="row" layout-align="end" flex="30">
+                    <md-input-container>
+                        <a class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" 
+                           ng-click="vm.pesquisar()">
+                            <span translate="ACTION.CONSULT">pesquiar</span>
+                            <md-tooltip class="h5">
+                                <label translate="HINT.SEARCH"></label>
+                            </md-tooltip>
+                        </a>
+                        <a class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" ng-click="vm.limparPesquisa()">
+                            <span translate="ACTION.CLEAR">Limpar</span>
+                            <md-tooltip class="h5">
+                                <label translate="HINT.CLEAR"></label>
+                            </md-tooltip>
+                        </a>
+                    </md-input-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="white-bg md-whiteframe-6dp">
+        <md-table-container>
+            <table md-table md-progress="vm.gridContent">
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column ><span class="column-title" translate="FERIADO.UNIT"></span></th>
+                        <th md-column ><span class="column-title" translate="FERIADO.CLIENT"></span></th>
+                        <th md-column ><span class="column-title" translate="FERIADO.HOLIDAY"></span></th>
+                        <th md-column ><span class="column-title" translate="FERIADO.INIT"></span></th>
+                        <th md-column ><span class="column-title" translate="FERIADO.END"></span></th>
+                        <th md-column ><span class="column-title" translate="FERIADO.DESCRIPTION"></span></th>
+                        <th md-column ><span class="column-title" translate="FERIADO.HOLIDAY_TYPE"></span></th>
+                        <th md-column ><span class="column-title" translate="ACTION.ACTION"></span></th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row md-select="dessert" md-select-id="{{dessert.name}}" ng-repeat="feriado in vm.gridContent">
+                        <td md-cell>{{feriado.unidade}}</td>
+                        <td md-cell>{{feriado.cliente}}</td>
+                        <td md-cell>{{ feriado.feriado}}</td>
+                        <td md-cell>{{ feriado.inicio}}</td>
+                        <td md-cell>{{feriado.fim}}</td>
+                        <td md-cell>{{ feriado.descricao}}</td>
+                        <td md-cell>{{ feriado.tipoFeriado}}</td>
+                        <td md-cell>
+                            <a ui-sref=".editar({id: feriado.id})" class="md-raised md-ink-ripple md-default-theme" >
+                                <i class="icon s26 icon-pencil"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.EDIT"></label>
+                                </md-tooltip>
+                            </a>
+                            <a ui-sref=".visualizar({id: feriado.id})" class="md-raised md-ink-ripple md-default-theme" >
+                                <i class="icon s26 icon-magnify"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.VIEW"></label>
+                                </md-tooltip>
+                            </a>
+                            <a href="#" class="md-raised md-ink-ripple md-default-theme" ng-click="vm.delete($event)">
+                                <i class="icon s26 icon-cancel"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.DELETE"></label>
+                                </md-tooltip>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+        <md-table-pagination md-page="1" md-limit="10"
+                             md-total="{{vm.totalCount}}" md-on-paginate="vm.onPaginate"
+                             md-label="{page: 'Página:', rowsPerPage: 'Resultados por página:', of: 'de'}" 
+                             md-options="vm.ROWS_PAGE"
+                             md-page-select></md-table-pagination>
+    </div>
+
+</div>

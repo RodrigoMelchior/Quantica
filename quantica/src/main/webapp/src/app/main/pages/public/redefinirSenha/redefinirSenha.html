@@ -1,0 +1,62 @@
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <div class="logo">
+                <img src="assets/images/logos/logo_login.png">
+            </div>
+            
+            <div class="title" translate="NEWPASSWORD.TITLE"></div>
+
+            <form name="newPassForm" novalidate>
+                <md-input-container class="md-block" md-no-float>
+                    <label translate="NEWPASSWORD.CPF">CPF</label>
+                    <input type="text" name="cpf" ng-model="novaSenha.login" ng-cpf mask="999.999.999-99" maxlength="14" required>
+                    <div ng-messages="newPassForm.cpf.$error" ng-show="newPassForm.cpf.$touched" role="alert" multiple>
+                        <div ng-message="required">
+                            <span translate="NEWPASSWORD.ERRORS.CPF_REQUIRED"></span>
+                        </div>
+                        <div ng-message="cpf">
+                            <span translate="NEWPASSWORD.ERRORS.INVALID_CPF"></span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <label translate="NEWPASSWORD.PASSWORD">senha</label>
+                    <input type="password" name="senha" ng-model="novaSenha.senha" pattern="(?:\d+[a-z]|[a-z]+\d)[a-z\d]*" 
+                           ng-minlength="6" ng-maxlength="20"
+                           ng-change="compararSenha(novaSenha.senha, novaSenha.reSenha)" required>
+                    <div ng-messages="newPassForm.senha.$error" ng-show="newPassForm.senha.$touched" role="alert" multiple>
+                        <div ng-message="required">
+                            <span translate="NEWPASSWORD.ERRORS.PASSWORD_REQUIRED"></span>
+                        </div>
+                        <div ng-message="minlength, maxlength, pattern">
+                            <span translate="NEWPASSWORD.ERRORS.PASSWORD"></span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <label translate="NEWPASSWORD.REPASSWORD">senha</label>
+                    <input type="password" name="resenha" ng-model="novaSenha.reSenha" 
+                           ng-maxlength="20" compare-to="vm.newPassForm.senha" 
+                           ng-change="compararSenha(novaSenha.senha, novaSenha.reSenha)" required>
+                    <div ng-messages="newPassForm.resenha.$error" ng-show="newPassForm.resenha.$touched" role="alert" multiple>
+                        <div ng-message="required">
+                            <span translate="NEWPASSWORD.ERRORS.REPASSWORD_REQUIRED"></span>
+                        </div>
+                    </div>
+                    <div class="text-center md-input-message-animation" ng-show="senhasIguais">
+                        <span class="h6 red-text" translate="NEWPASSWORD.ERRORS.DIFERENT_PASSWORDS"> erro senha </span> 
+                    </div>
+                </md-input-container>
+
+                <md-button class="md-orange-A400-bg white-text" aria-label="LOG IN" 
+                           ng-disabled="(newPassForm.$invalid) || newPassForm.$pristine || vm.senhasIguais == true"
+                           ng-click="resetPasswordFinish(newPassForm.senha)" translate="NEWPASSWORD.REDEFINE">
+                    redefinir
+                </md-button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<meta charset="UTF-8">
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <div class="logo">
+                <img src="assets/images/logos/logo_login.png">
+            </div>
+
+            <div class="title" translate="LOGIN.TITLE"></div>
+
+            <form name="loginForm" novalidate>
+                <md-input-container class="md-block" md-no-float>
+                    <input type="text" name="login" ng-model="vm.form.login" placeholder="Usuário" required>
+                    <div ng-messages="loginForm.login.$error" ng-show="loginForm.login.$touched" role="alert" multiple>
+                        <div ng-message="required">
+                            <span translate="LOGIN.ERRORS.USER_REQUIRED"></span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="password" name="senha" ng-model="vm.form.senha" placeholder="Senha" required>
+                    <div ng-messages="loginForm.senha.$error" ng-show="loginForm.senha.$touched" role="alert">
+                        <div ng-message="required">
+                            <span translate="LOGIN.ERRORS.PASSWORD_REQUIRED"></span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-button class="md-raised md-accent" aria-label="LOG IN" ng-disabled="loginForm.$invalid || loginForm.$pristine"
+                           translate="LOGIN.LOG_IN">
+                    Entrar
+                </md-button>
+            </form>
+
+
+            <div class="register" layout="row" layout-sm="column" layout-align="center center">
+                <a class="mouseHover" ng-click="showAdvanced($event)" translate="LOGIN.FORGOT_PASSWORD"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--comentario de referencia-->
+<!--<md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex="100" flex-gt-md="auto">
+      Custom Dialog
+    </md-button>-->

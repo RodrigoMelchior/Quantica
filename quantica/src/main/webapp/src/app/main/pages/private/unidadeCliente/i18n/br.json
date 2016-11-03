@@ -1,0 +1,43 @@
+{
+    "CLIENT_UNIT": {
+        "NAME": "Nome",
+        "UNIT":"Unidade",
+        "CLIENT":"Cliente",
+        "SIGLA":"Sigla/Unidade",
+        "SUPERVISOR_UNIT":"Fiscal Unidade",
+        "INITIAL_VIGENCIA":"Vig\u00eancia Inicial",
+        "FINAL_VIGENCIA":"Vig\u00eancia Final",
+        "SUBSTITUTE":"Fiscal Substituto",
+        "SUBSTITUTE_SUPERVISOR_UNIT":"Fiscal Substituto",
+        "ERROR": {
+            "SUPERVISOR_UNIT":"Digite o Fiscal Unidade",
+            "INITIAL_VIGENCIA":"Digite a vig\u00eancia inicial",
+            "SUBSTITUTE":"Digite o Fiscal Substituto",
+            "UNIT":"Digite a unidade",
+            "SIGLA":"Digite a sigla",
+            "CLIENT":"Digite o cliente"
+        }
+
+    },
+    "ACTION": {
+        "CONSULT": "Pesquisar",
+        "INCLUDE": "Incluir",
+        "INCLUDE_FISCAL":"Incluir Fiscal",
+        "CLEAR": "Limpar",
+        "SAVE": "Salvar",
+        "SAVE_CONTINUE": "Salvar - Manter Tela",
+        "CANCEL": "Cancelar",
+        "BACK": "Voltar",
+        "ACTION": "A\u00e7\u00e3o",
+        "NEXT":"Pr\u00f3ximo",
+        "PREV":"Anterior"
+    },
+    "HINT": {
+        "SEARCH": "Por favor, informe ao menos algum dos par\u00e2metros!",
+        "CLEAR": "Limpar",
+        "INCLUDE": "Incluir Novo Registro.",
+        "EDIT": "Editar",
+        "VIEW": "Vizualizar",
+        "DELETE": "Deletar"
+    }
+}

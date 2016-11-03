@@ -1,0 +1,75 @@
+<form name="incluirCTRL.feriadoForm" class="md-inline-form" novalidate>
+    <div layout="column" layout-gt-sm="row" flex>
+        <md-input-container class="margin-right-10" flex="50">
+            <label><span translate="FERIADO.UNIT"></span><strong>*</strong></label> 
+            <md-autocomplete 
+                md-selected-item="pesquisa.unidade" md-input-name="unidade"
+                md-search-text="searchText.unidade" md-items="item in incluirCTRL.autoComplete(searchText)"
+                md-item-text="item.numerocentrocusto" md-no-cache="true"
+                md-selected-item-change="incluirCTRL.verificarAutocomplete()"
+                md-input-maxlength="100">
+                <md-item-template>
+                    <span md-highlight-text="searchText">{{item.numerocentrocusto}}</span>
+                </md-item-template>
+                <md-not-found>
+                    <label translate="AUTOCOMPLETE.NOT_FOUND"></label>
+                </md-not-found>
+        </md-input-container>
+        <md-input-container flex="50">
+            <label><span translate="FERIADO.CLIENT"></span><strong>*</strong></label>
+            <md-autocomplete 
+                md-selected-item="vm.pesquisa.cliente" md-input-name="descricao"
+                md-search-text="searchText.cliente" md-items="item in incluirCTRL.autoComplete(searchText)"
+                md-item-text="item.numerocentrocusto" md-no-cache="true"
+                md-selected-item-change="incluirCTRL.verificarAutocomplete()"
+                md-input-maxlength="200">
+                <md-item-template>
+                    <span md-highlight-text="searchText">{{item.numerocentrocusto}}</span>
+                </md-item-template>
+                <md-not-found>
+                    <label translate="AUTOCOMPLETE.NOT_FOUND"></label>
+                </md-not-found>
+        </md-input-container>
+    </div>
+    
+    
+    <div layout="column" layout-gt-sm="row" >
+        <md-input-container class="margin-right-10" flex="75">
+            <label translate="FERIADO.DESCRIPTION"></label>
+            <input type="text" name="descricao" ng-model="incluirCTRL.especifico.descricao">
+        </md-input-container>
+    </div>
+    
+    <div layout="column" layout-gt-sm="row" flex>
+        <md-input-container class="margin-right-10" flex="15">
+            <label translate="FERIADO.HOLIDAY"></label>
+            <input type="date" name="feriado" ng-model="incluirCTRL.especifico.feriado">
+        </md-input-container>
+
+        <md-input-container class="margin-right-10" flex="15">
+            <label translate="FERIADO.INIT"></label>
+            <input type="text" name="inicio" ng-model="incluirCTRL.especifico.inicio" mask="23:59">
+        </md-input-container>
+
+        <md-input-container class="margin-right-10" flex="15">
+            <label translate="FERIADO.END"></label>
+            <input type="text" name="fim" ng-model="incluirCTRL.especifico.fim" mask="23:59">
+        </md-input-container>
+        </md-input-container>
+    </div>
+    
+</form>
+
+<div layout="row" layout-align="end" >
+    <md-button class="md-raised white-text md-orange-A400-bg" translate="ACTION.SAVE" ng-click="incluirCTRL.save(incluirCTRL.cdc)">
+        Salvar
+    </md-button>
+
+    <md-button class="md-raised md-blue-grey-500-bg white-text" translate="ACTION.CLEAR" ng-click="incluirCTRL.limparCampos()">
+        Limpar
+    </md-button>
+
+    <a ng-click="incluirCTRL.cancelar($event)" class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+        <span class="ng-scope" translate="ACTION.CANCEL">Cancelar</span>
+    </a>
+</div>

@@ -1,0 +1,131 @@
+<div class="content">
+    <div class="form-wrapper md-whiteframe-1dp" flex="100">
+
+        <form name="pesquisaForm" class="md-inline-form" novalidate>
+            <div layout="column" layout-gt-sm="row" layout-align="end" flex="100">
+                <a href="/cliente/incluir"  class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+                    <span translate="ACTION.INCLUDE">Incluir</span>
+                    <md-tooltip class="h5">
+                        <label translate="HINT.INCLUDE"></label>
+                    </md-tooltip>
+                </a>
+            </div>
+
+            <div layout="column" layout-gt-sm="row" flex="100">
+                <md-input-container flex>
+                    <label translate="CLIENT.NAME">Nome</label>
+                    <input type="text" name="nome" ng-model="vm.pesquisa.nome" maxlength="100">
+                </md-input-container>
+            </div>
+
+            <div layout="column" layout-gt-sm="row" flex>
+                <md-input-container flex>
+                    <label translate="CLIENT.CNPJ">cnpj</label>
+                    <input type="text" name="cnpj" ng-cnpj ng-model="vm.pesquisa.cnpj" clean="true" mask="99.999.999/9999-99" maxlength="18">
+                    <div ng-messages="pesquisaForm.cnpj.$error" ng-show="pesquisaForm.cnpj.$touched"
+                         role="alert">
+                        <div ng-message="cnpj">
+                            <span translate="CLIENT.ERROR.INVALID_CNPJ">erro cnpj</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="margin-left-20" flex>
+                    <label translate="CLIENT.CODSONDA">Codigo Sonda</label>
+                    <input type="text" name="codigoSonda" ng-model="vm.pesquisa.codigoSonda" maxlength="12">
+                </md-input-container>
+
+                <md-input-container>
+                    <md-radio-group class="lightGray-text" ng-model="vm.pesquisa.ativo">
+                        Ativo:
+                        <md-radio-button ng-value="true" value="true" class="md-primary">Sim</md-radio-button>
+                        <md-radio-button ng-value="false" value="false" class="md-primary"> Não </md-radio-button>
+                    </md-radio-group>
+                </md-input-container>
+
+
+
+                <div layout="row" layout-gt-sm="row" layout-align="end" flex="30">
+                    <md-input-container>
+                        <a class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" 
+                           ng-click="vm.pesquisar()">
+                            <span translate="ACTION.CONSULT">pesquiar</span>
+                            <md-tooltip class="h5">
+                                <label translate="HINT.SEARCH"></label>
+                            </md-tooltip>
+                        </a>
+                        <a class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" ng-click="vm.limparPesquisa()">
+                            <span translate="ACTION.CLEAR">Limpar</span>
+                            <md-tooltip class="h5">
+                                <label translate="HINT.CLEAR"></label>
+                            </md-tooltip>
+                        </a>
+                    </md-input-container>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+<!-- CONTENT -->
+<div class="content">
+
+
+    <div class="white-bg md-whiteframe-6dp" ng-if="vm.showGrid">
+        <md-table-container>
+            <table md-table md-progress="vm.gridContent">
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column ><span>Nome</span></th>
+                        <th md-column ><span>Cnpj</span></th>
+                        <th md-column >Código Sonda</th>
+                        <th md-column >Ação</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row md-select="dessert" md-select-id="{{dessert.name}}" ng-repeat="cliente in vm.gridContent">
+                        <td md-cell>{{ cliente.nome}}</td>
+                        <td md-cell>{{ cliente.cnpj}}</td>
+                        <td md-cell>{{ cliente.codigoSonda}}</td>
+                        <td md-cell>
+                            <a ui-sref=".editarCliente({id: cliente.id})" class="md-raised md-ink-ripple md-default-theme" >
+                                <i class="icon s26 icon-pencil"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.EDIT"></label>
+                                </md-tooltip>
+                            </a>
+                            <a ui-sref=".visualizar({id: cliente.id})" class="md-raised md-ink-ripple md-default-theme" >
+                                <i class="icon s26 icon-magnify"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.VIEW"></label>
+                                </md-tooltip>
+                            </a>
+                            <a href="#" class="md-raised md-ink-ripple md-default-theme" ng-click="vm.remover(cliente)">
+                                <i class="icon s26 icon-cancel"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.DELETE"></label>
+                                </md-tooltip>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+        <md-table-pagination md-page="1" md-limit="10"
+                             md-total="{{vm.totalCount}}" 
+                             md-on-paginate="vm.onPaginate"
+                             md-label="{page: 'Página:', rowsPerPage: 'Resultados por página:', of: 'de'}" 
+                             md-options="vm.ROWS_PAGE"
+                             md-page-select>
+            
+</md-table-pagination>
+    </div>
+
+</div>
+<!-- / CONTENT -->
+
+
+

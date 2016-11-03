@@ -1,0 +1,110 @@
+<div class="content">
+    <div class="form-wrapper md-whiteframe-1dp" flex="100">
+        <form name="form" class="md-inline-form" novalidate>
+            <div layout="column" layout-gt-sm="row" flex>
+                <md-input-container class="margin-right-10" flex="40">
+                    <label translate="CLIENT_UNIT.UNIT">unidade</label>
+                    <input type="text" name="unidade" ng-model="unidadeCliente.unidade" maxlength="100" required>
+                    <div ng-messages="form.unidade.$error" ng-show="form.unidade.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="CLIENT_UNIT.ERROR.SUBSTITUTE">Digite o Fiscal Unidade</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="20" class="margin-right-10">
+                    <label translate="CLIENT_UNIT.SIGLA">silga</label>
+                    <input type="text" name="sigla" ng-model="unidadeCliente.sigla" maxlength="20" required>
+                    <div ng-messages="form.sigla.$error" ng-show="form.sigla.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="CLIENT_UNIT.ERROR.SIGLA">sigla</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="40">
+                    <label translate="CLIENT_UNIT.CLIENT">cliente</label>
+                    <input type="text" name="cliente" ng-model="unidadeCliente.cliente" maxlength="100" required>
+                    <div ng-messages="form.cliente.$error" ng-show="form.cliente.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="CLIENT_UNIT.ERROR.CLIENT">cliente</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <a ng-click="incluirFiscalModal($event)" class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+                        <span translate="ACTION.INCLUDE_FISCAL">Incluir</span>
+                        <md-tooltip class="h5">
+                            <label translate="HINT.INCLUDE"></label>
+                        </md-tooltip>
+                    </a>
+                </md-input-container>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="content">
+
+    <div class="white-bg md-whiteframe-6dp" >
+        <md-table-container>
+            <table md-table md-progress="gridUnidadeCliente">
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column  class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.SUPERVISOR_UNIT">fiscal unidade</span>
+                        </th>
+                        <th md-column  class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.INITIAL_VIGENCIA">vigencia inical</span>
+                        </th>
+                        <th md-column  class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.FINAL_VIGENCIA">vigencia final</span>
+                        </th>
+                        <th md-column  class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.SUBSTITUTE">vigencia final</span>
+                        </th>
+                        <th md-column  class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.INITIAL_VIGENCIA">vigencia inical</span>
+                        </th>
+                        <th md-column  class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.FINAL_VIGENCIA">vigencia final</span>
+                        </th>
+                        <th md-column  class="secondary-text">
+                            <span class="column-title" translate="ACTION">Ação</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="uc in unidadeCliente.fiscais">
+                        <td md-cell>{{uc.fiscalUnidade}}</td>
+                        <td md-cell>{{uc.vigenciaInicial| date:'dd/MM/yyyy'}}</td>
+                        <td md-cell>{{uc.vigenciaFinal| date:'dd/MM/yyyy'}}</td>
+                        <td md-cell>{{uc.fiscalSubstituto}}</td>
+                        <td md-cell> {{uc.vigenciaInicialSubstituto| date:'dd/MM/yyyy'}}</td>
+                        <td md-cell>{{uc.vigenciaFinalSubstituto| date:'dd/MM/yyyy'}}</td>
+                        <td md-cell>
+                            <a href="#" class="md-raised md-ink-ripple md-default-theme" 
+                               ng-click="incluirFiscalModalEmEdicao($event, uc)">
+                                <i class="icon s26 icon-pencil"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.EDIT"></label>
+                                </md-tooltip>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+        <div class="margin-right-20" layout="row" layout-align="end">
+            <md-button class="md-raised md-orange-A400-bg white-text" ng-click="save(form)" translate="ACTION.SAVE" >
+                Salvar
+            </md-button>
+
+            <a href="/unidadeCliente" class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme">
+                <span class="ng-scope" translate="ACTION.CANCEL">Cancelar</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- / CONTENT -->

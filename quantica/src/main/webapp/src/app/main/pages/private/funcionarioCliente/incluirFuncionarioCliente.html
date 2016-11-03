@@ -1,0 +1,165 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title"></div>
+
+    <form name="incluirCtrl.clienteFormCadastro" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-sm="row">
+        <md-input-container flex="75">
+          <label translate="EMPLYEE_CLIENT.NAME">Nome</label>
+          <input type="text" name="nome" ng-model="incluirCtrl.funcionarioCliente.nome" required>
+
+          <div ng-messages="incluirCtrl.clienteFormCadastro.nome.$error" ng-show="incluirCtrl.clienteFormCadastro.nome.$touched"
+               role="alert">
+            <div ng-message="required">
+              <span>Digite o nome.</span>
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="25">
+          <label translate="EMPLYEE_CLIENT.CLIENT">cliente</label>
+          <md-select ng-model="incluirCtrl.funcionarioCliente.cliente">
+            <md-option>
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row">
+        <md-input-container class="margin-right-20" flex>
+          <label translate="EMPLYEE_CLIENT.CPF">cpf</label>
+          <input type="text" name="cpf" ng-cpf mask="999.999.999-99" ng-model="incluirCtrl.funcionarioCliente.cpf" required>
+
+          <div ng-messages="incluirCtrl.clienteFormCadastro.cpf.$error" ng-show="incluirCtrl.clienteFormCadastro.cpf.$touched"
+               role="alert">
+            <div ng-message="required">
+              <span translate="EMPLYEE_CLIENT.ERROR.CPF">Digite o cpf.</span>
+            </div>
+            <div ng-message="cpf">
+              <span translate="EMPLYEE_CLIENT.ERROR.INVALID_CPF">erro cpf</span>
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="margin-right-20" flex>
+          <label translate="EMPLYEE_CLIENT.TEL_FIX">Telefone</label>
+          <input type="text" mask="(99) 9?9999-9999" name="telefone_fix" ng-model="incluirCtrl.funcionarioCliente.telefoneFixo" required>
+
+          <div ng-messages="incluirCtrl.clienteFormCadastro.telefone_fix.$error" ng-show="incluirCtrl.clienteFormCadastro.telefone_fix.$touched"
+               role="alert" multiple>
+            <div ng-message="required">
+              <span translate="CLIENT.ERROR.TEL">Digite o telefone</span>
+            </div>
+            <div ng-message="mask">
+              <span translate="CLIENT.ERROR.TEL">Digite o telefone</span>
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="margin-right-20" flex>
+          <label translate="EMPLYEE_CLIENT.TEL">Telefone</label>
+          <input type="text" mask="(99) 9?9999-9999" name="telefone" ng-model="incluirCtrl.funcionarioCliente.telefone" required>
+
+          <div ng-messages="incluirCtrl.clienteFormCadastro.telefone.$error" ng-show="incluirCtrl.clienteFormCadastro.telefone.$touched"
+               role="alert">
+            <div ng-message="required" multiple>
+              <span translate="CLIENT.ERROR.TEL">Digite o telefone</span>
+            </div>
+            <div ng-message="mask">
+              <span translate="CLIENT.ERROR.TEL">Digite o telefone</span>
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-sm="row">
+        <md-input-container flex>
+          <label translate="EMPLYEE_CLIENT.MAIL">Email</label>
+          <input type="email" name="email" ng-model="incluirCtrl.funcionarioCliente.email" ng-pattern="/^.+@.+\..+$/" required>
+
+          <div ng-messages="incluirCtrl.clienteFormCadastro.email.$error" ng-show="incluirCtrl.clienteFormCadastro.email.$touched"
+               role="alert" multiple>
+            <div ng-message="required">
+              <span translate="EMPLYEE_CLIENT.ERROR.MAIL">Digite email.</span>
+            </div>
+            <div ng-message="pattern">
+              <span translate="EMPLYEE_CLIENT.ERROR.MAIL_PATTERN">Digite email.</span>
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row" flex="100" layout-xs="column">
+        <md-input-container class="margin-right-20" flex="25">
+          <label translate="CLIENT.UF">UF</label>
+          <md-select ng-model="incluirCtrl.funcionarioCliente.endereco.uf" ng-change="getMunicipio(cliente.endereco.uf)">
+            <md-option ng-repeat="x in uf" value="{{x.id}}">
+              {{x.nome}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="margin-right-20" flex="40">
+          <label translate="CLIENT.CITY">Cidade</label>
+          <md-select ng-model="incluirCtrl.funcionarioCliente.endereco.cidade">
+            <md-option ng-repeat="x in municipio" value="{{x.nome}}">
+              {{x.nome}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container flex>
+          <label translate="CLIENT.CEP">CEP</label>
+          <input type="text" name="cep" ng-model="incluirCtrl.funcionarioCliente.endereco.CEP" mask="99.999-99"
+                 maxlength="10">
+          <!--                    <div ng-messages="incluirCtrl.clienteFormCadastro.cep.$error" ng-show="incluirCtrl.clienteFormCadastro.cep.$touched"
+                                   role="alert">
+                                  <div ng-message="required">
+                                      <span translate="CLIENT.ERROR.CEP">Digite o cep</span>
+                                  </div>
+                              </div>-->
+        </md-input-container>
+      </div>
+      <div layout="row" flex="100" layout-xs="column">
+        <md-input-container class="margin-right-20" flex="15">
+          <label translate="CLIENT.NUMBER">numero</label>
+          <input type="text" name="numero" ng-model="incluirCtrl.funcionarioCliente.endereco.numero" maxlength="4">
+        </md-input-container>
+        <md-input-container flex>
+          <label translate="CLIENT.COMPLEMENT">enderco</label>
+          <input type="text" name="complemento" ng-model="incluirCtrl.funcionarioCliente.endereco.complemento">
+        </md-input-container>
+
+      </div>
+
+
+      <div layout="row" layout-align="end">
+        <md-input-container>
+          <a class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme"
+             ng-click="incluirCtrl.salvar()">
+            <span translate="ACTION.SAVE">SALVAR</span>
+            <md-tooltip class="h5">
+              <label translate="HINT.SEARCH">CANCELAR</label>
+            </md-tooltip>
+          </a>
+            
+            
+            <a class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme"
+             ng-click="incluirCtrl.teste()">
+            <span>teste</span>
+          </a>
+            
+            
+          <a href="/funcionarioCliente"
+             class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme">
+            <span translate="ACTION.CANCEL"></span>
+            <md-tooltip class="h5">
+              <label translate="HINT.CANCEL"></label>
+            </md-tooltip>
+          </a>
+        </md-input-container>
+      </div>
+
+    </form>
+
+  </div>
+</div>

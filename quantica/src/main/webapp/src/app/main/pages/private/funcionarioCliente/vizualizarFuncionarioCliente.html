@@ -1,0 +1,38 @@
+<div class="form-wrapper md-whiteframe-4dp" flex="100" >
+    <div class="form-wrapper md-whiteframe-1dp h3" flex="100" layout="row" layout-align="center center">
+        <div layout="column" flex>
+            <div layout="row" >
+                <label translate="EMPLYEE_CLIENT.NAME">Nome</label>: &nbsp; <span>{{vm.funcionarioCliente.nome}} </span>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="EMPLYEE_CLIENT.CPF">CPF</label>: &nbsp; <span>{{vm.funcionarioCliente.cpf}}</span>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="EMPLYEE_CLIENT.TEL_FIX">tel</label>: &nbsp; <span>{{vm.funcionarioCliente.telefoneFixo}} </span>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="EMPLYEE_CLIENT.TEL">Telefone</label>: &nbsp; {{vm.funcionarioCliente.telefone}}
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="EMPLYEE_CLIENT.CITY">Cidade</label>: &nbsp; {{vm.funcionarioCliente.cidade}}-{{vm.funcionarioCliente.uf}}
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="CLIENT.ADDRESS">Endereco</label>: &nbsp; {{vm.funcionarioCliente.endereco}}&nbsp;  Número &nbsp; {{vm.funcionarioCliente.numero}}, &nbsp; {{vm.funcionarioCliente.complemento}}.
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="EMPLYEE_CLIENT.CEP">cep</label>: &nbsp; {{vm.funcionarioCliente.CEP}}
+            </div>
+        </div>
+    </div>
+    <div layout="row" layout-align="end">
+        <a href="/funcionarioCliente" class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+            <span translate="ACTION.BACK">Voltar</span>
+        </a>
+    </div>
+</div>

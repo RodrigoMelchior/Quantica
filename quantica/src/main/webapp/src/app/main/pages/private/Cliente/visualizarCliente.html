@@ -1,0 +1,38 @@
+<div class="form-wrapper md-whiteframe-4dp" flex="100" >
+    <div class="form-wrapper md-whiteframe-1dp h3" flex="100" layout="row" layout-align="center center">
+        <div layout="column" flex>
+            <div layout="row" >
+                <label translate="CLIENT.NAME">Nome</label>: &nbsp; <span>{{viewCliente.visualizarForm.nome}} </span>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="CLIENT.CNPJ">cnpj</label>: &nbsp; <span>{{viewCliente.visualizarForm.cnpj}}</span>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="CLIENT.CODSONDA">CODSONDA</label>: &nbsp; <span>{{viewCliente.visualizarForm.codigoSonda}} </span>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="CLIENT.TEL">Telefone</label>: &nbsp; {{viewCliente.visualizarForm.telefones[0]}}
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <label translate="CLIENT.ADDRESS">Endereco</label>: 
+&nbsp;{{viewCliente.visualizarForm.enderecos[0].logradouro}},
+                 número {{viewCliente.visualizarForm.enderecos[0].numero}}, &nbsp; 
+                {{viewCliente.visualizarForm.enderecos[0].complemento}}. &nbsp; 
+                {{viewCliente.visualizarForm.enderecos[0].municipio.nome}} - {{viewCliente.visualizarForm.enderecos[0].municipio.uf.sigla}}
+                CEP: {{viewCliente.visualizarForm.enderecos[0].cep}}
+            </div>
+            <div layout="row">
+                <label translate="CLIENT.ACTIVE">Ativo</label>: &nbsp; {{viewCliente.visualizarForm.ativo}}
+            </div>
+        </div>
+    </div>
+    <div layout="row" layout-align="end">
+        <a href="/cliente" class="md-blue-grey-500-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+            <span translate="ACTION.BACK">Voltar</span>
+        </a>
+    </div>
+</div>

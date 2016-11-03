@@ -1,0 +1,115 @@
+<div class="content">
+    <div class="form-wrapper md-whiteframe-1dp" flex="100">
+        <form name="pesquisaForm" class="md-inline-form" novalidate>
+            <div layout="column" layout-gt-sm="row" layout-align="end" flex="100">
+                <a href="/unidadeCliente/incluir" class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" >
+                    <span translate="ACTION.INCLUDE">Incluir</span>
+                    <md-tooltip class="h5">
+                        <label translate="HINT.INCLUDE"></label>
+                    </md-tooltip>
+                </a>
+            </div>
+
+            <div layout="column" layout-gt-sm="row" flex>
+                <md-input-container class="margin-right-10" flex="40">
+                    <label translate="CLIENT_UNIT.UNIT">unidade</label>
+                    <input type="text" name="unidade" ng-model="pesquisa.unidade" maxlength="100">
+                </md-input-container>
+                <md-input-container flex="20" class="margin-right-10">
+                    <label translate="CLIENT_UNIT.SIGLA">silga</label>
+                    <input type="text" name="supervisorUnidade" ng-model="pesquisa.sigla" maxlength="20">
+                </md-input-container>
+                <md-input-container flex="40">
+                    <label translate="CLIENT_UNIT.CLIENT">cliente</label>
+                    <input type="text" name="cliente" ng-model="pesquisa.cliente" maxlength="100">
+                </md-input-container>
+
+            </div>
+
+            <div layout="column" layout-gt-sm="row" flex>
+                <div layout="row" layout-gt-sm="row" layout-align="end" flex="30">
+                    <md-input-container>
+                        <a class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" 
+                           ng-click="pesquisar()">
+                            <span translate="ACTION.CONSULT">pesquiar</span>
+                            <md-tooltip class="h5">
+                                <label translate="HINT.SEARCH"></label>
+                            </md-tooltip>
+                        </a>
+                        <a class="md-orange-A400-bg white-text md-raised reference-button md-button md-ink-ripple md-default-theme" ng-click="limparPesquisa()">
+                            <span translate="ACTION.CLEAR">Limpar</span>
+                            <md-tooltip class="h5">
+                                <label translate="HINT.CLEAR"></label>
+                            </md-tooltip>
+                        </a>
+                    </md-input-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="content">
+
+
+    <div class="white-bg md-whiteframe-6dp">
+        <md-table-container>
+            <table md-table md-progress="gridContent">
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.UNIT">unidade</span>
+                        </th>
+                        <th md-column class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.SIGLA">cliente</span>
+                        </th>
+                        <th md-column class="secondary-text">
+                            <span class="column-title" translate="CLIENT_UNIT.CLIENT">cliente</span>
+                        </th>
+                        <th md-column class="secondary-text">
+                            <span class="column-title" translate="ACTION">Ação</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row md-select="dessert" md-select-id="{{dessert.name}}" ng-repeat="uc in gridContent">
+                        <td md-cell>{{uc.unidade}}</td>
+                        <td md-cell>{{uc.sigla}}</td>
+                        <td md-cell>{{uc.cliente}}</td>
+                        <td md-cell>
+                            <a href="unidadeCliente/edit/{{uc.id}}" class="md-raised md-ink-ripple md-default-theme" >
+                                <i class="icon s26 icon-pencil"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.EDIT"></label>
+                                </md-tooltip>
+                            </a>
+                            <a href="centroDeCusto/{{uc.id}}" class="md-raised md-ink-ripple md-default-theme" >
+                                <i class="icon s26 icon-magnify"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.VIEW"></label>
+                                </md-tooltip>
+                            </a>
+                            <a href="#" class="md-raised md-ink-ripple md-default-theme" ng-click="showConfirm(cdc)">
+                                <i class="icon s26 icon-cancel"></i>
+                                <md-tooltip class="h5">
+                                    <label translate="HINT.DELETE"></label>
+                                </md-tooltip>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="10" md-page="1" 
+                             md-total="10" md-on-paginate="onPaginate"
+                             md-label="{page: 'Página:', rowsPerPage: 'Resultados por página:', of: 'de'}" 
+                             md-options="rowsPage"
+                             md-page-select></md-table-pagination>
+
+        <div layout="row" layout-align="end">
+
+        </div>
+    </div>
+
+</div>
+<!-- / CONTENT -->
