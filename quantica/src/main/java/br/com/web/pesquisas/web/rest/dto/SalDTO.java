@@ -37,6 +37,19 @@ public class SalDTO implements Serializable{
 		this.sal4 = sal4;
 		this.sal5 = sal5;
 	}
+
+	public SalDTO(Object[] sal) {
+		super();
+		this.sal1 = new BigDecimal(sal[0].toString());
+		this.sal2 = new BigDecimal(sal[1].toString());
+		this.sal3 = new BigDecimal(sal[2].toString());
+		this.sal4 = new BigDecimal(sal[3].toString());
+		this.sal5 = new BigDecimal(sal[4].toString());
+	}
+	
+	public SalDTO() {
+		super();
+	}
         
     
 }

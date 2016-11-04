@@ -1,0 +1,255 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Estrutura de Cargos</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="ecController.estruturaForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <label>
+          <strong>Selecione o arquivo importar a estrutura</strong>
+        </label>
+      </div>
+      <div flow-init="{ singleFile : true }" flow-name="ecController.arquivo.flow"
+      flow-file-added="ecController.validaArquivo($file)">
+        <div layout="column" layout-gt-xs="row" flex="100">
+          <span class="md-button md-raised md-primary white-text" flow-btn>
+            Selecionar arquivo
+          </span>
+        </div>
+
+        <div ng-if="ecController.arquivo.flow.files.length > 0">
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+                <tr md-row>
+                  <th md-column>
+                    <span class="column-title">Arquivo</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody md-body>
+                <tr md-row ng-repeat="arquivo in ecController.arquivo.flow.files">
+                  <td md-cell>{{ arquivo.name}}</td>
+                  <td md-cell>
+                      <md-button class="md-raised white-text md-primary" ng-click="ecController.enviarArquivo()">
+                          Enviar arquivo
+                      </md-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </div>
+      </div>
+      <div id="inicio" layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Código *</label>
+          <input ng-if="ecController.tipoRelacionamento == 1" type="text" name="codigo" ng-model="ecController.estrutura.codigo" ng-required="true" maxlength="200" />
+          <md-select ng-if="ecController.tipoRelacionamento == 2" name="codigo" ng-model="ecController.estrutura.codigo" required>
+            <md-option ng-repeat="codigo in ecController.listaCodigos"
+            ng-value="codigo.codigo">
+              {{codigo.codigo}}
+            </md-option>
+          </md-select>
+          <div ng-messages="ecController.estruturaForm.codigo.$error"
+          ng-show="ecController.estruturaForm.nome.$touched" role="alert">
+            <div ng-message="required">
+              Informe um código
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Nome *</label>
+          <input type="text" name="nome" ng-model="ecController.estrutura.nome" ng-required="true" maxlength="200" />
+          <div ng-messages="ecController.estruturaForm.nome.$error"
+          ng-show="ecController.estruturaForm.nome.$touched" role="alert">
+            <div ng-message="required">
+              Informe um nome
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Número de ponto *</label>
+          <input type="number" name="ponto" ng-model="ecController.estrutura.ponto" ng-required="true" />
+          <div ng-messages="ecController.estruturaForm.ponto.$error"
+          ng-show="ecController.estruturaForm.ponto.$touched" role="alert">
+            <div ng-message="required">
+              Informe um número de pontos
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Estrutura Organizacional *</label>
+          <md-select name="nivel" ng-model="ecController.estrutura.estruturaOrganizacional.id" required>
+            <md-option ng-repeat="nivel in ecController.niveis"
+            ng-value="nivel.id">
+              {{ nivel.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="ecController.estruturaForm.nivel.$error"
+          ng-show="ecController.estruturaForm.nivel.$touched" role="alert">
+            <div ng-message="required">
+              Selecione a estrutura Organizacional
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="100">
+          <label>Descrição *</label>
+          <textarea name="descricao" ng-model="ecController.estrutura.descricao"
+          md-maxlength="500" maxlength="500" ng-required="true"></textarea>
+          <div ng-messages="ecController.estruturaForm.descricao.$error"
+          ng-show="ecController.estruturaForm.descricao.$touched" role="alert">
+            <div ng-message="required">
+              Informe uma descrição
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <md-button class="md-raised white-text md-primary" ng-click="ecController.salvar()">
+          Salvar
+        </md-button>
+      </div>
+
+      <div ng-if="ecController.tipoRelacionamento == 1" >
+          <div ng-if="ecController.lista.length > 0">
+          <md-table-container>
+            <table md-table md-progress="ecController.gridContent">
+              <thead md-head md-order="ecController.query.order">
+                <tr md-row>
+                  <th md-column md-order-by="codigo">
+                    <span class="column-title">Código</span>
+                  </th>
+                  <th md-column md-order-by="nome">
+                    <span class="column-title">Nome</span>
+                  </th>
+                  <th md-column md-order-by="descricao">
+                    <span class="column-title">Descrição</span>
+                  </th>
+                  <th md-column md-order-by="ponto">
+                    <span class="column-title">Ponto</span>
+                  </th>
+                  <th md-column md-order-by="estrutura">
+                    <span class="column-title">Estrutura</span>
+                  </th>
+                  <th md-column>
+                    <span class="column-title">Ações</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody md-body>
+                <tr md-row ng-repeat="item in ecController.lista | orderBy: ecController.query.order">
+                  <td md-cell>{{ item.codigo }}</td>
+                  <td md-cell>{{ item.nome }}</td>
+                  <td md-cell>{{ item.descricao }}</td>
+                  <td md-cell>{{ item.ponto }}</td>
+                  <td md-cell>{{ item.estruturaOrganizacional.nome }}</td>
+                  <td md-cell>
+                    <a  href="#" ng-click="ecController.editar(item, $index)" class="md-raised md-ink-ripple md-default-theme">
+                      <i class="icon s26 icon-pencil"></i>
+                      <md-tooltip class="h5">Editar</md-tooltip>
+                    </a>
+                    <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                    ng-click="ecController.excluir($evt, item, $index)">
+                      <i class="icon s26 icon-cancel"></i>
+                      <md-tooltip class="h5">Excluir</md-tooltip>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+          </div>
+        </div>
+        <div ng-if="ecController.tipoRelacionamento == 2" >
+          <div ng-if="ecController.listaPatriocinadora.length > 0">
+              <md-table-container>
+                <table md-table md-progress="ecController.gridContent">
+                  <thead md-head md-order="ecController.query.order">
+                    <tr md-row>
+                      <th colspan="3" md-column class="dt-head-center">
+                        <span class="column-title">Patriocinadora</span>
+                      </th>
+                      <th md-column class="pink-100-border-right">
+                        <span class="column-title ">|</span>
+                      </th>
+                      <th colspan="5" md-column >
+                        <span class="column-title dt-head-center">Participante</span>
+                      </th>
+                    </tr>
+                    <tr md-row>
+                      <th md-column md-order-by="codigo">
+                        <span class="column-title">Código</span>
+                      </th>
+                      <th md-column md-order-by="nome">
+                        <span class="column-title">Nome</span>
+                      </th>
+                      <th md-column md-order-by="descricao">
+                        <span class="column-title">Descrição</span>
+                      </th>
+                      <th md-column >
+                        <span class="column-title">|</span>
+                      </th>  
+                      <th md-column md-order-by="nome">
+                        <span class="column-title">Nome</span>
+                      </th>
+                      <th md-column md-order-by="descricao">
+                        <span class="column-title">Descrição</span>
+                      </th>
+                      <th md-column md-order-by="ponto">
+                        <span class="column-title">Ponto</span>
+                      </th>
+                      <th md-column md-order-by="estrutura">
+                        <span class="column-title">Estrutura</span>
+                      </th>
+                      <th md-column>
+                        <span class="column-title">Ações</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody md-body>
+                    <tr md-row ng-repeat="item in ecController.listaPatriocinadora | orderBy: ecController.query.order">
+                      <td md-cell>{{ item.codigo }}</td>
+                      <td md-cell>{{ item.nome }}</td>
+                      <td md-cell>{{ item.descricao }}</td>
+                      <td md-cell>|</td>
+                      <td md-cell>{{ item.cargo.nome }}</td>
+                      <td md-cell>{{ item.cargo.descricao }}</td>
+                      <td md-cell>{{ item.cargo.ponto }}</td>
+                      <td md-cell>{{ item.cargo.estruturaOrganizacional.nome }}</td>
+                      <td md-cell ng-if="item.cargo">
+                        <a  href="#" ng-click="ecController.editar(item.cargo, $index)" class="md-raised md-ink-ripple md-default-theme">
+                          <i class="icon s26 icon-pencil"></i>
+                          <md-tooltip class="h5">Editar</md-tooltip>
+                        </a>
+                        <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                        ng-click="ecController.excluir($evt, item.cargo, $index)">
+                          <i class="icon s26 icon-cancel"></i>
+                          <md-tooltip class="h5">Excluir</md-tooltip>
+                        </a>
+                      </td>
+                      <td md-cell ng-if="!item.cargo" >
+                        <a  href="#" ng-click="ecController.adicionar(item.codigo, $index)" class="md-raised md-ink-ripple md-default-theme">
+                          <i class="icon s26 icon-plus-circle"></i>
+                          <md-tooltip class="h5">Adicionar</md-tooltip>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </md-table-container>
+            </div>
+        </div>
+    </form>
+  </div>
+</div>

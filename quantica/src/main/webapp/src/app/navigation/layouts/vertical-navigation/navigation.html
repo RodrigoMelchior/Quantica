@@ -1,0 +1,12 @@
+
+<md-toolbar class="navigation-header md-whiteframe-1dp md-primary-bg" layout="row" layout-align="space-between center">
+    <div class="logo mouseHover" layout="row" layout-align="start center" ng-click="toDashboard()">
+        <span class="logo-image"><img src="assets/images/logos/logo.jpg"></span>
+        <span class="logo-text">Quântica</span>
+    </div>
+
+    <md-icon class="fold-toggle s18" md-font-icon="icon-backburger" hide show-gt-sm
+             ng-click="vm.toggleMsNavigationFolded()"></md-icon>
+</md-toolbar>
+
+<ms-navigation class="scrollable md-grey-50-bg" folded="vm.folded" ms-scroll="vm.msScrollOptions"></ms-navigation>

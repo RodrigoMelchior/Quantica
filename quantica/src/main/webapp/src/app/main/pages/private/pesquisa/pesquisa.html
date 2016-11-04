@@ -1,0 +1,84 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Pesquisar Pesquisa</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="psController.pesquisarForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Nome</label>
+          <input type="text" name="nome" ng-model="psController.pesquisa.nome" maxlength="100" />
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Data Inicial</label>
+          <input type="date" name="dataInicial" ng-model="psController.pesquisa.dataInicial" />
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Data Final</label>
+          <input type="date" name="dataFinal" ng-model="psController.pesquisa.dataFinal" />
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <a ui-sref=".incluir" class="md-button md-raised md-primary">
+          Cadastrar nova
+        </a>
+        <md-button class="md-raised md-primary" ng-click="psController.pesquisar()">
+          Pesquisar
+        </md-button>
+      </div>
+    </form>
+
+    <div ng-if="psController.pesquisa.lista.length > 0">
+      <md-table-container>
+        <table md-table md-progress="psController.gridContent">
+          <thead md-head md-order="psController.query.order">
+            <tr md-row>
+              <th md-column md-order-by="nome">
+                <span class="column-title">Nome</span>
+              </th>
+              <th md-column md-order-by="dataInicial">
+                <span class="column-title">Data Inicial</span>
+              </th>
+              <th md-column md-order-by="dataFinal">
+                <span class="column-title">Data Final</span>
+              </th>
+              <th md-column md-order-by="habilitado">
+                <span class="column-title">Relatório</span>
+              </th>
+              <th md-column>
+                <span class="column-title">Ações</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="pesquisa in psController.pesquisa.lista | orderBy: psController.query.order">
+              <td md-cell>{{ pesquisa.nome }}</td>
+              <td md-cell>{{ pesquisa.inicio }}</td>
+              <td md-cell>{{ pesquisa.termino }}</td>
+              <td md-cell>
+                <md-switch class="md-primary" ng-model="pesquisa.habilitarRelatorio"
+                ng-change="psController.mudaHabilitado(pesquisa)" ng-true-value="'S'" ng-false-value="'N'" ></md-switch>
+              </td>
+              <td md-cell>
+                <a ui-sref=".editar({id: pesquisa.id})" class="md-raised md-ink-ripple md-default-theme">
+                  <i class="icon s26 icon-pencil"></i>
+                  <md-tooltip class="h5">Editar</md-tooltip>
+                </a>
+                <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                ng-click="psController.excluir($evt, pesquisa)">
+                  <i class="icon s26 icon-cancel"></i>
+                  <md-tooltip class="h5">Excluir</md-tooltip>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+<div id="seleciona-pesquisa" class="flex-scrollable" layout="column" ms-scroll>
+  <div id="seleciona-pesquisa-form-wrapper" layout="column" layout-align="center center">
+    <div id="seleciona-pesquisa-form" class="md-whiteframe-8dp">
+      <div class="logo">
+          <img src="assets/images/logos/logo.jpg">
+      </div>
+      <div class="title">Selecione a pesquisa desejada!</div>
+
+      <form name="selecionaForm" novalidate>
+        <md-input-container class="md-block">
+          <label>Pesquisa</label>
+          <md-select name="pesquisa" ng-model="spController.pesquisaSelecionada" required>
+            <md-option ng-repeat="pesquisaEmpresa in spController.todasPesquisas" ng-value="pesquisaEmpresa.id">
+              {{ pesquisaEmpresa.nome }}
+            </md-option>
+          </md-select>
+          <div class="errors" ng-messages="selecionaForm.pesquisa.$error" ng-if="selecionaForm.$dirty">
+            <div ng-message="required">
+              Selecione uma pesquisa
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-button type="submit" class="md-raised md-primary"
+        ng-disabled="selecionaForm.$invalid || selecionaForm.$pristine" ng-click="spController.selecionaPesquisa()" >
+          Confirmar
+      </md-button>
+      <br><br>
+    </form>
+  </div>
+</div>
+</div>

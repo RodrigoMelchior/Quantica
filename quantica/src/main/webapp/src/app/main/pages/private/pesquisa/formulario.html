@@ -1,0 +1,181 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">{{ psController.tituloForm }} Pesquisa</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="psController.ceForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Nome *</label>
+          <input type="text" name="nome" ng-model="psController.form.nome" maxlength="100"
+          ng-required="true"/>
+          <div ng-messages="psController.ceForm.nome.$error"
+          ng-show="psController.ceForm.nome.$touched" role="alert">
+            <div ng-message="required">
+              Informe um nome
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <md-radio-group name="habilitarRelatorio" class="gray-label" ng-model="psController.form.habilitarRelatorio" required>
+            <span class="margin-left-10 margin-right-10">Relatório *</span>
+            <md-radio-button value="S" class="md-primary margin-right-10">
+              Habilitado
+            </md-radio-button>
+            <md-radio-button value="N" class="md-primary margin-right-10">
+              Desabilitado
+            </md-radio-button>
+          </md-radio-group>
+          <div ng-messages="psController.ceForm.habilitarRelatorio.$error"
+          ng-show="psController.ceForm.habilitarRelatorio.$touched" role="alert">
+            <div ng-message="required">
+              Informe um status
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Data Inicial *</label>
+          <input type="date" name="dataInicial" ng-model="psController.form.inicio" ng-required="true"/>
+          <div ng-messages="psController.ceForm.inicio.$error"
+          ng-show="psController.ceForm.inicio.$touched" role="alert">
+            <div ng-message="required">
+              Informe uma data inicial
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Data Final *</label>
+          <input type="date" name="dataFinal" ng-model="psController.form.termino" ng-required="true"/>
+          <div ng-messages="psController.ceForm.termino.$error"
+          ng-show="psController.ceForm.termino.$touched" role="alert">
+            <div ng-message="required">
+              Informe uma data final
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Data Base *</label>
+          <input type="month" name="dataBase" ng-model="psController.form.dataBase" ng-required="true"/>
+          <div ng-messages="psController.ceForm.dataBase.$error"
+          ng-show="psController.ceForm.dataBase.$touched" role="alert">
+            <div ng-message="required">
+              Informe uma data base
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Empresas Participantes * </label>
+          <md-select multiple name="empresas" ng-model="psController.form.empresas" required ng-change="psController.atualizaEmpresaSel()">
+            <md-option ng-repeat="empresa in psController.listaEmpresas"
+            ng-value="empresa.id">
+              {{ empresa.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="psController.ceForm.empresas.$error"
+          ng-show="psController.ceForm.empresas.$touched" role="alert">
+            <div ng-message="required">
+              Informe no mínimo uma empresa
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Empresas Patrocinadora * </label>
+          <md-select name="empresaPtr" ng-model="psController.form.empresaPtr" required>
+            <md-option ng-repeat="empresa in psController.listaEmpresasSel"
+            ng-value="empresa.id">
+              {{ empresa.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="psController.ceForm.empresaPtr.$error"
+          ng-show="psController.ceForm.empresaPtr.$touched" role="alert">
+            <div ng-message="required">
+              Informe uma empresa
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Configuração Layout *</label>
+          <md-select multiple name="itens" ng-model="psController.form.itens" required ng-change="psController.atualizaItensSel()" style="display:inline-block;width:728px;height:90px">
+            <md-option ng-repeat="item in psController.listaItens"
+            ng-value="item.id">
+              {{ item.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="psController.ceForm.itens.$error"
+          ng-show="psController.ceForm.itens.$touched" role="alert">
+            <div ng-message="required">
+              Informe no mínimo um item
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <div ng-if="psController.form.itensOrdem.length > 0">
+          <md-table-container>
+            <table md-table>
+              <thead md-head>
+                <tr md-row>
+                  <th md-column>
+                    <span class="column-title">Nome</span>
+                  </th>
+                  <th md-column>
+                    <span class="column-title">Ordem</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody md-body>
+                <tr md-row ng-repeat="item in psController.form.itensOrdem">
+                  <td md-cell>{{ item.item.nome }}</td>
+                  <td md-cell>
+                    <md-select name="ordem" ng-model="item.ordem" required >
+                        <md-option ng-value="1">1</md-option>
+                        <md-option ng-value="2">2</md-option>
+                        <md-option ng-value="3">3</md-option>
+                        <md-option ng-value="4">4</md-option>
+                        <md-option ng-value="5">5</md-option>
+                        <md-option ng-value="6">6</md-option>
+                        <md-option ng-value="7">7</md-option>
+                        <md-option ng-value="8">8</md-option>
+                        <md-option ng-value="9">9</md-option>
+                      </md-select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+        </div>
+    </div>
+          
+
+      <div ng-include="'app/main/pages/private/pesquisa/partials/paineis.html'"></div>
+      <hr>
+      <div ng-include="'app/main/pages/private/pesquisa/partials/agrupadores.html'"></div>
+      <hr>
+      <div ng-include="'app/main/pages/private/pesquisa/partials/perguntas.html'"></div>
+      <hr>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <md-button class="md-raised md-accent white-text" ng-click="psController.voltar()">
+          Voltar
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="psController.salvar()">
+          Salvar
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>

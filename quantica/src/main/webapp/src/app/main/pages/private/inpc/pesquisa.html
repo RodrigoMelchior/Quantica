@@ -1,0 +1,79 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Pesquisar INPC</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="inController.pesquisarForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Mes/Ano Início *</label>
+          <input type="month" name="mesAnoInicio" ng-model="inController.pesquisa.mesAnoInicio"
+          ng-required="true" />
+          <div ng-messages="inController.ceForm.mesAnoInicio.$error"
+          ng-show="inController.ceForm.mesAnoInicio.$touched" role="alert">
+            <div ng-message="required">
+              Informe o mês/ano Inicial para pesquisar INPC.
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+     <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Mes/Ano Fim *</label>
+          <input type="month" name="mesAnoFim" ng-model="inController.pesquisa.mesAnoFim"
+          ng-required="true" />
+          <div ng-messages="inController.ceForm.mesAnoFim.$error"
+          ng-show="inController.ceForm.mesAnoFim.$touched" role="alert">
+            <div ng-message="required">
+              Informe o mês/ano Final para pesquisar INPC.
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+     
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <a ui-sref=".incluir" class="md-button md-raised md-primary">
+          Cadastrar novo
+        </a>
+        <md-button class="md-raised md-primary" ng-click="inController.pesquisar()">
+          Pesquisar
+        </md-button>
+      </div>
+    </form>
+
+    <div ng-if="inController.pesquisa.lista.length > 0">
+      <md-table-container>
+        <table md-table md-progress="inController.gridContent">
+          <thead md-head md-order="inController.query.order">
+            <tr md-row>
+              <th md-column md-order-by="mesAno">
+                <span class="column-title">Mês/Ano</span>
+              </th>
+              <th md-column md-order-by="indice">
+                <span class="column-title">Indice</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="inpc in inController.pesquisa.lista | orderBy: inController.query.order">
+              <td md-cell>{{ inpc.mesAno }}</td>
+              <td md-cell>{{ inpc.indice | currency:''}}</td>
+              <td md-cell>
+                <a ui-sref=".editar({id: inpc.id})" class="md-raised md-ink-ripple md-default-theme">
+                  <i class="icon s26 icon-pencil"></i>
+                  <md-tooltip class="h5">Editar</md-tooltip>
+                </a>
+                <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                ng-click="inController.excluir($evt, inpc)">
+                  <i class="icon s26 icon-cancel"></i>
+                  <md-tooltip class="h5">Excluir</md-tooltip>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+  </div>
+</div>

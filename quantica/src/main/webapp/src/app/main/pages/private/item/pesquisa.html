@@ -1,0 +1,67 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Pesquisar Item</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="itController.pesquisarForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Nome *</label>
+          <input type="text" name="nome" ng-model="itController.pesquisa.nome" ng-required="true" maxlength="100" />
+          <div ng-messages="itController.pesquisarForm.nome.$error"
+          ng-show="itController.pesquisarForm.nome.$touched" role="alert">
+            <div ng-message="required">
+              Informe um nome
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <a ui-sref=".incluir" class="md-button md-raised md-primary">
+          Cadastrar novo
+        </a>
+        <md-button class="md-raised md-primary" ng-click="itController.pesquisar()">
+          Pesquisar
+        </md-button>
+      </div>
+    </form>
+
+    <div ng-if="itController.pesquisa.lista.length > 0">
+      <md-table-container>
+        <table md-table md-progress="itController.gridContent">
+          <thead md-head md-order="itController.query.order">
+            <tr md-row>
+              <th md-column md-order-by="nome">
+                <span class="column-title">Nome</span>
+              </th>
+              <th md-column md-order-by="descricao">
+                <span class="column-title">Descrição</span>
+              </th>
+              <th md-column>
+                <span class="column-title">Ações</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="item in itController.pesquisa.lista | orderBy: itController.query.order">
+              <td md-cell>{{ item.nome }}</td>
+              <td md-cell>{{ item.descricao }}</td>
+              <td md-cell>
+                <a ui-sref=".editar({id: item.id})" class="md-raised md-ink-ripple md-default-theme">
+                  <i class="icon s26 icon-pencil"></i>
+                  <md-tooltip class="h5">Editar</md-tooltip>
+                </a>
+                <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                ng-click="itController.excluir($evt, item)">
+                  <i class="icon s26 icon-cancel"></i>
+                  <md-tooltip class="h5">Excluir</md-tooltip>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+  </div>
+</div>

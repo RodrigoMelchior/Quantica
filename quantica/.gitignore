@@ -1,0 +1,28 @@
+# Eclipse files
+.apt_generated/
+.classpath
+.externalToolBuilders
+.project
+.settings/
+.factorypath
+
+# Web
+src/main/webapp/node
+src/main/webapp/bower_components/
+src/main/webapp/node_modules/
+src/main/webapp/dist/
+src/main/webapp/coverage/
+
+# Intellij files
+.idea/
+data/
+
+# Node
+src/main/webapp/.tmp/
+
+# Maven
+target/
+proserv.iml
+
+# Logs
+LOG_PATH_IS_UNDEFINED/

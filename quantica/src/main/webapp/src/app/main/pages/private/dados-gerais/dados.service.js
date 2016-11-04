@@ -25,22 +25,26 @@
       return $http.get(url + '/cargo/' + nivel);
     };
     
-    var getMin = function () {
-      return $http.get(url + '/min');
+    var getMin = function (filtro) {
+      return $http.post(url + '/min', filtro);
     };
     
-    var getMax = function () {
-      return $http.get(url + '/max');
+    var getMax = function (filtro) {
+      return $http.post(url + '/max', filtro);
     };
     
-    var getSum = function () {
-      return $http.get(url + '/somatorio');
+    var getSum = function (filtro) {
+      return $http.post(url + '/somatorio', filtro);
     };
       
     var getAll = function () {
       return $http.get(url + '/pesquisa');
     };
     
+    var getSearch = function (filtro) {
+      return $http.post(url + '/search', filtro);
+    };
+      
     return {
       getListaSetor     : getListaSetor,
       getListaEmpresa   : getListaEmpresa,
@@ -49,7 +53,8 @@
       getMin            : getMin,
       getMax            : getMax,
       getSum            : getSum,
-      getAll            : getAll
+      getAll            : getAll,
+      getSearch         : getSearch
     };
   }
 })();

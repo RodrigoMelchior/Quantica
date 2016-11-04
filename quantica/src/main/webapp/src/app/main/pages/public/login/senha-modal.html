@@ -1,0 +1,43 @@
+<md-dialog aria-label="Esqueci minha senha" flex="50"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools md-accent-bg white-text">
+        <h2>Altere sua senha</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <form name="alterarSenhaForm" novalidate>
+          <md-input-container class="md-block" md-no-float>
+            <input type="password" name="senhaNova" ng-model="form.newPassword" placeholder="Nova Senha" maxlength="20" required>
+            <div ng-messages="alterarSenhaForm.senhaNova.$error" ng-show="alterarSenhaForm.senhaNova.$touched" role="alert">
+              <div ng-message="required">
+                <span>Digite a nova senha</span>
+              </div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" md-no-float>
+            <input type="password" name="senhaRepetir" ng-model="form.repeatPassword" placeholder="Repetir Nova Senha" maxlength="20" required>
+            <div ng-messages="alterarSenhaForm.senhaRepetir.$error" ng-show="alterarSenhaForm.senhaRepetir.$touched" role="alert">
+              <div ng-message="required">
+                <span>Digite novamente a nova senha</span>
+              </div>
+            </div>
+          </md-input-container>
+        </form>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised white-text md-primary" ng-click="alteraSenha()">
+        Confirmar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

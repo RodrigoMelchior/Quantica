@@ -1,0 +1,102 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Pesquisar Usuário</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="usController.pesquisarForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Usuário</label>
+          <input type="text" name="usuario" ng-model="usController.pesquisa.usuario" maxlength="30" />
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Perfil</label>
+          <md-select name="perfil" ng-model="usController.pesquisa.perfil">
+            <md-option ng-repeat="perfil in usController.listaPerfis"
+            ng-value="perfil.id">
+              {{ perfil.nome }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Empresa</label>
+          <md-select name="empresa" ng-model="usController.pesquisa.empresa">
+            <md-option ng-repeat="empresa in usController.listaEmpresas"
+            ng-value="empresa.id">
+              {{ empresa.nome }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <md-radio-group name="ativo" class="gray-label" ng-model="usController.pesquisa.ativo">
+            <span class="margin-left-10 margin-right-10">Status</span>
+            <md-radio-button value="S" class="md-primary margin-right-10">
+              Ativo
+            </md-radio-button>
+            <md-radio-button value="N" class="md-primary margin-right-10">
+              Inativo
+            </md-radio-button>
+          </md-radio-group>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <a ui-sref=".incluir" class="md-button md-raised md-primary">
+          Cadastrar novo
+        </a>
+        <md-button class="md-raised md-primary" ng-click="usController.pesquisar()">
+          Pesquisar
+        </md-button>
+      </div>
+    </form>
+
+    <div ng-if="usController.pesquisa.lista.length > 0">
+      <md-table-container>
+        <table md-table md-progress="usController.gridContent">
+          <thead md-head md-order="usController.query.order">
+            <tr md-row>
+              <th md-column md-order-by="usuario">
+                <span class="column-title">Usuário</span>
+              </th>
+              <th md-column md-order-by="perfil">
+                <span class="column-title">Perfil</span>
+              </th>
+              <th md-column md-order-by="empresa">
+                <span class="column-title">Empresa</span>
+              </th>
+              <th md-column md-order-by="status">
+                <span class="column-title">Situação</span>
+              </th>
+              <th md-column>
+                <span class="column-title">Ações</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="usuario in usController.pesquisa.lista | orderBy: usController.query.order">
+              <td md-cell>{{ usuario.login }}</td>
+              <td md-cell>{{ usuario.perfil }}</td>
+              <td md-cell>{{ usuario.empresa }}</td>
+              <td md-cell>{{ usuario.status | situacao }}</td>
+              <td md-cell>
+                <a ui-sref=".editar({id: usuario.id})" class="md-raised md-ink-ripple md-default-theme">
+                  <i class="icon s26 icon-pencil"></i>
+                  <md-tooltip class="h5">Editar</md-tooltip>
+                </a>
+                <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                ng-click="usController.excluir($evt, usuario)">
+                  <i class="icon s26 icon-cancel"></i>
+                  <md-tooltip class="h5">Excluir</md-tooltip>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+  </div>
+</div>

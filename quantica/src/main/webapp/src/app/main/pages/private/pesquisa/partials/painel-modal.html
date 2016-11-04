@@ -1,0 +1,54 @@
+<md-dialog aria-label="Adicionar Painel" flex="50"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools md-accent-bg white-text">
+        <h2>Painel</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <form name="painelForm" class="md-inline-form" novalidate>
+          <md-input-container class="md-block" md-no-float>
+            <label>Nome *</label>
+            <input type="text" name="nome" ng-model="form.nome" maxlength="100" ng-required="true" />
+            <div ng-messages="painelForm.nome.$error" ng-show="painelForm.nome.$touched" role="alert">
+              <div ng-message="required">
+                Informe um nome
+              </div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" md-no-float>
+            <label>Empresas *</label>
+            <md-select multiple name="empresasPainel" ng-model="form.idsEmp" required>
+              <md-option ng-repeat="empresa in listaEmpresasSelecionadas"
+              ng-value="empresa.id">
+                {{ empresa.nome }}
+              </md-option>
+            </md-select>
+            <div ng-messages="painelForm.empresas.$error"
+            ng-show="painelForm.empresas.$touched" role="alert">
+              <div ng-message="required">
+                Informe no mínimo uma empresa
+              </div>
+            </div>
+          </md-input-container>
+        </form>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised white-text md-accent" ng-click="cancel()">
+        Voltar
+      </md-button>
+      <md-button class="md-raised white-text md-primary"
+      ng-disabled="formularioInvalido()" ng-click="adicionaPainel()">
+        Salvar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

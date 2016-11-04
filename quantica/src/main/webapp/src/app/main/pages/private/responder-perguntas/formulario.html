@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Responder Perguntas da Pesquisa</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="rpController.ceForm" class="md-inline-form" novalidate>
+        <div ng-if="rpController.listaPerguntas.length > 0">
+            <div ng-repeat="pergunta in rpController.listaPerguntas | orderBy: prController.query.order">
+                <div layout="column" layout-gt-xs="row" flex="100">
+                    <md-input-container flex="100">
+                      <label>{{pergunta.pergunta.enunciado}}</label>
+                      <textarea name="enunciado{{pergunta.id}}" ng-model="rpController.listaPerguntas[$index].resposta.texto" ng-required="true"
+                      maxlength="500" md-maxlength="500" />
+                      <div ng-messages="rpController.ceForm.enunciado.$error"
+                      ng-show="rpController.ceForm.enunciado.$touched" role="alert">
+                        <div ng-message="required">
+                          Informe um enunciado
+                        </div>
+                      </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+      
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <md-button class="md-raised md-primary" ng-click="rpController.salvar()">
+          Salvar
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>

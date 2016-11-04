@@ -1,0 +1,44 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">{{ itController.tituloForm }} Item</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="itController.ceForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Nome *</label>
+          <input type="text" name="nome" ng-model="itController.form.nome" ng-required="true" maxlength="100" />
+          <div ng-messages="itController.ceForm.nome.$error"
+          ng-show="itController.ceForm.nome.$touched" role="alert">
+            <div ng-message="required">
+              Informe um nome
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Descrição *</label>
+          <textarea name="descricao" ng-model="itController.form.descricao" ng-required="true"
+          maxlength="1000" md-maxlength="1000" />
+          <div ng-messages="itController.ceForm.descricao.$error"
+          ng-show="itController.ceForm.descricao.$touched" role="alert">
+            <div ng-message="required">
+              Informe uma descrição
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <md-button class="md-raised md-accent white-text" ng-click="itController.voltar()">
+          Voltar
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="itController.salvar()">
+          Salvar
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>
