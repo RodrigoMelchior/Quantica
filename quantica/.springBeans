@@ -7,6 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
+		<config>java:br.com.web.pesquisas.PESQUISASpplication</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

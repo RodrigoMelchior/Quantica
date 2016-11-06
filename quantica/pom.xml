@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.web</groupId>
-	<artifactId>Quantica</artifactId>
+	<artifactId>pesquisasSalariais</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Quantica</name>
-	<description>Pesquisas</description>
+	<name>pesquisasSalariais</name>
+	<description>Pesquisas Salariais</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -33,6 +33,14 @@
 	</properties>
 	<repositories>
 
+	<repository>
+	   <id>jrimum.org</id>
+	   <url>http://jrimum.org/maven/content/groups/public/</url>
+	   <snapshots>
+	      <enabled>true</enabled>
+	   </snapshots>
+	</repository>
+	
 	</repositories>
 
 	<dependencies>
@@ -313,12 +321,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
-		<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports-fonts</artifactId>
-			<version>6.0.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -367,6 +369,26 @@
 			<artifactId>spring-test-dbunit</artifactId>
 			<version>1.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.rometools</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-cypher-compiler-2.2</artifactId>
+			<version>2.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-cypher-compiler-2.1</artifactId>
+			<version>2.1.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -382,11 +404,11 @@
 			<plugin>
 				<groupId>com.alexnederlof</groupId>
 				<artifactId>jasperreports-plugin</artifactId>
-				<version>2.3</version>
+				<version>1.6</version>
 
 				<executions>
 					<execution>
-						<phase>process-classes</phase>
+						<phase>process-sources</phase>
 						<goals>
 							<goal>jasper</goal>
 						</goals>
@@ -394,21 +416,21 @@
 				</executions>
 				<configuration>
 					<!-- These are the default configurations: -->
-					<goalPrefix>jasperreports</goalPrefix>
 					<compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
 					<sourceDirectory>src/main/reports</sourceDirectory>
-					<outputDirectory>${project.build.directory}/classes/reports</outputDirectory>
+					<outputDirectory>${project.build.directory}/classes</outputDirectory>
 					<outputFileExt>.jasper</outputFileExt>
 					<xmlValidation>true</xmlValidation>
 					<verbose>false</verbose>
 					<numberOfThreads>4</numberOfThreads>
+
 				</configuration>
 
 				<dependencies>
 					<dependency>
 						<groupId>net.sf.jasperreports</groupId>
 						<artifactId>jasperreports</artifactId>
-						<version>6.2.2</version>
+						<version>6.2.0</version>
 						<exclusions>
 							<exclusion>
 								<artifactId>lucene-core</artifactId>
@@ -425,6 +447,12 @@
 						</exclusions>
 
 					</dependency>
+					<dependency>
+					   <groupId>org.jrimum</groupId>
+					   <artifactId>jrimum-bopepo</artifactId>
+					   <version>0.2.3-SNAPSHOT</version><!-- 0.2.3-DEV-SNAPSHOT em desenvolvimento -->
+					</dependency>
+
 
 				</dependencies>
 			</plugin>

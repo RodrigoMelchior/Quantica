@@ -1,0 +1,62 @@
+Busca todos GET:
+empresa: /api/empresas
+item: /api/itens
+pergunta: /api/perguntas
+agrupador: /api/agrupadores
+arquivo: /api/arquivos
+cargo: /api/cargos
+painel: /api/paineis
+pesquisa: /api/pesquisas
+
+Busca por Id GET:
+empresa: /api/empresas/{id}
+item: /api/itens/{id}
+pergunta: /api/perguntas/{id}
+agrupador: /api/agrupadores/{id}
+arquivo: /api/arquivos/{id}
+cargo: /api/cargos/{id}
+painel: /api/paineis/{id}
+pesquisa: /api/pesquisas/{id}
+
+Criar Registro POST: (passar json com o id null ou sem id)
+empresa: /api/empresas
+item: /api/itens
+pergunta: /api/perguntas
+agrupador: /api/agrupadores
+arquivo: /api/arquivos
+cargo: /api/cargos
+painel: /api/paineis
+pesquisa: /api/pesquisas
+
+
+Alterar Registro PUT: (passar json com o id preenchido)
+empresa: /api/empresas/{id}
+item: /api/itens/{id}
+pergunta: /api/perguntas/{id}
+agrupador: /api/agrupadores/{id}
+arquivo: /api/arquivos/{id}
+cargo: /api/cargos/{id}
+painel: /api/paineis/{id}
+pesquisa: /api/pesquisas/{id}
+
+
+Apagar Registro DELETE: (passar json com o id preenchido)
+empresa: /api/empresas/{id}
+item: /api/itens/{id}
+pergunta: /api/perguntas/{id}
+agrupador: /api/agrupadores/{id}
+arquivo: /api/arquivos/{id}
+cargo: /api/cargos/{id}
+painel: /api/paineis/{id}
+pesquisa: /api/pesquisas/{id}
+
+
+Busca pesquisa por empresa: 
+GET - /api/pesquisas/pesquisa-por-empresa
+
+
+Busca com filtro
+Usuario: /api/usuarios/search
+Pergunta: /api/perguntas/search
+Item: /api/itens/search
+Empresa: /api/empresas/search

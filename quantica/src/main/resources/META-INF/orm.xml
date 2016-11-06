@@ -1,0 +1,51 @@
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+	version="2.1">
+
+	<entity class="br.com.web.pesquisas.domain.Usuario">
+		<named-entity-graph name="permissoes">
+			<named-attribute-node name="login" />
+<!-- 			<named-attribute-node name="perfis" subgraph="Perfis.subgraph" />
+
+			<subgraph name="Perfis.subgraph">
+				<named-attribute-node name="nome" />
+				<named-attribute-node name="permissoes" />
+			</subgraph>
+ -->		</named-entity-graph>
+	</entity>
+	
+	
+
+    <entity class="br.com.web.pesquisas.domain.Permissao">
+        <named-native-query name="Permissao.recuperarPermissoesAtivasUsuario" result-set-mapping="permissaoAtivasUsuarioMapping">
+            <query><![CDATA[
+                select
+                p.co_seq_permissao, p.no_alias_permissao
+                from
+                tb_permissao p
+                inner join
+                tb_funcionalidade func on (func.co_seq_funcionalidade = p.co_funcionalidade)
+                inner join
+                rl_perfil_permissao pp ON (pp.co_permissao = p.co_seq_permissao)
+                inner join
+                tb_perfil per on (per.co_seq_perfil = pp.co_perfil)
+                inner join
+                rl_usuario_perfil up on (up.co_perfil = per.co_seq_perfil)
+                where
+                func.st_ativo = 'S'
+                and per.st_ativo = 'S'
+                and up.co_usuario = ? ]]>
+            </query>
+            
+        </named-native-query>
+        
+        <sql-result-set-mapping name="permissaoAtivasUsuarioMapping">
+        	<constructor-result target-class="br.com.web.pesquisas.domain.Permissao">
+        		<column name="co_seq_permissao" class="java.lang.Long"/>
+        		<column name="no_alias_permissao"/>
+        	</constructor-result>
+        </sql-result-set-mapping>
+    </entity>
+    
+</entity-mappings>
