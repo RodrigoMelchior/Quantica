@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dataset>
-	<TB_UF CO_SEQ_UF="1" DS_UF="DISTRITO FEDERAL" SG_UF="DF" />
-	<TB_UF CO_SEQ_UF="2" DS_UF="RIO DE JANEIRO" SG_UF="RJ" />
-	<TB_UF CO_SEQ_UF="3" DS_UF="GOIAS" SG_UF="GO" />
-	<TB_UF CO_SEQ_UF="4" DS_UF="BAHIA" SG_UF="BA" />
-</dataset>
