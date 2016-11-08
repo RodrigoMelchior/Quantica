@@ -1,0 +1,31 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">{{ prController.tituloForm }} Pergunta</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="prController.ceForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Enunciado *</label>
+          <textarea name="enunciado" ng-model="prController.form.enunciado" ng-required="true"
+          maxlength="500" md-maxlength="500" />
+          <div ng-messages="prController.ceForm.enunciado.$error"
+          ng-show="prController.ceForm.enunciado.$touched" role="alert">
+            <div ng-message="required">
+              Informe um enunciado
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <md-button class="md-raised md-accent white-text" ng-click="prController.voltar()">
+          Voltar
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="prController.salvar()">
+          Salvar
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>

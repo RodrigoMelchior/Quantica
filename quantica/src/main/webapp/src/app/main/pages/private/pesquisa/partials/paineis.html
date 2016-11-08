@@ -1,0 +1,35 @@
+<div class="form-title">
+  <span class="margin-right-10">Paineis</span>
+  <i class="icon-plus-circle md-headline pointer" ng-click="psController.openPainelModal($evt, null, null)"></i>
+</div>
+<div ng-if="psController.form.paineis.length > 0">
+  <md-table-container>
+    <table md-table>
+      <thead md-head>
+        <tr md-row>
+          <th md-column><span class="column-title">Nome</span></th>
+          <th md-column><span class="column-title">Empesa(s)</span></th>
+          <th md-column >Ações</th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row ng-repeat="painel in psController.form.paineis">
+          <td md-cell>{{ painel.nome }}</td>
+            <td md-cell><div ng-repeat="empresa in painel.displayPainel">{{ empresa }}</div></td>
+          <td md-cell>
+            <a href="#" class="md-raised md-ink-ripple md-default-theme"
+            ng-click="psController.openPainelModal($evt, painel, $index)">
+              <i class="icon s26 icon-pencil"></i>
+              <md-tooltip class="h5">Editar</md-tooltip>
+            </a>
+            <a href="#" class="md-raised md-ink-ripple md-default-theme"
+            ng-click="psController.excluirPainel($evt, painel)">
+              <i class="icon s26 icon-cancel"></i>
+              <md-tooltip class="h5">Excluir</md-tooltip>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+</div>

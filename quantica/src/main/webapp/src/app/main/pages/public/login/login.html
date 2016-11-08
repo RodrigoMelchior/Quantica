@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <div class="logo">
+                <img src="assets/images/logos/logo.jpg">
+            </div>
+
+            <div class="title">Seja bem vindo!</div>
+
+            <form name="loginForm" novalidate>
+                <md-input-container class="md-block" md-no-float>
+                    <input type="text" name="login" ng-model="form.username" placeholder="Usuário" maxlength="100" required>
+                    <div ng-messages="loginForm.login.$error" ng-show="loginForm.login.$touched" role="alert" multiple>
+                        <div ng-message="required">
+                            <span>Digite o seu usuário</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="password" name="senha" ng-model="form.password" placeholder="Senha" maxlength="20" required>
+                    <div ng-messages="loginForm.senha.$error" ng-show="loginForm.senha.$touched" role="alert">
+                        <div ng-message="required">
+                            <span>Digite a sua senha</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <div class="text-center md-input-message-animation" ng-show="authenticationError">
+                        <span class="h6 red-text">Usuário ou senha inválidos</span>
+                    </div>
+
+                <md-button type="submit" class="md-raised md-primary" aria-label="LOG IN"
+                ng-disabled="loginForm.$invalid || loginForm.$pristine" ng-click="login($event)" >
+                    Entrar
+                </md-button>
+            </form>
+
+			<!--
+            <div class="register" layout="row" layout-sm="column" layout-align="center center">
+                <a class="mouseHover" ng-click="showAdvanced($event)">Esqueceu sua senha?</a>
+            </div> -->
+        </div>
+    </div>
+</div>

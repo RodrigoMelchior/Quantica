@@ -1,0 +1,57 @@
+<md-dialog aria-label="Adicionar Agrupador" flex="50"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools md-accent-bg white-text">
+        <h2>Agrupador</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+{{form}}
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <form name="agrupadorForm" class="md-inline-form" novalidate>
+          <md-input-container class="md-block" md-no-float>
+            <label>Nome *</label>
+            <input type="text" name="nome" ng-model="form.nome" maxlength="100" ng-required="true" />
+            <div ng-messages="agrupadorForm.nome.$error" ng-show="agrupadorForm.nome.$touched" role="alert">
+              <div ng-message="required">
+                Informe um nome
+              </div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block" md-no-float>
+            <label>Itens *</label>
+            <md-select multiple name="itens" ng-model="form.itens" required>
+              <md-option ng-repeat="item in listaItensSelecionados"
+              ng-value="item.id">
+                {{ item.nome }}
+              </md-option>
+            </md-select>
+            <div ng-messages="agrupadorForm.itens.$error"
+            ng-show="agrupadorForm.itens.$touched" role="alert">
+              <div ng-message="required">
+                Informe no mínimo um item
+              </div>
+            </div>
+          </md-input-container>
+        </form>
+
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised white-text md-accent" ng-click="cancel()">
+        Voltar
+      </md-button>
+      <md-button class="md-raised white-text md-primary"
+      ng-disabled="formularioInvalido()" ng-click="adicionaAgrupador()">
+        Salvar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

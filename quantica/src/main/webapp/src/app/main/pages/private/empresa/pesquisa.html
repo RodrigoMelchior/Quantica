@@ -1,0 +1,63 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Pesquisar Empresa</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="emController.pesquisarForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100">
+          <label>Nome *</label>
+          <input type="text" name="nome" ng-model="emController.pesquisa.nome" ng-required="true" maxlength="200" />
+          <div ng-messages="emController.pesquisarForm.nome.$error"
+          ng-show="emController.pesquisarForm.nome.$touched" role="alert">
+            <div ng-message="required">
+              Informe um nome
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <a ui-sref=".incluir" class="md-button md-raised md-primary">
+          Cadastrar nova
+        </a>
+
+        <md-button class="md-raised md-primary" ng-click="emController.pesquisar()">
+          Pesquisar
+        </md-button>
+      </div>
+    </form>
+    <div ng-if="emController.pesquisa.lista.length > 0">
+      <md-table-container>
+        <table md-table md-progress="emController.gridContent">
+          <thead md-head md-order="emController.query.order">
+            <tr md-row>
+              <th md-column md-order-by="nome">
+                <span class="column-title">Nome</span>
+              </th>
+              <th md-column>
+                <span class="column-title">Ações</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="empresa in emController.pesquisa.lista | orderBy: emController.query.order">
+              <td md-cell>{{ empresa.nome }}</td>
+              <td md-cell>
+                <a ui-sref=".editar({id: empresa.id})" class="md-raised md-ink-ripple md-default-theme">
+                  <i class="icon s26 icon-pencil"></i>
+                  <md-tooltip class="h5">Editar</md-tooltip>
+                </a>
+                <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                ng-click="emController.excluir($evt, empresa)">
+                  <i class="icon s26 icon-cancel"></i>
+                  <md-tooltip class="h5">Excluir</md-tooltip>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+  </div>
+</div>

@@ -55,14 +55,8 @@
         return retorno;
     }
     function quartilSal1(Q, L){
-console.log("Q", Q);
-console.log("L", L);
         var k = (Q*(L.length+1))/4;
-console.log("k", k);        
         var ki = parseInt(k);
-        if (ki == 0){ki = 1;}
-        if (ki >= L.length) {ki = L.length - 1}
-console.log("ki", ki);
         var retorno = L[(ki-1)].sal1 + ((((Q*(L.length+1))/4)-ki)*(L[(ki)].sal1-L[(ki-1)].sal1))
         return retorno;
     }
@@ -92,38 +86,15 @@ console.log("ki", ki);
     }
       
     function resultado() {
-console.log("vm.filtro", vm.filtro);
-      if (vm.filtro.empresa === null || vm.filtro.empresa === undefined || vm.filtro.empresa === ''){
-        $mdToast.show(
-          $mdToast.simple()
-          .textContent('Preencha a empresa!')
-          .position('right')
-          .hideDelay(5000)
-        );
-      } else if (vm.filtro.nivel === null || vm.filtro.nivel === undefined || vm.filtro.nivel === ''){
-        $mdToast.show(
-          $mdToast.simple()
-          .textContent('Preencha o nivel!')
-          .position('right')
-          .hideDelay(5000)
-        );
-      } else if (vm.filtro.cargo === null || vm.filtro.cargo === undefined || vm.filtro.cargo === ''){
+      if (vm.filtro.cargo === null || vm.filtro.cargo === undefined || vm.filtro.cargo === ''){
         $mdToast.show(
           $mdToast.simple()
           .textContent('Preencha o cargo!')
           .position('right')
           .hideDelay(5000)
         );
-/*      } else if (vm.filtro.empresa.length < 8){
-        $mdToast.show(
-          $mdToast.simple()
-          .textContent('Preencha no minimo 8 empresas!')
-          .position('right')
-          .hideDelay(5000)
-        );
-*/      } else {
+      } else {
         DadosService.getSearch(vm.filtro).then(function (response) {
-console.log("response.data", response.data);
             if (response.data.length > 0){ 
                 vm.retorno.dados = response.data;
                 vm.retorno.mod = vm.retorno.dados.length % 2;
@@ -199,6 +170,93 @@ console.log("response.data", response.data);
 
             }
         });
+      }
+        
+      
+      if (vm.filtroEmp.cargo === null || vm.filtroEmp.cargo === undefined || vm.filtroEmp.cargo === ''){
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('Preencha o cargo!')
+          .position('right')
+          .hideDelay(5000)
+        );
+      } else {
+        DadosService.getSearch(vm.filtroEmp).then(function (response) {
+            if (response.data.length > 0){ 
+                vm.retornoEmp.dados = response.data;
+                vm.retornoEmp.mod = vm.retornoEmp.dados.length % 2;
+                vm.retornoEmp.meio = vm.retornoEmp.dados.length / 2;
+                vm.retornoEmp.ordenado = {};
+                //SAL1
+                vm.retornoEmp.ordenado.sal1 = {};
+                vm.retornoEmp.ordenado.sal1.dados = vm.retornoEmp.dados.sort(compareObjBy);
+                vm.retornoEmp.ordenado.sal1.mediana = 0;   
+                if (vm.retornoEmp.mod == 0){
+                    vm.retornoEmp.ordenado.sal1.mediana = (vm.retornoEmp.ordenado.sal1.dados[vm.retornoEmp.meio - 1].sal1 + vm.retornoEmp.ordenado.sal1.dados[vm.retornoEmp.meio].sal1) / 2;    
+                }else{
+                    vm.retornoEmp.ordenado.sal1.mediana = (vm.retornoEmp.ordenado.sal1.dados[(vm.retornoEmp.dados.length + 1) / 2].sal1);           
+                } 
+                vm.retornoEmp.ordenado.sal1.Q1 = quartilSal1(1, vm.retornoEmp.ordenado.sal1.dados);
+                vm.retornoEmp.ordenado.sal1.Q3 = quartilSal1(3, vm.retornoEmp.ordenado.sal1.dados);
+                //SAL2
+                vm.retornoEmp.ordenado.sal2 = {};
+                vm.retornoEmp.ordenado.sal2.dados = vm.retornoEmp.dados.sort(compareObjBy);
+                vm.retornoEmp.ordenado.sal2.mediana = 0;   
+                if (vm.retornoEmp.mod == 0){
+                    vm.retornoEmp.ordenado.sal2.mediana = (vm.retornoEmp.ordenado.sal2.dados[vm.retornoEmp.meio - 1].sal2 + vm.retornoEmp.ordenado.sal2.dados[vm.retornoEmp.meio].sal2) / 2;    
+                }else{
+                    vm.retornoEmp.ordenado.sal2.mediana = (vm.retornoEmp.ordenado.sal2.dados[(vm.retornoEmp.dados.length + 1) / 2].sal2);                
+                } 
+                vm.retornoEmp.ordenado.sal2.Q1 = quartilSal2(1, vm.retornoEmp.ordenado.sal2.dados);
+                vm.retornoEmp.ordenado.sal2.Q3 = quartilSal2(3, vm.retornoEmp.ordenado.sal2.dados);
+                //SAL3
+                vm.retornoEmp.ordenado.sal3 = {};
+                vm.retornoEmp.ordenado.sal3.dados = vm.retornoEmp.dados.sort(compareObjBy);
+                vm.retornoEmp.ordenado.sal3.mediana = 0;   
+                if (vm.retornoEmp.mod == 0){
+                    vm.retornoEmpEmp.ordenado.sal3.mediana = (vm.retornoEmp.ordenado.sal3.dados[vm.retornoEmp.meio - 1].sal3 + vm.retornoEmp.ordenado.sal3.dados[vm.retornoEmp.meio].sal3) / 2;    
+                }else{
+                    vm.retornoEmp.ordenado.sal3.mediana = (vm.retornoEmp.ordenado.sal3.dados[(vm.retornoEmp.dados.length + 1) / 2].sal3);                
+                } 
+                vm.retornoEmp.ordenado.sal3.Q1 = quartilSal3(1, vm.retornoEmp.ordenado.sal3.dados);
+                vm.retornoEmp.ordenado.sal3.Q3 = quartilSal3(3, vm.retornoEmp.ordenado.sal3.dados);
+                //SAL4
+                vm.retornoEmp.ordenado.sal4 = {};
+                vm.retornoEmp.ordenado.sal4.dados = vm.retornoEmp.dados.sort(compareObjBy);
+                vm.retornoEmp.ordenado.sal4.mediana = 0;   
+                if (vm.retornoEmp.mod == 0){
+                    vm.retornoEmp.ordenado.sal4.mediana = (vm.retornoEmp.ordenado.sal4.dados[vm.retornoEmp.meio - 1].sal4 + vm.retornoEmp.ordenado.sal4.dados[vm.retornoEmp.meio].sal4) / 2;    
+                }else{
+                    vm.retornoEmp.ordenado.sal4.mediana = (vm.retornoEmp.ordenado.sal4.dados[(vm.retornoEmp.dados.length + 1) / 2].sal4);                
+                } 
+                vm.retornoEmp.ordenado.sal4.Q1 = quartilSal4(1, vm.retornoEmp.ordenado.sal4.dados);
+                vm.retornoEmp.ordenado.sal4.Q3 = quartilSal4(3, vm.retornoEmp.ordenado.sal4.dados);
+                //SAL5
+                vm.retornoEmp.ordenado.sal5 = {};
+                vm.retornoEmp.ordenado.sal5.dados = vm.retornoEmp.dados.sort(compareObjBy);
+                vm.retornoEmp.ordenado.sal5.mediana = 0;   
+                if (vm.retornoEmp.mod == 0){
+                    vm.retornoEmp.ordenado.sal5.mediana = (vm.retornoEmp.ordenado.sal5.dados[vm.retornoEmp.meio - 1].sal5 + vm.retornoEmp.ordenado.sal5.dados[vm.retornoEmp.meio].sal5) / 2;    
+                }else{
+                    vm.retornoEmp.ordenado.sal5.mediana = (vm.retornoEmp.ordenado.sal5.dados[(vm.retornoEmp.dados.length + 1) / 2].sal5);                
+                } 
+                vm.retornoEmp.ordenado.sal5.Q1 = quartilSal5(1, vm.retornoEmp.ordenado.sal5.dados);
+                vm.retornoEmp.ordenado.sal5.Q3 = quartilSal5(3, vm.retornoEmp.ordenado.sal5.dados);
+
+                
+                DadosService.getMin(vm.filtroEmp).then(function (response) {
+                    vm.retornoEmp.min = response.data;
+                });
+                DadosService.getMax(vm.filtroEmp).then(function (response) {
+                    vm.retornoEmp.max = response.data;
+                });
+                DadosService.getSum(vm.filtroEmp).then(function (response) {
+                    vm.retornoEmp.sum = response.data;
+                });
+                
+            }
+        });
+
       }
     }
 

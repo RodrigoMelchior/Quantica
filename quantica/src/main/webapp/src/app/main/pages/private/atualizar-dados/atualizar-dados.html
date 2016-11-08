@@ -1,0 +1,178 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Atualizar Dados da Empresa</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="adController.atualizarForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Nome *</label>
+          <input type="text" name="nome" ng-model="adController.empresa.nome" ng-required="true" maxlength="200" disabled />
+          <div ng-messages="adController.atualizarForm.nome.$error"
+          ng-show="adController.atualizarForm.nome.$touched" role="alert">
+            <div ng-message="required">
+              Informe um nome
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Faturamento *</label>
+          <md-select name="faturamento" ng-model="adController.empresa.faturamento" required>
+            <md-option ng-repeat="tipoFaturamento in adController.tiposFaturamento"
+            ng-value="tipoFaturamento.id">
+              {{ tipoFaturamento.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="adController.atualizarForm.faturamento.$error"
+          ng-show="adController.atualizarForm.faturamento.$touched" role="alert">
+            <div ng-message="required">
+              Selecione o faturamento
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Total de Funcionários *</label>
+          <input type="number" name="qtdFuncionario" ng-model="adController.empresa.qtdFuncionario"
+          ng-required="true" />
+          <div ng-messages="adController.atualizarForm.qtdFuncionario.$error"
+          ng-show="adController.atualizarForm.qtdFuncionario.$touched" role="alert">
+            <div ng-message="required">
+              Informe o número total de funcionários
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Forma de Contratação *</label>
+          <md-select name="contratacao" ng-model="adController.empresa.contratacao" required>
+            <md-option ng-repeat="formaContratacao in adController.formasContratacao"
+            ng-value="formaContratacao.id">
+              {{ formaContratacao.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="adController.atualizarForm.contratacao.$error"
+          ng-show="adController.atualizarForm.contratacao.$touched" role="alert">
+            <div ng-message="required">
+              Selecione a forma de contratação
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Data Base *</label>
+          <md-select name="dataBase" ng-model="adController.empresa.dataBase" required>
+            <md-option ng-repeat="mes in adController.meses"
+            ng-value="mes.id">
+              {{ mes.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="adController.atualizarForm.dataBase.$error"
+          ng-show="adController.atualizarForm.dataBase.$touched" role="alert">
+            <div ng-message="required">
+              Selecione a data base
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Último Reajuste *</label>
+          <input type="month" name="dataUltimoReajuste" ng-model="adController.empresa.dataUltimoReajuste"
+          ng-required="true" />
+          <div ng-messages="adController.atualizarForm.dataUltimoReajuste.$error"
+          ng-show="adController.atualizarForm.dataUltimoReajuste.$touched" role="alert">
+            <div ng-message="required">
+              Informe a data do último reajuste
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Estados *</label>
+          <md-select multiple name="ufs" ng-model="adController.empresa.ufs" required>
+            <md-option ng-repeat="uf in adController.listaUfs"
+            ng-value="uf.id">
+              {{ uf.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="adController.atualizarForm.ufs.$error"
+          ng-show="adController.atualizarForm.ufs.$touched" role="alert">
+            <div ng-message="required">
+              Selecione os estados
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Tipo de Propriedade *</label>
+          <md-select name="propriedade" ng-model="adController.empresa.propriedade" required>
+            <md-option ng-repeat="tipo in adController.tiposPropriedade"
+            ng-value="tipo.id">
+              {{ tipo.nome }}
+            </md-option>
+          </md-select>
+          <div ng-messages="adController.atualizarForm.propriedade.$error"
+          ng-show="adController.atualizarForm.propriedade.$touched" alert="role">
+            <div ng-message="required">
+              Selecione o tipo de propriedade
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div class="form-title">
+        <span class="margin-right-10">Lista de Contatos</span>
+        <i class="icon-plus-circle md-headline pointer" ng-click="adController.openContatoModal($evt, null)"></i>
+      </div>
+        
+      <div ng-if="adController.empresa.contatos.length > 0">
+        <md-table-container>
+          <table md-table md-progress="adController.gridContent">
+            <thead md-head md-order="adController.query.order">
+              <tr md-row>
+                <th md-column md-order-by="nome">
+                  <span class="column-title">Nome</span>
+                </th>
+                <th md-column md-order-by="telefone">
+                  <span class="column-title">Telefone</span>
+                </th>
+                <th md-column >Ações</th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row
+              ng-repeat="contato in adController.empresa.contatos | orderBy: adController.query.order">
+                <td md-cell>{{ contato.nome }}</td>
+                <td md-cell>{{ contato.telefone }}</td>
+                <td md-cell>
+                  <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                  ng-click="adController.openContatoModal($evt, contato)">
+                    <i class="icon s26 icon-pencil"></i>
+                    <md-tooltip class="h5">Editar</md-tooltip>
+                  </a>
+                  <a href="#" class="md-raised md-ink-ripple md-default-theme"
+                  ng-click="adController.excluirContato($evt, contato)">
+                    <i class="icon s26 icon-cancel"></i>
+                    <md-tooltip class="h5">Excluir</md-tooltip>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+      </div>
+
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <md-button class="md-raised md-primary" ng-click="adController.salvarDados()">
+          Salvar
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>

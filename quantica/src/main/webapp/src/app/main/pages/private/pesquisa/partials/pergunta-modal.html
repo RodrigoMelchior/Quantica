@@ -1,0 +1,57 @@
+<md-dialog aria-label="Adicionar Pergunta" flex="50"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools md-accent-bg white-text">
+        <h2>Pergunta</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+{{form}}<br>
+{{form.pergunta}}
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <form name="perguntaForm" class="md-inline-form" novalidate>
+          <md-input-container class="md-block" md-no-float>
+            <label>Pergunta *</label>
+            <md-select name="pergunta" ng-model="form.pergunta" required>
+              <md-option ng-repeat="pergunta in listaPerguntas"
+              ng-value="pergunta.id">
+                {{ pergunta.enunciado }}
+              </md-option>
+            </md-select>
+            <div ng-messages="perguntaForm.pergunta.$error"
+            ng-show="perguntaForm.pergunta.$touched" role="alert">
+              <div ng-message="required">
+                Informe uma pergunta
+              </div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block" md-no-float ng-show="form.pergunta">
+            <label>Ordem *</label>
+              <input type="number" name="ordem" ng-model="form.ordem" ng-required="true" />
+            <div ng-messages="perguntaForm.ordem.$error" ng-show="perguntaForm.ordem.$touched" role="alert">
+              <div ng-message="required">
+                Informe a ordem
+              </div>
+            </div>
+          </md-input-container>
+        </form>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised white-text md-accent" ng-click="cancel()">
+        Voltar
+      </md-button>
+      <md-button class="md-raised white-text md-primary"
+      ng-disabled="formularioInvalido()" ng-click="adicionaPergunta()">
+        Salvar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
