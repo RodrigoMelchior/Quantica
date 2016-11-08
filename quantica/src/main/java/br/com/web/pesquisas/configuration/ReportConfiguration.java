@@ -12,15 +12,15 @@ import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 public class ReportConfiguration {
 
 
-//    @Bean
-//    @Qualifier("ordemServicoReport")
-//    public JasperReportsPdfView getOrdemServicoReport() {
-//        JasperReportsPdfView view = new JasperReportsPdfView();
-//        view.setUrl("classpath:reports/testePDF.jasper");
-//        view.setReportDataKey("datasource");
-//        Properties headers = new Properties();
-//        headers.setProperty("Content-Disposition", "attachment; filename=OrdemServico.pdf");
-//        view.setHeaders(headers);
-//        return view;
-//    }
+    @Bean
+    @Qualifier("ordemServicoReport")
+    public JasperReportsPdfView getOrdemServicoReport() {
+        JasperReportsPdfView view = new JasperReportsPdfView();
+        view.setUrl("classpath:reports/ordemServico.jasper");
+        view.setReportDataKey("datasource");
+        Properties headers = new Properties();
+        headers.setProperty("Content-Disposition", "attachment; filename=OrdemServico.pdf");
+        view.setHeaders(headers);
+        return view;
+    }
 }

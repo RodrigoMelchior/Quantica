@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-10-04T13:47:19 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdemServico" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2ee5228-843e-411c-bfca-d3c9723d4be4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="planejamento.chamado.numero" class="java.lang.String"/>
+	<field name="planejamento.chamado.sistema.nome" class="java.lang.String"/>
+	<field name="planejamento.chamado.tipoSolicitacao.nome" class="java.lang.String"/>
+	<field name="planejamento.chamado.emergencial" class="java.lang.Boolean"/>
+	<field name="planejamento.chamado.prioridade" class="java.lang.Enum"/>
+	<field name="planejamento.chamado.severidade" class="java.lang.Enum"/>
+	<field name="planejamento.chamado.titulo" class="java.lang.String"/>
+	<field name="planejamento.chamado.ordemServico.numero" class="java.lang.String"/>
+	<field name="planejamento.chamado.responsavel.nome" class="java.lang.String"/>
+	<field name="planejamento.chamado.descricao" class="java.lang.String"/>
+	<field name="saldoAtual" class="java.lang.Double"/>
+	<field name="totalPlanejado" class="java.lang.Double"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="saldoRestante" class="java.lang.Double"/>
+	<field name="totalTempoAtendimento" class="java.lang.Double"/>
+	<field name="itensPlanejados" class="java.util.List"/>
+	<field name="planejamento.chamado.sistema.sigla" class="java.lang.String"/>
+	<detail>
+		<band height="183" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="555" height="15" backcolor="#E6E8E9" uuid="f4fb3336-f84e-41e5-9a22-6018a455e0f4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[PLANEJAMENTO DO CHAMADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="25" width="100" height="12" uuid="e3c66208-c3e6-475a-8827-cb9c59a80e86"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº do Chamado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="37" width="100" height="12" uuid="7f9d5a39-8a61-46ad-9cfc-d697a3ce344a"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sigla-Sistema:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="49" width="100" height="12" uuid="568cc2eb-a1bf-4ec6-949e-2c228f851fc2"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de solicitação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="61" width="100" height="12" uuid="aca0ad9f-8ccf-4a16-8779-e36cdd35ae4e"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emergencial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="73" width="100" height="12" uuid="87041d88-c796-4d1b-a6c7-69e9c5cd8d1f"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prioridade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="97" width="100" height="12" uuid="1acb2012-bf5a-4ba0-86c4-2e76dbe7b0ee"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título do chamado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="85" width="100" height="12" uuid="d2dba0c3-2ae1-4e00-9950-c92afb6c526b"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Severidade:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="108" y="25" width="140" height="12" uuid="31a09b36-05fa-4fcf-af7b-6330253a9841">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.numero}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="108" y="61" width="140" height="12" uuid="769d22e0-c588-4318-9e1d-2bfa53aaec85">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{planejamento.chamado.emergencial}.booleanValue() ? "Sim" : "Não")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="108" y="49" width="172" height="12" uuid="c32cb504-bee5-437b-a6d0-ac993f51e4b7">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.tipoSolicitacao.nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Opaque" x="108" y="37" width="172" height="12" isPrintWhenDetailOverflows="true" uuid="47cfef59-c689-4e94-813d-8bf1ba72903d">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans Mono" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.sistema.sigla} + " - " + $F{planejamento.chamado.sistema.nome}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="108" y="73" width="140" height="12" uuid="328f41d8-bab9-4c02-9123-f157102fa67d">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.prioridade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="108" y="85" width="140" height="12" uuid="9e21490d-197c-4ed5-baa5-dae621c5e2a9">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.severidade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="108" y="97" width="172" height="12" uuid="940810a0-1a51-4082-a568-36f208017349">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="308" y="25" width="100" height="12" uuid="be68472c-ec19-441a-a5e2-9a4ffc7af57c"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordem de serviço:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="37" width="100" height="12" uuid="29ded339-c435-4739-9414-57c4ead0bca9"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo atual (UST):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="280" y="97" width="128" height="12" uuid="324292d9-dfb3-4f45-9dd0-8fc18a9596f2"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resonsável pelo chamado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="280" y="73" width="128" height="12" uuid="c6461d70-0844-4433-8f91-d261ee3be5c8"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tempo total de atendimento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="308" y="85" width="100" height="12" uuid="e86b2260-a410-4d12-9141-573c0855ae67"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total (R$):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="280" y="61" width="128" height="12" uuid="2ca6b149-33dd-4ee8-977b-4f01f6e8a3f2"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo com planejamento (UST):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="308" y="49" width="100" height="12" uuid="bef2024d-8143-4963-956d-6b19eaee82cc"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total planejado (UST):]]></text>
+			</staticText>
+			<textField pattern="###0.###" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="414" y="37" width="140" height="12" uuid="9398e27c-dca0-4b0c-9571-44c62d488c19"/>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoAtual}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="414" y="25" width="140" height="12" uuid="cf6221b6-db6f-4a36-96b0-70b3ad57cdd4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.ordemServico.numero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.###" isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="414" y="49" width="36" height="12" uuid="b3e76ffd-0826-4e45-a908-d7b820b9db30"/>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalPlanejado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#" isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="414" y="85" width="54" height="12" uuid="c789915e-6846-409b-9631-da265fb6ddf7"/>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.###" isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="414" y="61" width="140" height="12" uuid="fbdb1e6f-8647-4fdb-9400-c34f8abd681f"/>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoRestante}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="414" y="73" width="140" height="12" uuid="a9900d02-c56b-4d68-a81e-6023e99c5a15">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalTempoAtendimento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="414" y="97" width="140" height="12" uuid="d3a6aca9-dd97-4b77-84f8-45971236931e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.responsavel.nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="121" width="100" height="12" uuid="39b0f11f-514f-4751-a546-9e7a5fdb1d54"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="133" width="555" height="50" uuid="7945b431-154e-4192-a744-d297bbd2258e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{planejamento.chamado.descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="35">
+			<subreport>
+				<reportElement x="0" y="0" width="554" height="35" uuid="d2b3f186-3453-4983-9f68-669006dc5461">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{itensPlanejados})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["reports/itensPlanejados_subReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>
