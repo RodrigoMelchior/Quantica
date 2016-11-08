@@ -7,7 +7,7 @@
       <div layout="column" layout-gt-xs="row" flex="100">
         <md-input-container flex="100" flex-gt-xs="50">
           <label>Empresa</label>
-            <md-select name="empresa" ng-model="dgController.filtro.empresa" >
+            <md-select multiple name="empresa" ng-model="dgController.filtro.empresa" >
             <md-option value="TODOS">TODOS</md-option>
             <md-option ng-repeat="empresa in dgController.listaEmpresa"
             ng-value="empresa">

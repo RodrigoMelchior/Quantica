@@ -86,8 +86,8 @@ public class DadosGeraisRepositoryImpl implements DadosGeraisRepositoryCustom {
         if(!StringUtils.isEmpty(filtro.getSetor())){
     		query.append(" and upper(dg.setor) = upper(:setor) ");
         }
-        if(!StringUtils.isEmpty(filtro.getEmpresa())){
-    		query.append(" and upper(dg.empresa) = upper(:empresa) ");
+        if(filtro.getEmpresa() != null){
+    		query.append(" and dg.empresa in :empresa ");
         }
         if(!StringUtils.isEmpty(filtro.getNivel())){
     		query.append(" and upper(dg.nivel) = upper(:nivel) ");
@@ -103,7 +103,7 @@ public class DadosGeraisRepositoryImpl implements DadosGeraisRepositoryCustom {
     	if(!StringUtils.isEmpty(filtro.getSetor())){
         	    query.setParameter("setor", filtro.getSetor());
         }
-    	if(!StringUtils.isEmpty(filtro.getEmpresa())){
+    	if(filtro.getEmpresa() != null){
     	    query.setParameter("empresa", filtro.getEmpresa());
     	}
     	if(!StringUtils.isEmpty(filtro.getNivel())){

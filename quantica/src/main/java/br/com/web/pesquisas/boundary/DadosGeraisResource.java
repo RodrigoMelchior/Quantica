@@ -47,25 +47,25 @@ public class DadosGeraisResource extends EntityServiceBasedRestController<DadosG
     
     @RequestMapping(value = "/max", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public SalDTO maiorSalario(@RequestBody FiltroDadosGeraisDTO filtro){    
-    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
-    		filtro.setSetor("");
-    	}
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
     	return service.maiorSalario(filtro);
     }
     
     @RequestMapping(value = "/min", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public SalDTO menorSalario(@RequestBody FiltroDadosGeraisDTO filtro){    
-    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
-    		filtro.setSetor("");
-    	}
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
     	return service.menorSalario(filtro);
     }
     
     @RequestMapping(value = "/somatorio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public SalDTO somatorio(@RequestBody FiltroDadosGeraisDTO filtro){    
-    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
-    		filtro.setSetor("");
-    	}
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
     	return service.somatorio(filtro);
     }
     
@@ -77,9 +77,9 @@ public class DadosGeraisResource extends EntityServiceBasedRestController<DadosG
     @RequestMapping(path = "/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DadosGerais> pesquisar(@RequestBody FiltroDadosGeraisDTO filtro) {
         
-    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
-    		filtro.setSetor("");
-    	}
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
         Conjunction<DadosGerais> specification = makeSpecification(filtro);
         List<DadosGerais> retorno = null;
         
