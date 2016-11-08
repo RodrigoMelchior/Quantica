@@ -28,15 +28,26 @@
 console.log("idPerfil",idPerfil);
 console.log("idPerfil == 1",idPerfil == 1);
 console.log("idPerfil == 2",idPerfil == 2);
-console.log("idPerfil == 1 || idPerfil == 2",idPerfil == 1 || idPerfil == 2);
+console.log("idPerfil == 3",idPerfil == 3);
+console.log("idPerfil == 1 || idPerfil == 2 || idPerfil == 3",idPerfil == 1 || idPerfil == 2 || idPerfil == 3);
 console.log("atual");
-        if (idPerfil == 1 || idPerfil == 2){
+        if (idPerfil == 1 || idPerfil == 2 || idPerfil == 3){
             msNavigationServiceProvider.saveItem('fuse', {
                 title: 'Bem Vindo',
                 group: true,
                 weight: 1
             });
         }
+
+        if (idPerfil == 3 ){
+            msNavigationServiceProvider.saveItem('fuse.dados', {
+                title: 'Dados Gerais',
+                icon: 'icon-briefcase-checked',
+                state: 'app.dados',
+                weight: 1
+            });
+        }
+
 
         if (idPerfil == 2){
             msNavigationServiceProvider.saveItem('fuse.atualizarDados', {
