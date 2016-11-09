@@ -14,7 +14,8 @@
     vm.tituloForm = 'Cadastrar';
     vm.listaPerfis = [
       { id : 1, nome : 'Administrador' },
-      { id : 2, nome : 'Participante' }
+      { id : 2, nome : 'Participante' },
+      { id : 3, nome : 'Cliente' }
     ];
     vm.listaEmpresas = [];
     vm.pesquisar = pesquisar;
