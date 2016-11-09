@@ -24,13 +24,7 @@
     function config(msNavigationServiceProvider) {
         
         var idPerfil = localStorage.getItem('idPerfil');
-        
-console.log("idPerfil",idPerfil);
-console.log("idPerfil == 1",idPerfil == 1);
-console.log("idPerfil == 2",idPerfil == 2);
-console.log("idPerfil == 3",idPerfil == 3);
-console.log("idPerfil == 1 || idPerfil == 2 || idPerfil == 3",idPerfil == 1 || idPerfil == 2 || idPerfil == 3);
-console.log("atual");
+
         if (idPerfil == 1 || idPerfil == 2 || idPerfil == 3){
             msNavigationServiceProvider.saveItem('fuse', {
                 title: 'Bem Vindo',
