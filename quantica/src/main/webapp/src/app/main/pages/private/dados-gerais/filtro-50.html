@@ -1,0 +1,253 @@
+<div class="content">
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <div class="form-title lightGray-text">Detalhamento de Resultados por Função</div>
+  </div>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100">
+    <form name="dgController.pesquisarForm" class="md-inline-form" novalidate>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Empresa</label>
+            <md-select multiple name="empresa" ng-model="dgController.filtro.empresa" ng-change="dgController.marcaTodos()">
+            <md-option value="TODOS" >TODAS</md-option>
+            <md-option ng-repeat="empresa in dgController.listaEmpresa"
+            ng-value="empresa">
+              {{ empresa }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex="100" flex-gt-xs="50">
+          <label>Nível</label>
+            <md-select name="nivel" ng-model="dgController.filtro.nivel"  ng-change="dgController.atualizaCargo()">
+            <md-option ng-repeat="nivel in dgController.listaNivel"
+            ng-value="nivel">
+              {{ nivel }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" flex="100">
+        <md-input-container flex="100" flex-gt-xs="100">
+          <label>Cargo</label>
+            <md-select name="cargo" ng-model="dgController.filtro.cargo" >
+            <md-option ng-repeat="cargo in dgController.listaCargo"
+            ng-value="cargo">
+              {{ cargo }}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div layout="column" layout-gt-xs="row" layout-align="end" flex="100">
+        <md-button class="md-raised md-primary" ng-click="dgController.resultado()">
+          Resultado
+        </md-button>
+      </div>
+    </form>
+  </div>
+    <div ng-if="true" flex="50">
+      <md-table-container>
+        <table md-table md-progress="psController.gridContent">
+          <thead md-head md-order="psController.query.order">
+            <tr md-row>
+              <th md-column colspan="2">
+                <span class="column-title">Resultado Sal 1</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr>
+              <td md-cell>Frequência</td>
+              <td md-cell>{{dgController.retorno.dados.length}}</td>
+            </tr>
+            <tr>
+              <td md-cell>Menor Salário</td>
+              <td md-cell>{{dgController.retorno.min.sal1  | currency : '' }}</td>
+            </tr>
+            <tr>
+              <td md-cell>1 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal1.Q1  | currency : '' }}</td>
+            </tr>
+            <tr>
+              <td md-cell>Média</td>
+              <td md-cell>{{dgController.retorno.sum.sal1 / dgController.retorno.dados.length  | currency : '' }}</td>
+            </tr>
+            <tr>
+              <td md-cell>Mediana</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal1.mediana  | currency : '' }}</td>
+            </tr>
+            <tr>
+              <td md-cell>3 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal1.Q3  | currency : '' }}</td>
+            </tr>
+            <tr>
+              <td md-cell>Maior Salário</td>
+              <td md-cell>{{dgController.retorno.max.sal1  | currency : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+        <md-table-container>
+        <table md-table md-progress="psController.gridContent">
+          <thead md-head md-order="psController.query.order">
+            <tr md-row>
+              <th md-column colspan="3">
+                <span class="column-title">Resultado Sal 2</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row>
+              <td md-cell>Frequência</td>
+              <td md-cell>{{dgController.retorno.dados.length}}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Menor Salário</td>
+              <td md-cell>{{dgController.retorno.min.sal2  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>1 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal2.Q1  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Média</td>
+              <td md-cell>{{dgController.retorno.sum.sal2 / dgController.retorno.dados.length  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Mediana</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal2.mediana  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>3 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal2.Q3  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Maior Salário</td>
+              <td md-cell>{{dgController.retorno.max.sal2  | currency : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+        <md-table-container>
+        <table md-table md-progress="psController.gridContent">
+          <thead md-head md-order="psController.query.order">
+            <tr md-row>
+              <th md-column colspan="3">
+                <span class="column-title">Resultado Sal 3</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row>
+              <td md-cell>Frequência</td>
+              <td md-cell>{{dgController.retorno.dados.length}}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Menor Salário</td>
+              <td md-cell>{{dgController.retorno.min.sal3  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>1 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal3.Q1  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Média</td>
+              <td md-cell>{{dgController.retorno.sum.sal3 / dgController.retorno.dados.length  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Mediana</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal3.mediana  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>3 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal3.Q3  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Maior Salário</td>
+              <td md-cell>{{dgController.retorno.max.sal3  | currency : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+        <md-table-container>
+        <table md-table md-progress="psController.gridContent">
+          <thead md-head md-order="psController.query.order">
+            <tr md-row>
+              <th md-column colspan="3">
+                <span class="column-title">Resultado Sal 4</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row>
+              <td md-cell>Frequência</td>
+              <td md-cell>{{dgController.retorno.dados.length}}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Menor Salário</td>
+              <td md-cell>{{dgController.retorno.min.sal4  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>1 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal4.Q1  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Média</td>
+              <td md-cell>{{dgController.retorno.sum.sal4 / dgController.retorno.dados.length  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Mediana</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal4.mediana  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>3 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal4.Q3  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Maior Salário</td>
+              <td md-cell>{{dgController.retorno.max.sal4  | currency : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+        <md-table-container>
+        <table md-table md-progress="psController.gridContent">
+          <thead md-head md-order="psController.query.order">
+            <tr md-row>
+              <th md-column colspan="3">
+                <span class="column-title">Resultado Sal 5</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row>
+              <td md-cell>Frequência</td>
+              <td md-cell>{{dgController.retorno.dados.length}}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Menor Salário</td>
+              <td md-cell>{{dgController.retorno.min.sal5  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>1 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal5.Q1  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Média</td>
+              <td md-cell>{{dgController.retorno.sum.sal5 / dgController.retorno.dados.length  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Mediana</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal5.mediana  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>3 Quartil</td>
+              <td md-cell>{{dgController.retorno.ordenado.sal5.Q3  | currency : '' }}</td>
+            </tr>
+            <tr md-row>
+              <td md-cell>Maior Salário</td>
+              <td md-cell>{{dgController.retorno.max.sal5  | currency : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+</div>
