@@ -22,6 +22,7 @@
     vm.atualizaCargo = atualizaCargo;
     vm.atualizaEmpresaEmp = atualizaEmpresaEmp;
     vm.atualizaCargoEmp = atualizaCargoEmp;
+    vm.marcaTodos = marcaTodos;  
 
     DadosService.getListaSetor().then(function (response) {
         vm.listaSetor = response.data;
@@ -107,76 +108,109 @@
           .position('right')
           .hideDelay(5000)
         );
-/*      } else if (vm.filtro.empresa != 'TODOS' && vm.filtro.empresa.length < 8){
+      } else if (vm.filtro.empresa[0] != 'TODOS' && vm.filtro.empresa.length < 8){
         $mdToast.show(
           $mdToast.simple()
           .textContent('Selecione no mínimo 8 empresas!')
           .position('right')
           .hideDelay(5000)
         );
-*/      } else{
+      } else{
         DadosService.getSearch(vm.filtro).then(function (response) {
             if (response.data.length > 0){ 
                 vm.retorno.dados = response.data;
                 vm.retorno.mod = vm.retorno.dados.length % 2;
-                vm.retorno.meio = vm.retorno.dados.length / 2;
+                if (vm.retorno.mod == 0){
+                    vm.retorno.meio = vm.retorno.dados.length / 2;
+                } else {
+                    vm.retorno.meio = (vm.retorno.dados.length + 1) / 2;
+                }
                 vm.retorno.ordenado = {};
                 //SAL1
                 vm.retorno.ordenado.sal1 = {};
-                vm.retorno.ordenado.sal1.dados = vm.retorno.dados.sort(compareObjBy);
-                vm.retorno.ordenado.sal1.mediana = 0;   
-                if (vm.retorno.mod == 0){
-                    vm.retorno.ordenado.sal1.mediana = (vm.retorno.ordenado.sal1.dados[vm.retorno.meio - 1].sal1 + vm.retorno.ordenado.sal1.dados[vm.retorno.meio].sal1) / 2;    
-                }else{
-                    vm.retorno.ordenado.sal1.mediana = (vm.retorno.ordenado.sal1.dados[(vm.retorno.dados.length - 1) / 2].sal1);
-                } 
-                vm.retorno.ordenado.sal1.Q1 = quartilSal1(1, vm.retorno.ordenado.sal1.dados);
-                vm.retorno.ordenado.sal1.Q3 = quartilSal1(3, vm.retorno.ordenado.sal1.dados);
+                if (vm.retorno.dados.length > 1){
+                    vm.retorno.ordenado.sal1.dados = vm.retorno.dados.sort(compareObjBy('sal1'));
+                    vm.retorno.ordenado.sal1.mediana = 0;   
+                    if (vm.retorno.mod == 0){
+                        vm.retorno.ordenado.sal1.mediana = (vm.retorno.ordenado.sal1.dados[vm.retorno.meio - 1].sal1 + vm.retorno.ordenado.sal1.dados[vm.retorno.meio].sal1) / 2;    
+                    }else{
+                        vm.retorno.ordenado.sal1.mediana = (vm.retorno.ordenado.sal1.dados[(vm.retorno.dados.length - 1) / 2].sal1);
+                    } 
+                    vm.retorno.ordenado.sal1.Q1 = quartilSal1(1, vm.retorno.ordenado.sal1.dados);
+                    vm.retorno.ordenado.sal1.Q3 = quartilSal1(3, vm.retorno.ordenado.sal1.dados);
+                } else {
+                    vm.retorno.ordenado.sal1.mediana = vm.retorno.dados[0].sal1;   
+                    vm.retorno.ordenado.sal1.Q1 = vm.retorno.dados[0].sal1;
+                    vm.retorno.ordenado.sal1.Q3 = vm.retorno.dados[0].sal1;
+                }
                 //SAL2
                 vm.retorno.ordenado.sal2 = {};
-                vm.retorno.ordenado.sal2.dados = vm.retorno.dados.sort(compareObjBy);
-                vm.retorno.ordenado.sal2.mediana = 0;   
-                if (vm.retorno.mod == 0){
-                    vm.retorno.ordenado.sal2.mediana = (vm.retorno.ordenado.sal2.dados[vm.retorno.meio - 1].sal2 + vm.retorno.ordenado.sal2.dados[vm.retorno.meio].sal2) / 2;    
-                }else{
-                    vm.retorno.ordenado.sal2.mediana = (vm.retorno.ordenado.sal2.dados[(vm.retorno.dados.length - 1) / 2].sal2);                
-                } 
-                vm.retorno.ordenado.sal2.Q1 = quartilSal2(1, vm.retorno.ordenado.sal2.dados);
-                vm.retorno.ordenado.sal2.Q3 = quartilSal2(3, vm.retorno.ordenado.sal2.dados);
+                if (vm.retorno.dados.length > 1){
+                    vm.retorno.ordenado.sal2.dados = vm.retorno.dados.sort(compareObjBy('sal2'));
+                    vm.retorno.ordenado.sal2.mediana = 0;   
+                    if (vm.retorno.mod == 0){
+                        vm.retorno.ordenado.sal2.mediana = (vm.retorno.ordenado.sal2.dados[vm.retorno.meio - 1].sal2 + vm.retorno.ordenado.sal2.dados[vm.retorno.meio].sal2) / 2;    
+                    }else{
+                        vm.retorno.ordenado.sal2.mediana = (vm.retorno.ordenado.sal2.dados[(vm.retorno.dados.length - 1) / 2].sal2);                
+                    } 
+                    vm.retorno.ordenado.sal2.Q1 = quartilSal2(1, vm.retorno.ordenado.sal2.dados);
+                    vm.retorno.ordenado.sal2.Q3 = quartilSal2(3, vm.retorno.ordenado.sal2.dados);
+                } else {
+                    vm.retorno.ordenado.sal2.mediana = vm.retorno.dados[0].sal2;   
+                    vm.retorno.ordenado.sal2.Q1 = vm.retorno.dados[0].sal2;
+                    vm.retorno.ordenado.sal2.Q3 = vm.retorno.dados[0].sal2;
+                }
                 //SAL3
                 vm.retorno.ordenado.sal3 = {};
-                vm.retorno.ordenado.sal3.dados = vm.retorno.dados.sort(compareObjBy);
-                vm.retorno.ordenado.sal3.mediana = 0;   
-                if (vm.retorno.mod == 0){
-                    vm.retorno.ordenado.sal3.mediana = (vm.retorno.ordenado.sal3.dados[vm.retorno.meio - 1].sal3 + vm.retorno.ordenado.sal3.dados[vm.retorno.meio].sal3) / 2;    
-                }else{
-                    vm.retorno.ordenado.sal3.mediana = (vm.retorno.ordenado.sal3.dados[(vm.retorno.dados.length - 1) / 2].sal3);                
-                } 
-                vm.retorno.ordenado.sal3.Q1 = quartilSal3(1, vm.retorno.ordenado.sal3.dados);
-                vm.retorno.ordenado.sal3.Q3 = quartilSal3(3, vm.retorno.ordenado.sal3.dados);
+                if (vm.retorno.dados.length > 1){
+                    vm.retorno.ordenado.sal3.dados = vm.retorno.dados.sort(compareObjBy('sal3'));
+                    vm.retorno.ordenado.sal3.mediana = 0;   
+                    if (vm.retorno.mod == 0){
+                        vm.retorno.ordenado.sal3.mediana = (vm.retorno.ordenado.sal3.dados[vm.retorno.meio - 1].sal3 + vm.retorno.ordenado.sal3.dados[vm.retorno.meio].sal3) / 2;    
+                    }else{
+                        vm.retorno.ordenado.sal3.mediana = (vm.retorno.ordenado.sal3.dados[(vm.retorno.dados.length - 1) / 2].sal3);                
+                    } 
+                    vm.retorno.ordenado.sal3.Q1 = quartilSal3(1, vm.retorno.ordenado.sal3.dados);
+                    vm.retorno.ordenado.sal3.Q3 = quartilSal3(3, vm.retorno.ordenado.sal3.dados);
+                } else {
+                    vm.retorno.ordenado.sal3.mediana = vm.retorno.dados[0].sal3;   
+                    vm.retorno.ordenado.sal3.Q1 = vm.retorno.dados[0].sal3;
+                    vm.retorno.ordenado.sal3.Q3 = vm.retorno.dados[0].sal3;
+                }
                 //SAL4
                 vm.retorno.ordenado.sal4 = {};
-                vm.retorno.ordenado.sal4.dados = vm.retorno.dados.sort(compareObjBy);
-                vm.retorno.ordenado.sal4.mediana = 0;   
-                if (vm.retorno.mod == 0){
-                    vm.retorno.ordenado.sal4.mediana = (vm.retorno.ordenado.sal4.dados[vm.retorno.meio - 1].sal4 + vm.retorno.ordenado.sal4.dados[vm.retorno.meio].sal4) / 2;    
-                }else{
-                    vm.retorno.ordenado.sal4.mediana = (vm.retorno.ordenado.sal4.dados[(vm.retorno.dados.length - 1) / 2].sal4);                
-                } 
-                vm.retorno.ordenado.sal4.Q1 = quartilSal4(1, vm.retorno.ordenado.sal4.dados);
-                vm.retorno.ordenado.sal4.Q3 = quartilSal4(3, vm.retorno.ordenado.sal4.dados);
+                if (vm.retorno.dados.length > 1){
+                    vm.retorno.ordenado.sal4.dados = vm.retorno.dados.sort(compareObjBy('sal4'));
+                    vm.retorno.ordenado.sal4.mediana = 0;   
+                    if (vm.retorno.mod == 0){
+                        vm.retorno.ordenado.sal4.mediana = (vm.retorno.ordenado.sal4.dados[vm.retorno.meio - 1].sal4 + vm.retorno.ordenado.sal4.dados[vm.retorno.meio].sal4) / 2;    
+                    }else{
+                        vm.retorno.ordenado.sal4.mediana = (vm.retorno.ordenado.sal4.dados[(vm.retorno.dados.length - 1) / 2].sal4);                
+                    } 
+                    vm.retorno.ordenado.sal4.Q1 = quartilSal4(1, vm.retorno.ordenado.sal4.dados);
+                    vm.retorno.ordenado.sal4.Q3 = quartilSal4(3, vm.retorno.ordenado.sal4.dados);
+                } else {
+                    vm.retorno.ordenado.sal4.mediana = vm.retorno.dados[0].sal4;   
+                    vm.retorno.ordenado.sal4.Q1 = vm.retorno.dados[0].sal4;
+                    vm.retorno.ordenado.sal4.Q3 = vm.retorno.dados[0].sal4;
+                }
                 //SAL5
                 vm.retorno.ordenado.sal5 = {};
-                vm.retorno.ordenado.sal5.dados = vm.retorno.dados.sort(compareObjBy);
-                vm.retorno.ordenado.sal5.mediana = 0;   
-                if (vm.retorno.mod == 0){
-                    vm.retorno.ordenado.sal5.mediana = (vm.retorno.ordenado.sal5.dados[vm.retorno.meio - 1].sal5 + vm.retorno.ordenado.sal5.dados[vm.retorno.meio].sal5) / 2;    
-                }else{
-                    vm.retorno.ordenado.sal5.mediana = (vm.retorno.ordenado.sal5.dados[(vm.retorno.dados.length - 1) / 2].sal5);                
-                } 
-                vm.retorno.ordenado.sal5.Q1 = quartilSal5(1, vm.retorno.ordenado.sal5.dados);
-                vm.retorno.ordenado.sal5.Q3 = quartilSal5(3, vm.retorno.ordenado.sal5.dados);
-
+                if (vm.retorno.dados.length > 1){
+                    vm.retorno.ordenado.sal5.dados = vm.retorno.dados.sort(compareObjBy('sal5'));
+                    vm.retorno.ordenado.sal5.mediana = 0;   
+                    if (vm.retorno.mod == 0){
+                        vm.retorno.ordenado.sal5.mediana = (vm.retorno.ordenado.sal5.dados[vm.retorno.meio - 1].sal5 + vm.retorno.ordenado.sal5.dados[vm.retorno.meio].sal5) / 2;    
+                    }else{
+                        vm.retorno.ordenado.sal5.mediana = (vm.retorno.ordenado.sal5.dados[(vm.retorno.dados.length - 1) / 2].sal5);                
+                    } 
+                    vm.retorno.ordenado.sal5.Q1 = quartilSal5(1, vm.retorno.ordenado.sal5.dados);
+                    vm.retorno.ordenado.sal5.Q3 = quartilSal5(3, vm.retorno.ordenado.sal5.dados);
+                } else {
+                    vm.retorno.ordenado.sal5.mediana = vm.retorno.dados[0].sal5;   
+                    vm.retorno.ordenado.sal5.Q1 = vm.retorno.dados[0].sal5;
+                    vm.retorno.ordenado.sal5.Q3 = vm.retorno.dados[0].sal5;
+                }
                 
                 
                 DadosService.getMin(vm.filtro).then(function (response) {
@@ -194,6 +228,14 @@
       }
     }
 
+      
+    function marcaTodos(){
+        angular.forEach(vm.filtro.empresa, function (val, index) {
+            if (val === 'TODOS'){
+                vm.filtro.empresa = ['TODOS'];
+            }
+        });
+    }
     function atualizaEmpresa(){
         DadosService.getListaEmpresa(vm.filtro.setor).then(function (response) {
             vm.listaEmpresa = response.data;

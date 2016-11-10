@@ -7,8 +7,8 @@
       <div layout="column" layout-gt-xs="row" flex="100">
         <md-input-container flex="100" flex-gt-xs="50">
           <label>Empresa</label>
-            <md-select multiple name="empresa" ng-model="dgController.filtro.empresa" >
-            <md-option value="TODOS">TODOS</md-option>
+            <md-select multiple name="empresa" ng-model="dgController.filtro.empresa" ng-change="dgController.marcaTodos()">
+            <md-option value="TODOS" >TODAS</md-option>
             <md-option ng-repeat="empresa in dgController.listaEmpresa"
             ng-value="empresa">
               {{ empresa }}
@@ -29,7 +29,6 @@
         <md-input-container flex="100" flex-gt-xs="100">
           <label>Cargo</label>
             <md-select name="cargo" ng-model="dgController.filtro.cargo" >
-            <md-option value="TODOS">TODOS</md-option>
             <md-option ng-repeat="cargo in dgController.listaCargo"
             ng-value="cargo">
               {{ cargo }}
