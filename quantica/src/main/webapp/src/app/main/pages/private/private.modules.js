@@ -35,7 +35,7 @@
 
         if (idPerfil == 3 ){
             msNavigationServiceProvider.saveItem('fuse.dados', {
-                title: 'Dados Gerais',
+                title: 'Relatórios',
                 icon: 'icon-briefcase-checked',
                 state: 'app.dados',
                 weight: 1
@@ -162,7 +162,7 @@
         
         if (idPerfil == 1){
             msNavigationServiceProvider.saveItem('fuse.dados', {
-                title: 'Dados Gerais',
+                title: 'Relatórios',
                 icon: 'icon-magnify',
                 state: 'app.dados',
                 weight: 1

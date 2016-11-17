@@ -19,7 +19,7 @@ import br.com.web.pesquisas.service.UfService;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin()
 @RequestMapping(value="/api/ufs/{idUf:\\d+}/municipios")
 public class MunicipioResource {
 	

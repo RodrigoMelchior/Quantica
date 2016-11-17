@@ -13,7 +13,7 @@ import br.com.web.pesquisas.domain.Pesquisa;
 import br.com.web.pesquisas.service.EmpresaPesquisaService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin()
 @RequestMapping(path = "/api/empresaPesquisas")
 public class EmpresaPesquisaResource extends EntityServiceBasedRestController<EmpresaPesquisa, Long, EmpresaPesquisaService>{
 

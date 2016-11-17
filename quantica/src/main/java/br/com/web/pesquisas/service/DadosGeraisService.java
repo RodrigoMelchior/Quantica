@@ -17,4 +17,6 @@ public interface DadosGeraisService extends CrudService<DadosGerais, Long>{
 	SalDTO somatorio(FiltroDadosGeraisDTO filtro);
 	List<DadosGerais> pesquisa();
 	List<DadosGerais> findBySpecification(Conjunction<DadosGerais> specification);
+	List<DadosGerais> findByNivelAndCargo(String nivel, String Cargo);
+	List<DadosGerais> consultar(FiltroDadosGeraisDTO filtro);
 }

@@ -28,7 +28,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroPerguntaDTO;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin()
 @RequestMapping(path = "/api/respostas")
 public class RespostaResource extends EntityServiceBasedRestController<Pergunta, Long, PerguntaService>{
 

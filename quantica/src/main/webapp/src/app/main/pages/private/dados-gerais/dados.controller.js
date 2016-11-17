@@ -222,7 +222,7 @@
                 DadosService.getSum(vm.filtro).then(function (response) {
                     vm.retorno.sum = response.data;
                 });
-
+console.log("vm.retorno",vm.retorno)
             }
         });
       }

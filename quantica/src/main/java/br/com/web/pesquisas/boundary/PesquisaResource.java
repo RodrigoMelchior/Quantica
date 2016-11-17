@@ -27,7 +27,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroPesquisaDTO;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin()
 @RequestMapping(path = "/api/pesquisas")
 public class PesquisaResource extends EntityServiceBasedRestController<Pesquisa, Long, PesquisaService>{
 

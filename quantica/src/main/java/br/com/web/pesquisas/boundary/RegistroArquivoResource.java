@@ -17,7 +17,7 @@ import br.com.web.pesquisas.service.ArquivoService;
 import br.com.web.pesquisas.service.RegistroArquivoService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin()
 @RequestMapping(path = "/api/registro-arquivos")
 public class RegistroArquivoResource extends EntityServiceBasedRestController<RegistroArquivo, Long, RegistroArquivoService>{
 

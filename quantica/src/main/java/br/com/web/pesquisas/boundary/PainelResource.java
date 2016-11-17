@@ -10,7 +10,7 @@ import br.com.web.pesquisas.service.PainelService;
 import br.com.web.pesquisas.util.MensagemUtil;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin()
 @RequestMapping(path = "/api/paineis")
 public class PainelResource extends EntityServiceBasedRestController<Painel, Long, PainelService>{
 

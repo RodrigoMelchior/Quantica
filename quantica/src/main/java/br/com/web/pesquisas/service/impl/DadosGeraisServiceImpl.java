@@ -67,4 +67,14 @@ public class DadosGeraisServiceImpl extends CrudServiceImpl<DadosGerais, Long, D
 	public List<DadosGerais> findBySpecification(Conjunction<DadosGerais> specification) {
 		return repository.findAll(specification);
 	}
+
+	@Override
+	public List<DadosGerais> findByNivelAndCargo(String nivel, String Cargo) {
+		return repository.findByNivelAndCargo1(nivel, Cargo);
+	}
+	
+	@Override
+	public List<DadosGerais> consultar(FiltroDadosGeraisDTO filtro) {
+		return repository.consultar(filtro);
+	}
 }
