@@ -26,7 +26,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
+@RequestMapping(path = "/api/exemploPDF")
 public class ExemploPDFResource extends EntityServiceBasedRestController<Agrupador, Long, AgrupadorService>{
 
     @Autowired

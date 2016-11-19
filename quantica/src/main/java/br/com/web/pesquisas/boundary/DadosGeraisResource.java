@@ -21,7 +21,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroDadosGeraisDTO;
 import br.com.web.pesquisas.web.rest.dto.SalDTO;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
 @RequestMapping(path = "/api/dados")
 public class DadosGeraisResource extends EntityServiceBasedRestController<DadosGerais, Long, DadosGeraisService>{
 

@@ -28,7 +28,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroEstruturaOrganizacionalDTO;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
 @RequestMapping(path = "/api/estruturas")
 public class EstruturaOrganizacionalResource extends EntityServiceBasedRestController<EstruturaOrganizacional, Long, EstruturaOrganizacionalService>{
 

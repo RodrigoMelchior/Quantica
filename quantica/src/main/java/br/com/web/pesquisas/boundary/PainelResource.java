@@ -10,7 +10,7 @@ import br.com.web.pesquisas.service.PainelService;
 import br.com.web.pesquisas.util.MensagemUtil;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
 @RequestMapping(path = "/api/paineis")
 public class PainelResource extends EntityServiceBasedRestController<Painel, Long, PainelService>{
 

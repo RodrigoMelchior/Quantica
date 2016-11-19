@@ -27,7 +27,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroInpcDTO;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
 @RequestMapping(path = "/api/inpc")
 public class InpcResource extends EntityServiceBasedRestController<Inpc, Long, InpcService>{
 
