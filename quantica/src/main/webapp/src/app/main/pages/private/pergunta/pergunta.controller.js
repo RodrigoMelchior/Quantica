@@ -39,7 +39,7 @@
       } else {
   */      
         vm.filtro.enunciado = vm.pesquisa.enunciado;
-        vm.filtro.limit = 10;
+        vm.filtro.limit = 100;
         vm.filtro.page = 1;
           
         PerguntaService.pesquisarPergunta(vm.filtro).then(function (response) {
