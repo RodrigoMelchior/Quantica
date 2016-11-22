@@ -28,7 +28,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroContatoDTO;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
 @RequestMapping(path = "/api/contatos")
 public class ContatoResource extends EntityServiceBasedRestController<Contato, Long, ContatoService>{
 

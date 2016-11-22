@@ -25,9 +25,10 @@
 
         // Navigation array
         var navigation = [];
-
+        
         var service = this;
 
+        
         // Methods
         service.saveItem = saveItem;
         service.sortByWeight = sortByWeight;
@@ -686,7 +687,10 @@
         vm.collapsable = undefined;
         vm.group = undefined;
         vm.animateHeightClass = 'animate-height';
+        vm.hasPrivilege = false;
 
+        
+        
         // Methods
         vm.toggleCollapsed = toggleCollapsed;
         vm.collapse = collapse;
@@ -702,6 +706,20 @@
          */
         function init()
         {
+            var isPrivilege = function(pv){
+                for ( var i = 0; i < pv.length; i++ )
+                {
+                    if ( pv[i] === localStorage.getItem('idPerfil') )
+                    {
+                        return true;
+                    }
+                }
+                return pv == false;
+            }
+            
+            vm.hasPrivilege = isPrivilege;
+
+            
             // Setup the initial values
 
             // Has children?

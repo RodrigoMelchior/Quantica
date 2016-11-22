@@ -31,7 +31,7 @@ import br.com.web.pesquisas.web.rest.dto.PerguntaPesquisaDTO;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
 @RequestMapping(path = "/api/perguntas/pesquisa")
 public class PerguntaPesquisaResource extends EntityServiceBasedRestController<PerguntaPesquisa, Long, PerguntaPesquisaService>{
 

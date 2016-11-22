@@ -73,7 +73,7 @@
                     if ($scope.data.perfis.length < 1){
                         $mdToast.showSimple('Usuário sem perfil!');  
                     }else{
-                        
+console.log("Logou...");
                         localStorage.setItem('idPerfil', $scope.data.perfis[0].id);
                         console.log("idUsuarioLogado",localStorage.getItem('idUsuarioLogado'));
                         console.log("idEmpresaUsuario",localStorage.getItem('idEmpresaUsuario'));

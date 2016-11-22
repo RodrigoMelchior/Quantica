@@ -5,6 +5,7 @@
     angular
         .module('app.core')
         .filter('situacao', situacao)
+        .filter('formatoNumerico', formatoNumerico)
         .filter('toTrusted', toTrustedFilter)
         .filter('htmlToPlaintext', htmlToPlainTextFilter)
         .filter('nospace', nospaceFilter)
@@ -26,6 +27,17 @@
             
             
             return r;
+        };
+    }
+    
+    /** @ngInject */
+    function formatoNumerico()
+    {
+        return function (value)
+        {
+            if (value){
+                return value.replace(",", "-").replace(".", ",").replace("-", ".");                
+            }
         };
     }
     

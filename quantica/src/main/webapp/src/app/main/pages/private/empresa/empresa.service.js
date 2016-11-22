@@ -26,7 +26,7 @@
     };
 
     var getAllEmpresas = function () {
-      return $http.get(url);
+      return $http.get(url + '/todas');
     };
 
     var getEmpresa = function (id) {
