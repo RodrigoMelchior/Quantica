@@ -12,8 +12,8 @@
             .constant("RELATORIO", "1")
             .constant("CARGA_DADOS_DA_EMPRESA", "2")
             .constant("CARGA_ESTRUTURA_DE_CARGOS", "3")
-            .constant('REST_URL', 'http://191.252.58.49/api') //caminho para o back-end
-            //.constant('REST_URL', 'http://localhost:8080/api') //caminho para o back-end
+            //.constant('REST_URL', 'http://191.252.58.49/api') //caminho para o back-end
+            .constant('REST_URL', 'http://localhost:8080/api') //caminho para o back-end
             .constant('ROWS_PAGE', [10, 25, 50])
             .constant('MESES_LIST', [
               { id : '01', nome : 'Janeiro' },

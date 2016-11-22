@@ -7,8 +7,7 @@
 <!-- Nested navigation template -->
 <script type="text/ng-template" charset="UTF-8" id="navigation-nested.html">
 
-    <div ms-navigation-item  layout="row">
-
+    <div ms-navigation-item  layout="row" ng-if="vm.hasPrivilege(node.privilege)" >
         <div class="ms-navigation-button" ng-if="!node.uisref && node.title">
             <i class="icon s16 {{node.icon}}" ng-if="node.icon"></i>
             <span class="title black-text" translate="{{node.translate}}" flex>{{node.title}}</span>
