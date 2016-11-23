@@ -1,7 +1,5 @@
 package br.com.web.pesquisas.repository.impl;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.NoRepositoryBean;
 
-import br.com.web.pesquisas.domain.DadosGerais;
 import br.com.web.pesquisas.repository.custom.DadosGeraisRepositoryCustom;
 import br.com.web.pesquisas.web.rest.dto.FiltroDadosGeraisDTO;
 import br.com.web.pesquisas.web.rest.dto.SalDTO;
@@ -89,8 +86,8 @@ public class DadosGeraisRepositoryImpl implements DadosGeraisRepositoryCustom {
         if(!StringUtils.isEmpty(filtro.getSetor())){
     		query.append(" and upper(dg.setor) = upper(:setor) ");
         }
-        if(filtro.getEmpresa() != null){
-    		query.append(" and dg.empresa in :empresa ");
+        if(!StringUtils.isEmpty(filtro.getEmpresa())){
+    		query.append(" and upper(dg.empresa) = upper(:empresa) ");
         }
         if(!StringUtils.isEmpty(filtro.getNivel())){
     		query.append(" and upper(dg.nivel) = upper(:nivel) ");
@@ -106,7 +103,7 @@ public class DadosGeraisRepositoryImpl implements DadosGeraisRepositoryCustom {
     	if(!StringUtils.isEmpty(filtro.getSetor())){
         	    query.setParameter("setor", filtro.getSetor());
         }
-    	if(filtro.getEmpresa() != null){
+    	if(!StringUtils.isEmpty(filtro.getEmpresa())){
     	    query.setParameter("empresa", filtro.getEmpresa());
     	}
     	if(!StringUtils.isEmpty(filtro.getNivel())){
@@ -124,41 +121,6 @@ public class DadosGeraisRepositoryImpl implements DadosGeraisRepositoryCustom {
         	salDTO = new SalDTO(sal);
         }
         return salDTO;
-    }
-    
-    @SuppressWarnings("unchecked")
-	@Override
-	public List<DadosGerais> consultar(FiltroDadosGeraisDTO filtro) {
-
-    	StringBuilder query = new StringBuilder();
-    	 
-    	query.append(" SELECT dg.id, dg.frequencia, dg.empresa, dg.nivel, dg.cargo, dg.sal1 , dg.sal2 , dg.sal3 , dg.sal4 , dg.sal5 " );
-        query.append(" FROM salarial.dados_gerais dg ");
-        query.append(" where dg.nivel = :nivel and dg.cargo = :cargo ");
-        
-        Query qr = (TypedQuery<DadosGerais>) entityManager.createNativeQuery(query.toString());
-        qr.setParameter("nivel", filtro.getNivel());
-        qr.setParameter("cargo", filtro.getCargo());
-    	List<Object[]> dgo = qr.getResultList();
-            
-    	List<DadosGerais> listaDTO = new ArrayList<>();
-        for (Object[] dg : dgo) {
-        	DadosGerais dados = new DadosGerais();
-        	dados.setId(new Long(dg[0].toString()));
-        	dados.setFrequencia(dg[1].toString());
-        	dados.setEmpresa(dg[2].toString());
-        	dados.setNivel(dg[3].toString());
-        	dados.setCargo(dg[4].toString());
-        	dados.setSal1(new BigDecimal(dg[5].toString()));
-        	dados.setSal2(new BigDecimal(dg[6].toString()));
-        	dados.setSal3(new BigDecimal(dg[7].toString()));
-        	dados.setSal4(new BigDecimal(dg[8].toString()));
-        	dados.setSal5(new BigDecimal(dg[9].toString()));
-        	listaDTO.add(dados);
-        }
-        
-        return listaDTO;
-    
     }
     
 }

@@ -44,7 +44,7 @@
 */      
         vm.filtro.mesAnoInicio = vm.pesquisa.mesAnoInicio;
         vm.filtro.mesAnoFim = vm.pesquisa.mesAnoFim;
-        vm.filtro.limit = 10;
+        vm.filtro.limit = 100;
         vm.filtro.page = 1;
         InpcService.pesquisarInpc(vm.filtro).then(function (response) {
           vm.pesquisa.lista = response.data;

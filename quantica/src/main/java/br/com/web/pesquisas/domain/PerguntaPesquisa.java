@@ -1,14 +1,18 @@
 package br.com.web.pesquisas.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -36,12 +40,12 @@ public class PerguntaPesquisa implements Serializable{
 	private Long id;
 
 	@Getter @Setter
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CO_PERGUNTA", referencedColumnName="CO_SEQ_PERGUNTA")
 	private Pergunta pergunta;
 
 	@Getter @Setter
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CO_PESQUISA", referencedColumnName="CO_SEQ_PESQUISA")
 	@JsonIgnore
 	private Pesquisa pesquisa;
@@ -54,5 +58,9 @@ public class PerguntaPesquisa implements Serializable{
 	@Transient
 	@JsonProperty
 	private Resposta resposta;
+	
+	@Getter 
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="pergunta", orphanRemoval=true)
+	private Set<Resposta> respostas;
 	
 }

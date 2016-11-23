@@ -33,7 +33,7 @@
     vm.idUsuarioLogado = localStorage.getItem('idUsuarioLogado');
     vm.pesquisaSelecionada = localStorage.getItem('pesquisaSelecionada');
     
-    var filtroEo = {"empresa" : vm.idEmpresaUsuario, "limit":"10", "page":"1"};  
+    var filtroEo = {"empresa" : vm.idEmpresaUsuario, "limit":"100", "page":"1"};  
     EstruturaOrganizacionalService.pesquisar(filtroEo).then(function (response) {
         vm.niveis = response.data;
     });  
@@ -58,7 +58,7 @@ console.log("vm.listaPatriocinadora",vm.listaPatriocinadora);
     }
       
     function carregarLista() {
-        var filtroEc = {"empresa" : vm.idEmpresaUsuario, "limit":"10", "page":"1"};  
+        var filtroEc = {"empresa" : vm.idEmpresaUsuario, "limit":"100", "page":"1"};  
         EstruturaCargosService.pesquisar(filtroEc).then(function (response) {
             vm.lista = response.data;
             if (vm.tipoRelacionamento == 2){
@@ -68,7 +68,7 @@ console.log("vm.listaPatriocinadora",vm.listaPatriocinadora);
     }
       
     function carregarListaPatriocinadora() {
-        var filtroEc = {"empresa" : vm.empresaPatriocinadora, "limit":"10", "page":"1"};  
+        var filtroEc = {"empresa" : vm.empresaPatriocinadora, "limit":"100", "page":"1"};  
         EstruturaCargosService.pesquisar(filtroEc).then(function (response) {
             vm.listaPatriocinadora = response.data;
             vm.carregarListaCodigos();

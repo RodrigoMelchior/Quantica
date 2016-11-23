@@ -39,7 +39,7 @@
       } else {
       */
         vm.filtro.nome = vm.pesquisa.nome;
-        vm.filtro.limit = 10;
+        vm.filtro.limit = 100;
         vm.filtro.page = 1;
         ItemService.pesquisarItem(vm.filtro).then(function (response) {
           vm.pesquisa.lista = response.data;

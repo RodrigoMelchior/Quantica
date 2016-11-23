@@ -19,7 +19,7 @@ import br.com.web.pesquisas.service.UfService;
 import br.com.web.pesquisas.web.rest.util.HeadersUtil;
 
 @RestController
-@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
+@CrossOrigin(origins = "http://localhost:3100")
 @RequestMapping(value = "/api/ufs")
 public class UfResource {
 

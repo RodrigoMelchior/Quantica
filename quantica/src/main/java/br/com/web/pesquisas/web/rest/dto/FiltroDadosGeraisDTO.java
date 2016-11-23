@@ -1,7 +1,5 @@
 package br.com.web.pesquisas.web.rest.dto;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +13,7 @@ public class FiltroDadosGeraisDTO extends PaginacaoDTO{
     
     @Getter
     @Setter
-    private List<String> empresa;
+    private String empresa;
 
     @Getter
     @Setter
