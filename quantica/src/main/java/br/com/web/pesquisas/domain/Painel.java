@@ -42,7 +42,7 @@ public class Painel implements Serializable{
 	private String nome;
 
 	@Getter @Setter
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CO_PESQUISA", referencedColumnName="CO_SEQ_PESQUISA")
 	@JsonIgnore
 	private Pesquisa pesquisa;

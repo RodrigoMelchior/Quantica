@@ -13,5 +13,5 @@ public class EmpresaServiceImpl extends CrudServiceImpl<Empresa, Long, EmpresaRe
 	public Empresa buscaEmpresaPorUsuario(@Param("idUsuario") Long idUsuario){
 		return repository.buscaEmpresaPorUsuario(idUsuario);
 	}
-
+	
 }

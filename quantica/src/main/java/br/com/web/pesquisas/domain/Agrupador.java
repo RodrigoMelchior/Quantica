@@ -42,7 +42,7 @@ public class Agrupador implements Serializable{
 	private String nome;
 
 	@Getter @Setter
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="CO_PESQUISA", referencedColumnName="CO_SEQ_PESQUISA")
 	@JsonIgnore
 	private Pesquisa pesquisa;

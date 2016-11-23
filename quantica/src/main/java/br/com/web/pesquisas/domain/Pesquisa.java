@@ -83,6 +83,10 @@ public class Pesquisa implements Serializable{
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="pesquisa", orphanRemoval=true)
 	private Set<PerguntaPesquisa> perguntas;
 	
+	@Getter 
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="pesquisa", orphanRemoval=true)
+	private Set<Arquivo> arquivos;
+	
 	
 	public void setAgrupadores(Set<Agrupador> agrupadores) {
 		for (Agrupador agrupador : agrupadores) {

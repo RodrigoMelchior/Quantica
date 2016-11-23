@@ -1,7 +1,6 @@
 package br.com.web.pesquisas.domain.specification;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.persistence.criteria.Selection;
 
@@ -35,9 +34,9 @@ public final class DadosGeraisSpecification {
         };
     }
 
-    public static Specification<DadosGerais> empresa(List<String> empresa) {
+    public static Specification<DadosGerais> empresa(String empresa) {
         return (root, query, cb) -> {
-            return root.<String>get("empresa").in(empresa);    
+            return cb.equal(root.<String>get("empresa"), empresa);    
         };
     }
     

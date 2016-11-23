@@ -2,6 +2,7 @@ package br.com.web.pesquisas.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class ItemPesquisa implements Serializable{
 	private Item item;
 
 	@Getter @Setter
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CO_PESQUISA", referencedColumnName="CO_SEQ_PESQUISA")
 	@JsonIgnore
 	private Pesquisa pesquisa;

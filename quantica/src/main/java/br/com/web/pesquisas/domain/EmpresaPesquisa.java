@@ -2,6 +2,7 @@ package br.com.web.pesquisas.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -42,7 +43,7 @@ public class EmpresaPesquisa implements Serializable{
 	private Empresa empresa;
 
 	@Getter @Setter
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CO_PESQUISA", referencedColumnName="CO_SEQ_PESQUISA")
 	@JsonIgnore
 	private Pesquisa pesquisa;

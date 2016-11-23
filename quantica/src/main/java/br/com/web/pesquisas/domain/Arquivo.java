@@ -49,7 +49,7 @@ public class Arquivo implements Serializable{
 
 	
 	@Getter @Setter
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CO_PESQUISA", referencedColumnName="CO_SEQ_PESQUISA")
 	private Pesquisa pesquisa;
 	

@@ -3,6 +3,7 @@ package br.com.web.pesquisas.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,10 +55,9 @@ public class Resposta implements Serializable {
 	private Empresa empresa;
 
     @Getter @Setter
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CO_PERGUNTA_PESQUISA",updatable = false, insertable = false)
 	@JsonIgnore
 	private PerguntaPesquisa pergunta;
-
     
 }
