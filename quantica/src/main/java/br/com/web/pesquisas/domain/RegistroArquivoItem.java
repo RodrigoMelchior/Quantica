@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +33,7 @@ public class RegistroArquivoItem implements Serializable{
 	@Getter @Setter
 	@ManyToOne
 	@JoinColumn(name="CO_REGISTRO_ARQUIVO", referencedColumnName="CO_SEQ_REGISTRO_ARQUIVO")
+	@JsonIgnore
 	private RegistroArquivo registroArquivo;
 	
 	@Getter @Setter

@@ -7,7 +7,8 @@
 
   /** @ngInject */
   function ImportarArquivoService($http, $mdToast, REST_URL) {
-    var url = REST_URL + '/registro-arquivos/upload';
+    var url = REST_URL + '/registro-arquivos';
+    var urlArquivo = REST_URL + '/arquivos';
 
     var validaArquivo = function(arquivo) {
       if (isExtensaoInvalida(arquivo.getExtension())) {
@@ -41,18 +42,25 @@
         console.log("file", file);
         
         var fd = new FormData();
+console.log("1");
         fd.append('idUsuario', idUsuario);
+console.log("2");
         fd.append('idPesquisa', idPesquisa);
+console.log("3");
         fd.append('tipoArquivo', tipoArquivo);
+console.log("4");
         fd.append('file', file);
-        return $http.post(url, fd, {
+console.log("5");
+        return $http.post(url + "/upload", fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
         .success(function(){
+console.log("6");
             
         })
         .error(function(){
+console.log("7");
         });
         
     };
@@ -75,9 +83,24 @@
       return false;
     };
 
+    var getArquivo = function (idUser, idPesquisa) {
+      return $http.get(urlArquivo + '/' + idUser + '/' + idPesquisa);
+    };
+      
+    var getRegistroArquivo = function (id) {
+      return $http.get(url + '/arquivo/' + id);
+    };
+      
+    var getItemPesquisa = function (id) {
+      return $http.get(url + '/item-pesquisa/' + id);
+    };
+      
     return {
       validaArquivo : validaArquivo,
-      uploadArquivo : uploadArquivo
+      uploadArquivo : uploadArquivo,
+      getArquivo    : getArquivo,
+      getRegistroArquivo : getRegistroArquivo,
+      getItemPesquisa : getItemPesquisa
     };
   }
 })();

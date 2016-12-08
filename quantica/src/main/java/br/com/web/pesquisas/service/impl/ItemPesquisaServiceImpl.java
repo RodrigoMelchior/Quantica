@@ -10,7 +10,7 @@ import br.com.web.pesquisas.service.ItemPesquisaService;
 
 @Service
 public class ItemPesquisaServiceImpl extends CrudServiceImpl<ItemPesquisa, Long, ItemPesquisaRepository> implements ItemPesquisaService{
-
+	
 	@Override
 	public List<ItemPesquisa> consultarPorPesquisa(Long id) {
 		return repository.consultarPorPesquisa(id);

@@ -46,3 +46,56 @@
     </form>
   </div>
 </div>
+<br/>
+  <div class="form-wrapper md-whiteframe-1dp" flex="100" ng-if="iaController.arquivoJaImportado">    
+      <div>
+            <div class="form-title">
+              <span class="margin-right-100">
+                  <div layout="column" layout-gt-xs="row" flex="100">
+                    <label>
+                      <strong>{{iaController.arquivoJaImportado.nome}}</strong>
+                    </label>
+                  </div>
+              </span>
+            </div>
+            <div ng-if="iaController.registroArquivoJaImportado.length > 0">
+              <md-table-container>
+                <table md-table>
+                  <thead md-head>
+                    <tr md-row>
+                      <th md-column><span class="column-title">Código</span></th>
+                      <th md-column><span class="column-title">Titulo</span></th>
+                      <th md-column><span class="column-title">Empregado</span></th>
+                      <th md-column><span class="column-title">Carga Horária</span></th>
+                      <th md-column><span class="column-title">Função</span></th>
+                      <th md-column><span class="column-title">Unidade</span></th>
+                      <th md-column><span class="column-title">Admissão</span></th>
+                      <th md-column><span class="column-title">Posição</span></th>
+                      <th md-column><span class="column-title">Localização</span></th>
+                      <th md-column ng-repeat="item in iaController.itensPesquisa" >
+                          <span class="column-title">{{item.item.nome}}</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody md-body>
+                    <tr md-row ng-repeat="registro in iaController.registroArquivoJaImportado">
+                      <td md-cell>{{ registro.codigoCargo }}</td>
+                      <td md-cell>{{ registro.tituloCargo }}</td>
+                      <td md-cell>{{ registro.identificacaoEmpregado }}</td>
+                      <td md-cell>{{ registro.cargaHoraria }}</td>
+                      <td md-cell>{{ registro.tituloFuncao }}</td>
+                      <td md-cell>{{ registro.menorUnidade }}</td>
+                      <td md-cell>{{ registro.admissao }}</td>
+                      <td md-cell>{{ registro.posicacaoSalarial }}</td>
+                      <td md-cell>{{ registro.localizacao }}</td>
+                      <td md-cell  ng-repeat="item in registro.registroArquivoItens">
+                          {{ item.vlrRegistro }}
+                      </td>  
+                    </tr>
+                  </tbody>
+                </table>
+              </md-table-container>
+            </div>
+        </div>
+      
+  </div>

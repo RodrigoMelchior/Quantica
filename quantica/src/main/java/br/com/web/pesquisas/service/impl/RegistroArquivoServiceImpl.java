@@ -153,6 +153,12 @@ public class RegistroArquivoServiceImpl extends CrudServiceImpl<RegistroArquivo,
 	public void setListaItens(List<ItemPesquisa> listaItens) {
 		this.listaItens = listaItens;
 	}
+
+	@Override
+	public List<RegistroArquivo> findByArquivo(Long idArquivo) {
+		Arquivo arquivo = arquivoService.findById(idArquivo);
+		return repository.findByArquivo(arquivo);
+	}
 	
 	
 

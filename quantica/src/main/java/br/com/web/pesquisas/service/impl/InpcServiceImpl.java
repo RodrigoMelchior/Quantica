@@ -12,11 +12,10 @@ import br.com.web.pesquisas.service.InpcService;
 @Service
 public class InpcServiceImpl extends CrudServiceImpl<Inpc, Long, InpcRepository> implements InpcService{
 
-	@SuppressWarnings("null")
 	@Override
 	public BigDecimal calculaIndiceReajuste(Long idEmpresa, Long idPesquisa){
 		BigDecimal indReajuste = null;
-		List<BigDecimal> indices = null; // repository.buscaIndicesParaReajuste(idEmpresa, idPesquisa);
+		List<BigDecimal> indices = repository.buscaIndicesParaReajuste(idEmpresa, idPesquisa);
 		for (BigDecimal indice : indices) {
 			if (indReajuste != null){
 				indReajuste = indReajuste.multiply(indice);

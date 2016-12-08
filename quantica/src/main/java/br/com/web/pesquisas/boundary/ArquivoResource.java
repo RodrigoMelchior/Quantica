@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -14,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.web.pesquisas.domain.Arquivo;
 import br.com.web.pesquisas.service.ArquivoService;
-import br.com.web.pesquisas.util.MensagemUtil;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3100")
@@ -25,9 +25,6 @@ public class ArquivoResource extends EntityServiceBasedRestController<Arquivo, L
 	@Autowired
 	ArquivoService arquivoService;
 	
-    @Autowired
-    private MensagemUtil mensagemUtil;
-    
     @RequestMapping(path = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody String salvar(
     								   @RequestPart("idUsuario")  String idUsuario,
@@ -36,6 +33,11 @@ public class ArquivoResource extends EntityServiceBasedRestController<Arquivo, L
     								   @RequestPart("file") MultipartFile file) throws IOException {   	
     	
     	return arquivoService. uploadArquivo(file, idUsuario, idPesquisa, tipoArquivo);
+    }
+    
+    @RequestMapping(path = "/{idUser}/{idPesquisa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Arquivo buscaArquivoPorUsuarioPesquisa(@PathVariable Long idUser, @PathVariable Long idPesquisa) throws IOException { 
+    	return arquivoService.findByUsuarioAndPesquisa(idUser, idPesquisa);
     }
         
 }

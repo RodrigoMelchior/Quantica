@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,6 +40,7 @@ public class RegistroArquivo extends AbstractEntity{
 	@Getter @Setter
 	@ManyToOne
 	@JoinColumn(name="CO_ARQUIVO", referencedColumnName="CO_SEQ_ARQUIVO")
+	@JsonIgnore
 	private Arquivo arquivo;
 	
 	@Getter @Setter

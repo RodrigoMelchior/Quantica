@@ -8,4 +8,6 @@ public interface ArquivoService extends CrudService<Arquivo, Long>{
 
 	String uploadArquivo(MultipartFile file, String idUsuario, String idPesquisa, String tipoArquivo);
 
+	Arquivo findByUsuarioAndPesquisa(Long idUser, Long idPesquisa);
+
 }
