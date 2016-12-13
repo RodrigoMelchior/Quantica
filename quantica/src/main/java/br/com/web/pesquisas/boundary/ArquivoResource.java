@@ -32,7 +32,7 @@ public class ArquivoResource extends EntityServiceBasedRestController<Arquivo, L
     								   @RequestPart("tipoArquivo") String tipoArquivo,
     								   @RequestPart("file") MultipartFile file) throws IOException {   	
     	
-    	return arquivoService. uploadArquivo(file, idUsuario, idPesquisa, tipoArquivo);
+    	return arquivoService.uploadArquivo(file, idUsuario, idPesquisa, tipoArquivo);
     }
     
     @RequestMapping(path = "/{idUser}/{idPesquisa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

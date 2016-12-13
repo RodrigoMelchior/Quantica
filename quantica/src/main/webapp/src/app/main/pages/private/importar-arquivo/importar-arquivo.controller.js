@@ -36,21 +36,27 @@
     }
 
     function enviarArquivo() {  
+console.log('1');
       ImportarArquivoService.uploadArquivo(vm.form.flow.files[0].file, idUsuarioLogado, pesquisaSelecionada, CARGA_ESTRUTURA_DE_CARGOS).then(function (response) {
-        carregaJaImportado();
+console.log('2');
+ //       carregaJaImportado();
+console.log('3');
         $mdToast.show(
           $mdToast.simple()
           .textContent('Arquivo importado com sucesso!')
           .position('right')
           .hideDelay(5000)
         );
+console.log('5');
       });
+console.log('6');
       $mdToast.show(
           $mdToast.simple()
           .textContent('Arquivo importado com sucesso!')
           .position('right')
           .hideDelay(5000)
       );
+console.log('7');
     }
   }
 })();
