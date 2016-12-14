@@ -32,9 +32,4 @@ public interface DadosGeraisRepository extends CustomRepository<DadosGerais, Lon
 	@Query("select dg from DadosGerais dg ")
 	List<DadosGerais> pesquisa();
 
-	List<DadosGerais> findByNivelAndCargo(String nivel, String Cargo);
-	
-	@Query("select dg from DadosGerais dg where dg.nivel = :nivel and dg.cargo = :cargo")
-	List<DadosGerais> findByNivelAndCargo1(@Param("nivel") String nivel, @Param("cargo") String Cargo);
-	
 }

@@ -21,7 +21,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroDadosGeraisDTO;
 import br.com.web.pesquisas.web.rest.dto.SalDTO;
 
 @RestController
-@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
+@CrossOrigin(origins = "http://localhost:3100")
 @RequestMapping(path = "/api/dados")
 public class DadosGeraisResource extends EntityServiceBasedRestController<DadosGerais, Long, DadosGeraisService>{
 
@@ -47,28 +47,25 @@ public class DadosGeraisResource extends EntityServiceBasedRestController<DadosG
     
     @RequestMapping(value = "/max", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public SalDTO maiorSalario(@RequestBody FiltroDadosGeraisDTO filtro){    
-    	if (filtro.getEmpresa().get(0).equalsIgnoreCase("TODOS")){
-    		filtro.setEmpresa(null);
-    	}
-        
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
     	return service.maiorSalario(filtro);
     }
     
     @RequestMapping(value = "/min", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public SalDTO menorSalario(@RequestBody FiltroDadosGeraisDTO filtro){    
-    	if (filtro.getEmpresa().get(0).equalsIgnoreCase("TODOS")){
-    		filtro.setEmpresa(null);
-    	}
-        
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
     	return service.menorSalario(filtro);
     }
     
     @RequestMapping(value = "/somatorio", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public SalDTO somatorio(@RequestBody FiltroDadosGeraisDTO filtro){    
-    	if (filtro.getEmpresa().get(0).equalsIgnoreCase("TODOS")){
-    		filtro.setEmpresa(null);
-    	}
-
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
     	return service.somatorio(filtro);
     }
     
@@ -80,25 +77,15 @@ public class DadosGeraisResource extends EntityServiceBasedRestController<DadosG
     @RequestMapping(path = "/search", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DadosGerais> pesquisar(@RequestBody FiltroDadosGeraisDTO filtro) {
         
-    	if (filtro.getEmpresa().get(0).equalsIgnoreCase("TODOS")){
-    		filtro.setEmpresa(null);
-    	}
+//    	if (filtro.getSetor().equalsIgnoreCase("TODOS")){
+//    		filtro.setSetor("");
+//    	}
         Conjunction<DadosGerais> specification = makeSpecification(filtro);
         List<DadosGerais> retorno = null;
         
         retorno = this.service.findBySpecification(specification);
         
         return retorno;   
-    }
-    
-    @RequestMapping(path = "/search1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DadosGerais> pesquisar1(@RequestBody FiltroDadosGeraisDTO filtro) {
-        return this.service.findByNivelAndCargo(filtro.getNivel(), filtro.getCargo());
-    }
-    
-    @RequestMapping(path = "/search2", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DadosGerais> consultar(@RequestBody FiltroDadosGeraisDTO filtro) {
-        return this.service.consultar(filtro);
     }
     
     private Conjunction<DadosGerais> makeSpecification(FiltroDadosGeraisDTO filtro) {
