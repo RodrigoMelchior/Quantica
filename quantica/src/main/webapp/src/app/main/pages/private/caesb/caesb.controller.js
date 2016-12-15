@@ -3,10 +3,10 @@
 
   angular
     .module('app.pages.private.dados')
-    .controller('DadosController', DadosController);
+    .controller('CaesbController', CaesbController);
 
   /** @ngInject */
-  function DadosController($scope, $state, $stateParams, $mdToast, $mdDialog, $q, DadosService) {
+  function CaesbController($scope, $state, $stateParams, $mdToast, $mdDialog, $q, CaesbService) {
     var vm = this;
     vm.listaSetor = {};
     vm.listaEmpresa = {};
@@ -24,19 +24,19 @@
     vm.atualizaCargoEmp = atualizaCargoEmp;
     vm.marcaTodos = marcaTodos;  
 
-    DadosService.getListaSetor().then(function (response) {
+    CaesbService.getListaSetor().then(function (response) {
         vm.listaSetor = response.data;
         vm.listaSetorEmp = response.data;
     });
-    DadosService.getListaEmpresa('TODOS').then(function (response) {
+    CaesbService.getListaEmpresa('TODOS').then(function (response) {
         vm.listaEmpresa = response.data;
         vm.listaEmpresaEmp = response.data;
     });
-    DadosService.getListaNivel().then(function (response) {
+    CaesbService.getListaNivel().then(function (response) {
         vm.listaNivel = response.data;
         vm.listaNivelEmp = response.data;
     });
-    DadosService.getListaCargo('TODOS').then(function (response) {
+    CaesbService.getListaCargo('TODOS').then(function (response) {
         vm.listaCargo = response.data;
         vm.listaCargoEmp = response.data;
     });
@@ -116,7 +116,7 @@
           .hideDelay(5000)
         );
       } else{
-        DadosService.getSearch(vm.filtro).then(function (response) {
+        CaesbService.getSearch(vm.filtro).then(function (response) {
             if (response.data.length > 0){ 
                 vm.retorno.dados = response.data;
                 vm.retorno.mod = vm.retorno.dados.length % 2;
@@ -213,13 +213,13 @@
                 }
                 
                 
-                DadosService.getMin(vm.filtro).then(function (response) {
+                CaesbService.getMin(vm.filtro).then(function (response) {
                     vm.retorno.min = response.data;
                 });
-                DadosService.getMax(vm.filtro).then(function (response) {
+                CaesbService.getMax(vm.filtro).then(function (response) {
                     vm.retorno.max = response.data;
                 });
-                DadosService.getSum(vm.filtro).then(function (response) {
+                CaesbService.getSum(vm.filtro).then(function (response) {
                     vm.retorno.sum = response.data;
                 });
             }
@@ -236,23 +236,23 @@
         });
     }
     function atualizaEmpresa(){
-        DadosService.getListaEmpresa(vm.filtro.setor).then(function (response) {
+        CaesbService.getListaEmpresa(vm.filtro.setor).then(function (response) {
             vm.listaEmpresa = response.data;
         });
     }
     function atualizaEmpresaEmp(){
-        DadosService.getListaEmpresa(vm.filtroEmp.setor).then(function (response) {
+        CaesbService.getListaEmpresa(vm.filtroEmp.setor).then(function (response) {
             vm.listaEmpresaEmp = response.data;
         });
     }
     
     function atualizaCargoEmp(){
-        DadosService.getListaCargo(vm.filtroEmp.nivel).then(function (response) {
+        CaesbService.getListaCargo(vm.filtroEmp.nivel).then(function (response) {
             vm.listaCargoEmp = response.data;
         });
     }
     function atualizaCargo(){
-        DadosService.getListaCargo(vm.filtro.nivel).then(function (response) {
+        CaesbService.getListaCargo(vm.filtro.nivel).then(function (response) {
             vm.listaCargo = response.data;
         });
     }

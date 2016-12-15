@@ -17,7 +17,8 @@
                 'app.pages.private.pergunta',
                 'app.pages.private.responderPerguntas',
                 'app.pages.private.pesquisa',
-                'app.pages.private.dados'
+                'app.pages.private.dados',
+                'app.pages.private.dados-c'
             ])
             .config(config);
 
