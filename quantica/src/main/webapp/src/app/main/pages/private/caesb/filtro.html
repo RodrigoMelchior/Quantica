@@ -6,32 +6,20 @@
     <form name="dgController.pesquisarForm" class="md-inline-form" novalidate>
       <div layout="column" layout-gt-xs="row" flex="100">
         <md-input-container flex="100" flex-gt-xs="50">
-          <label>Empresa</label>
-            <md-select multiple name="empresa" ng-model="dgController.filtro.empresa" ng-change="dgController.marcaTodos()">
-            <md-option value="TODOS" >TODAS</md-option>
-            <md-option ng-repeat="empresa in dgController.listaEmpresa"
-            ng-value="empresa">
-              {{ empresa }}
+          <label>Tipo</label>
+            <md-select name="tipo" ng-model="dgController.filtro.tipo" >
+            <md-option ng-repeat="tipo in dgController.listaTipo"
+            ng-value="tipo">
+              {{ tipo }}
             </md-option>
           </md-select>
         </md-input-container>
         <md-input-container flex="100" flex-gt-xs="50">
-          <label>Nível</label>
-            <md-select name="nivel" ng-model="dgController.filtro.nivel"  ng-change="dgController.atualizaCargo()">
-            <md-option ng-repeat="nivel in dgController.listaNivel"
-            ng-value="nivel">
-              {{ nivel }}
-            </md-option>
-          </md-select>
-        </md-input-container>
-      </div>
-      <div layout="column" layout-gt-xs="row" flex="100">
-        <md-input-container flex="100" flex-gt-xs="100">
-          <label>Cargo</label>
-            <md-select name="cargo" ng-model="dgController.filtro.cargo" >
-            <md-option ng-repeat="cargo in dgController.listaCargo"
-            ng-value="cargo">
-              {{ cargo }}
+          <label>Código</label>
+            <md-select name="codigo" ng-model="dgController.filtro.codigo" >
+            <md-option ng-repeat="codigo in dgController.listaCod"
+            ng-value="codigo">
+              {{ codigo }}
             </md-option>
           </md-select>
         </md-input-container>
@@ -112,6 +100,38 @@
               <td md-cell class="textoDireita">{{dgController.retorno.max.sal3  | currency : '' | formatoNumerico}}</td>
               <td md-cell class="textoDireita">{{dgController.retorno.max.sal4  | currency : '' | formatoNumerico}}</td>
               <td md-cell class="textoDireita">{{dgController.retorno.max.sal5  | currency : '' | formatoNumerico}}</td>
+            </tr>
+            <tr>
+              <td md-cell>Coef. Variação</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal1.desvio / (dgController.retorno.sum.sal1 / dgController.retorno.dados.length)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal2.desvio / (dgController.retorno.sum.sal2 / dgController.retorno.dados.length)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal3.desvio / (dgController.retorno.sum.sal3 / dgController.retorno.dados.length)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal4.desvio / (dgController.retorno.sum.sal4 / dgController.retorno.dados.length)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal5.desvio / (dgController.retorno.sum.sal5 / dgController.retorno.dados.length)  | currency : '' | formatoNumerico}}</td>
+            </tr>
+            <tr>
+              <td md-cell>Desvio Padrão</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal1.desvio  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal2.desvio  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal3.desvio  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal4.desvio  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal5.desvio  | currency : '' | formatoNumerico}}</td>
+            </tr> 
+            <tr>
+              <td md-cell>Amplitude</td>
+              <td md-cell class="textoDireita">{{(dgController.retorno.max.sal1 - dgController.retorno.min.sal1)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{(dgController.retorno.max.sal2 - dgController.retorno.min.sal2)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{(dgController.retorno.max.sal3 - dgController.retorno.min.sal3)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{(dgController.retorno.max.sal4 - dgController.retorno.min.sal4)  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{(dgController.retorno.max.sal5 - dgController.retorno.min.sal5)  | currency : '' | formatoNumerico}}</td>
+            </tr>
+            <tr>
+              <td md-cell>Moda</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal1.moda  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal2.moda  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal3.moda  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal4.moda  | currency : '' | formatoNumerico}}</td>
+              <td md-cell class="textoDireita">{{dgController.retorno.ordenado.sal5.moda  | currency : '' | formatoNumerico}}</td>
             </tr>
           </tbody>
         </table>

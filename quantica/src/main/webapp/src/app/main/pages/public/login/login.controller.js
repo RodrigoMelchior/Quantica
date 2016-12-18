@@ -60,34 +60,25 @@
               login : $scope.form.username,
               senha   : $scope.form.password
             };
-            console.log("chegou aqui");
             LoginService.logar(login).then(function (response) {
 
                 if (response.data == ""){
                     $mdToast.showSimple('Usuário e/ou senha inexistente!');                    
                 }else{
                     $scope.data = response.data;
-                    console.log("response.data",response.data);
                     localStorage.setItem('idUsuarioLogado', $scope.data.id);
                     localStorage.setItem('idEmpresaUsuario', $scope.data.empresa.id);
                     if ($scope.data.perfis.length < 1){
                         $mdToast.showSimple('Usuário sem perfil!');  
                     }else{
-console.log("Logou...");
                         localStorage.setItem('idPerfil', $scope.data.perfis[0].id);
-                        console.log("idUsuarioLogado",localStorage.getItem('idUsuarioLogado'));
-                        console.log("idEmpresaUsuario",localStorage.getItem('idEmpresaUsuario'));
-                        console.log("idPerfil",localStorage.getItem('idPerfil'));
                         if ($scope.data.trocaSenha === 'S'){
                             $scope.modalPrimeiroAcesso();
                         }else{
-                            console.log("else",localStorage.getItem('idPerfil'));
-                            if ($scope.data.perfis[0].id == 1 || $scope.data.perfis[0].id == 3){
-                                console.log("perfil 1",localStorage.getItem('idPerfil'));
-                                $state.go('app.dashboard');
-                            }else{
-                                console.log("perfil 2",localStorage.getItem('idPerfil'));
+                            if ($scope.data.perfis[0].id == 2){
                                 $state.go('app.selecionaPesquisa');
+                            }else{
+                                $state.go('app.dashboard');
                             }
                         }
                     }

@@ -2,27 +2,23 @@
   'use strict';
 
   angular
-    .module('app.pages.private.dados')
+    .module('app.pages.private.caesb')
     .service('CaesbService', CaesbService);
 
   /** @ngInject */
   function CaesbService($http, REST_URL) {
-    var url = REST_URL + '/dados';
+    var url = REST_URL + '/caesb';
 
-    var getListaSetor = function () {
-      return $http.get(url + '/setor');
+    var getListaTipo = function () {
+      return $http.get(url + '/tipo');
     };
       
-    var getListaEmpresa = function (setor) {
-      return $http.get(url + '/empresa/' + setor);
+    var getListaEmpresa = function () {
+      return $http.get(url + '/empresa');
     };
     
-    var getListaNivel = function () {
-      return $http.get(url + '/nivel');
-    };
-    
-    var getListaCargo = function (nivel) {
-      return $http.get(url + '/cargo/' + nivel);
+    var getListaCod = function () {
+      return $http.get(url + '/cod');
     };
     
     var getMin = function (filtro) {
@@ -46,10 +42,9 @@
     };
       
     return {
-      getListaSetor     : getListaSetor,
+      getListaTipo      : getListaTipo,
       getListaEmpresa   : getListaEmpresa,
-      getListaNivel     : getListaNivel,
-      getListaCargo     : getListaCargo,
+      getListaCod       : getListaCod,
       getMin            : getMin,
       getMax            : getMax,
       getSum            : getSum,

@@ -18,7 +18,7 @@
                 'app.pages.private.responderPerguntas',
                 'app.pages.private.pesquisa',
                 'app.pages.private.dados',
-                'app.pages.private.dados-c'
+                'app.pages.private.caesb'
             ])
             .config(config);
 
@@ -135,13 +135,21 @@
                 weight: 1
             });
         
-        msNavigationServiceProvider.saveItem('fuse.dados', {
-            title: 'Relatórios',
-            icon: 'icon-clipboard-text',
-            state: 'app.dados',
-            privilege: ['3'],
-            weight: 1
-        });
+            msNavigationServiceProvider.saveItem('fuse.dados', {
+                title: 'Relatórios',
+                icon: 'icon-clipboard-text',
+                state: 'app.dados',
+                privilege: ['3'],
+                weight: 1
+            });
+        
+            msNavigationServiceProvider.saveItem('fuse.caesb', {
+                title: 'Relatórios',
+                icon: 'icon-clipboard-text',
+                state: 'app.caesb',
+                privilege: ['4'],
+                weight: 1
+            });
         
     };
 })();

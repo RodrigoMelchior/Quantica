@@ -15,7 +15,8 @@
     vm.listaPerfis = [
       { id : 1, nome : 'Administrador' },
       { id : 2, nome : 'Participante' },
-      { id : 3, nome : 'Cliente' }
+      { id : 3, nome : 'COPEL' },
+      { id : 4, nome : 'CAESB' }
     ];
     vm.listaEmpresas = [];
     vm.pesquisar = pesquisar;

@@ -2,14 +2,14 @@
   'use strict';
 
   angular
-    .module('app.pages.private.dados-c', [])
+    .module('app.pages.private.caesb', [])
     .config(config);
 
   /** @ngInject */
   function config($stateProvider) {
     $stateProvider
-      .state('app.dados', {
-        url : '/dados-gerais-c',
+      .state('app.caesb', {
+        url : '/caesb',
         views : {
           'content@app' : {
             templateUrl : 'app/main/pages/private/caesb/filtro.html',
