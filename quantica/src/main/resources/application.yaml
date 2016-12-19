@@ -47,7 +47,7 @@ endpoints:
         enabled: true
         sensitive: true
 server:
-    port: 8080
+    port: 80
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json

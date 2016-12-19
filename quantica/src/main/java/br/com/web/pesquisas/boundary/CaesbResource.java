@@ -20,7 +20,7 @@ import br.com.web.pesquisas.web.rest.dto.FiltroCaesbDTO;
 import br.com.web.pesquisas.web.rest.dto.SalDTO;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3100")
+@CrossOrigin(origins = "http://www.xn--pesquisasderemunerao-7yb1g.com.br")
 @RequestMapping(path = "/api/caesb")
 public class CaesbResource extends EntityServiceBasedRestController<Caesb, Long, CaesbService>{
 
