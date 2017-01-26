@@ -21,21 +21,12 @@ public class SalDTO implements Serializable{
 	@Setter
 	private BigDecimal sal3;
 
-	@Getter 
-	@Setter
-	private BigDecimal sal4;
 
-	@Getter 
-	@Setter
-	private BigDecimal sal5;
-
-	public SalDTO(BigDecimal sal1, BigDecimal sal2, BigDecimal sal3, BigDecimal sal4, BigDecimal sal5) {
+	public SalDTO(BigDecimal sal1, BigDecimal sal2, BigDecimal sal3) {
 		super();
 		this.sal1 = sal1;
 		this.sal2 = sal2;
 		this.sal3 = sal3;
-		this.sal4 = sal4;
-		this.sal5 = sal5;
 	}
 
 	public SalDTO(Object[] sal) {
@@ -43,8 +34,6 @@ public class SalDTO implements Serializable{
 		this.sal1 = new BigDecimal(sal[0].toString());
 		this.sal2 = new BigDecimal(sal[1].toString());
 		this.sal3 = new BigDecimal(sal[2].toString());
-		this.sal4 = new BigDecimal(sal[3].toString());
-		this.sal5 = new BigDecimal(sal[4].toString());
 	}
 	
 	public SalDTO() {

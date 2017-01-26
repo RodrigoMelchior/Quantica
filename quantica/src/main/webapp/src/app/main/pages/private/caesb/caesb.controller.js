@@ -42,6 +42,16 @@
         } 
     }
 
+    function formatReal(mixed) {
+        var int = parseInt(mixed.toFixed(2).toString().replace(/[^\d]+/g, ''));
+        var tmp = int + '';
+        tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
+        if (tmp.length > 6)
+        tmp = tmp.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+
+        return tmp;
+    }
+      
     function quartil(Q, L){
         var k = (Q*(L.length-1))/4;
         var ki = parseInt(k);
@@ -82,27 +92,35 @@
     function preparaVetorSal1(v){
         var vAtual = 0;
         var contador = 0;
-        var vRetorno = 0;
+        var vRetorno = [];
         var cRetorno = 0;
+        var qtd = 0;
         angular.forEach(v, function (val, index) {
-            if (vAtual == val.sal1) {
-                contador++;
-            }else{
-                if (cRetorno < contador){
-                    cRetorno = contador;
-                    vRetorno = vAtual;
-                }else if(cRetorno == contador){
-                    vRetorno += ' - ' + vAtual;
+            if (val.sal1 != 0){
+                if (vAtual == val.sal1) {
+                    contador++;
+                }else{
+                    if (cRetorno < contador){
+                        cRetorno = contador;
+                        vRetorno = [ formatReal(vAtual) ];
+                    }else if(cRetorno == contador){
+                        qtd++;
+                        vRetorno.push(formatReal(vAtual));
+                    } 
+                    contador = 1;
+                    vAtual = val.sal1;
                 }
-                contador = 1;
-                vAtual = val.sal1;
             }
         });
         if (cRetorno < contador){
             cRetorno = contador;
-            vRetorno = vAtual;
+            vRetorno = [ formatReal(vAtual) ];
         }else if(cRetorno == contador){
-            vRetorno += ' - ' + vAtual;
+            qtd++;
+            vRetorno.push(formatReal(vAtual));
+        }
+        if (qtd > 3){
+            vRetorno = [0];
         }
         return vRetorno;
     }
@@ -110,108 +128,140 @@
     function preparaVetorSal2(v){
         var vAtual = 0;
         var contador = 0;
-        var vRetorno = 0;
+        var vRetorno = [];
         var cRetorno = 0;
+        var qtd = 0;
         angular.forEach(v, function (val, index) {
-            if (vAtual == val.sal2) {
-                contador++;
-            }else{
-                if (cRetorno < contador){
-                    cRetorno = contador;
-                    vRetorno = vAtual;
-                }else if(cRetorno == contador){
-                    vRetorno += ' - ' + vAtual;
+            if (val.sal2 != 0){
+                if (vAtual == val.sal2) {
+                    contador++;
+                }else{
+                    if (cRetorno < contador){
+                        cRetorno = contador;
+                        vRetorno = [ formatReal(vAtual) ];
+                    }else if(cRetorno == contador){
+                        qtd++;
+                        vRetorno.push(formatReal(vAtual));
+                    }
+                    contador = 1;
+                    vAtual = val.sal2;
                 }
-                contador = 1;
-                vAtual = val.sal2;
             }
         });
         if (cRetorno < contador){
             cRetorno = contador;
-            vRetorno = vAtual;
+            vRetorno = [ formatReal(vAtual) ];
         }else if(cRetorno == contador){
-            vRetorno += ' - ' + vAtual;
+            qtd++;
+            vRetorno.push(formatReal(vAtual));
+        }
+        if (qtd > 3){
+            vRetorno = [0];
         }
         return vRetorno;
     }
     function preparaVetorSal3(v){
         var vAtual = 0;
         var contador = 0;
-        var vRetorno = 0;
+        var vRetorno = [];
         var cRetorno = 0;
+        var qtd = 0;
         angular.forEach(v, function (val, index) {
-            if (vAtual == val.sal3) {
-                contador++;
-            }else{
-                if (cRetorno < contador){
-                    cRetorno = contador;
-                    vRetorno = vAtual;
-                }else if(cRetorno == contador){
-                    vRetorno += ' - ' + vAtual;
+            if (val.sal3 != 0){
+                if (vAtual == val.sal3) {
+                    contador++;
+                }else{
+                    if (cRetorno < contador){
+                        cRetorno = contador;
+                        vRetorno = [ formatReal(vAtual) ];
+                    }else if(cRetorno == contador){
+                        qtd++;
+                        vRetorno.push(formatReal(vAtual));
+                    }
+                    contador = 1;
+                    vAtual = val.sal3;
                 }
-                contador = 1;
-                vAtual = val.sal3;
             }
         });
         if (cRetorno < contador){
             cRetorno = contador;
-            vRetorno = vAtual;
+            vRetorno = [ formatReal(vAtual) ];
         }else if(cRetorno == contador){
-            vRetorno += ' - ' + vAtual;
+            qtd++;
+            vRetorno.push(formatReal(vAtual));
+        }
+        if (qtd > 3){
+            vRetorno = [0];
         }
         return vRetorno;
     }
     function preparaVetorSal4(v){
         var vAtual = 0;
         var contador = 0;
-        var vRetorno = 0;
+        var vRetorno = [];
         var cRetorno = 0;
+        var qtd = 0;
         angular.forEach(v, function (val, index) {
-            if (vAtual == val.sal4) {
-                contador++;
-            }else{
-                if (cRetorno < contador){
-                    cRetorno = contador;
-                    vRetorno = vAtual;
-                }else if(cRetorno == contador){
-                    vRetorno += ' - ' + vAtual;
+            if (val.sal4 != 0){
+                if (vAtual == val.sal4) {
+                    contador++;
+                }else{
+                    if (cRetorno < contador){
+                        cRetorno = contador;
+                        vRetorno = [ formatReal(vAtual) ];
+                    }else if(cRetorno == contador){
+                        qtd++;
+                        vRetorno.push(formatReal(vAtual));
+                    }
+                    contador = 1;
+                    vAtual = val.sal4;
                 }
-                contador = 1;
-                vAtual = val.sal4;
             }
         });
         if (cRetorno < contador){
             cRetorno = contador;
-            vRetorno = vAtual;
+            vRetorno = [ formatReal(vAtual) ];
         }else if(cRetorno == contador){
-            vRetorno += ' - ' + vAtual;
+            qtd++;
+            vRetorno.push(formatReal(vAtual));
+        }
+        if (qtd > 3){
+            vRetorno = [0];
         }
         return vRetorno;
     }
     function preparaVetorSal5(v){
         var vAtual = 0;
         var contador = 0;
-        var vRetorno = 0;
+        var vRetorno = [];
         var cRetorno = 0;
+        var qtd = 0;
         angular.forEach(v, function (val, index) {
-            if (vAtual == val.sal5) {
-                contador++;
-            }else{
-                if (cRetorno < contador){
-                    cRetorno = contador;
-                    vRetorno = vAtual;
-                }else if(cRetorno == contador){
-                    vRetorno += ' - ' + vAtual;
+            if (val.sal5 != 0){
+                if (vAtual == val.sal5) {
+                    contador++;
+                }else{
+                    if (cRetorno < contador){
+                        cRetorno = contador;
+                        vRetorno = [ formatReal(vAtual) ];
+                    }else if(cRetorno == contador){
+                        qtd++;
+                        vRetorno.push(formatReal(vAtual));
+                    }
+                    contador = 1;
+                    vAtual = val.sal5;
                 }
-                contador = 1;
-                vAtual = val.sal5;
             }
         });
         if (cRetorno < contador){
             cRetorno = contador;
-            vRetorno = vAtual;
+            vRetorno = [ formatReal(vAtual) ];
         }else if(cRetorno == contador){
-            vRetorno += ' - ' + vAtual;
+            qtd++;
+            vRetorno.push(formatReal(vAtual));
+        }
+        if (qtd > 3){
+            vRetorno = [0];
         }
         return vRetorno;
     }
@@ -314,10 +364,10 @@
           .position('right')
           .hideDelay(5000)
         );
-      } else if (vm.filtro.codigo === null || vm.filtro.codigo === undefined || vm.filtro.codigo === ''){
+      } else if (vm.filtro.cod === null || vm.filtro.cod === undefined || vm.filtro.cod === ''){
         $mdToast.show(
           $mdToast.simple()
-          .textContent('Preencha o código!')
+          .textContent('Preencha o cargo!')
           .position('right')
           .hideDelay(5000)
         );

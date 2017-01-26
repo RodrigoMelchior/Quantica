@@ -43,6 +43,11 @@ public class Caesb implements Serializable {
 
     @Getter
     @Setter
+    @Column(name = "NOME")
+    private String nome;
+    
+    @Getter
+    @Setter
     @Column(name = "FREQUENCIA")
     private String frequencia;
 
@@ -60,15 +65,5 @@ public class Caesb implements Serializable {
     @Setter
     @Column(name = "SAL3")
     private BigDecimal sal3;
-    
-    @Getter
-    @Setter
-    @Column(name = "SAL4")
-    private BigDecimal sal4;
-    
-    @Getter
-    @Setter
-    @Column(name = "SAL5")
-    private BigDecimal sal5;
     
 }

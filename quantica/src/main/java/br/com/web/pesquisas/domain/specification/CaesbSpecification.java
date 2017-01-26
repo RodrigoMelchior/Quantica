@@ -43,7 +43,7 @@ public final class CaesbSpecification {
     
     public static Specification<Caesb> cod(String cod) {
         return (root, query, cb) -> {
-            return cb.equal(root.<String>get("cod"), cod);    
+            return cb.equal(root.<String>get("nome"), cod);    
         };
     }
     

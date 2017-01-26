@@ -55,7 +55,7 @@ public class CaesbRepositoryImpl implements CaesbRepositoryCustom {
 
     private String sqlMax(FiltroCaesbDTO filtro) {
         StringBuilder query = new StringBuilder();
-        query.append(" SELECT max(dg.sal1) as sal1, max(dg.sal2) as sal2, max(dg.sal3) as sal3, max(dg.sal4) as sal4, max(dg.sal5) as sal5");
+        query.append(" SELECT max(dg.sal1) as sal1, max(dg.sal2) as sal2, max(dg.sal3) as sal3");
         query.append(" FROM salarial.caesb dg ");
         query.append(" where 1= 1 ");
         query.append(montarClausulas(filtro));        
@@ -64,16 +64,17 @@ public class CaesbRepositoryImpl implements CaesbRepositoryCustom {
     
     private String sqlMin(FiltroCaesbDTO filtro) {
         StringBuilder query = new StringBuilder();
-        query.append(" SELECT min(dg.sal1) as sal1, min(dg.sal2) as sal2, min(dg.sal3) as sal3, min(dg.sal4) as sal4, min(dg.sal5) as sal5");
+        query.append(" SELECT min(dg.sal1) as sal1, min(dg.sal2) as sal2, min(dg.sal3) as sal3");
         query.append(" FROM salarial.caesb dg ");
         query.append(" where 1= 1 ");
-        query.append(montarClausulas(filtro));        
+        query.append(montarClausulas(filtro));
+        query.append(" and dg.sal1 > 0 and dg.sal2 > 0 and dg.sal3 > 0 ");
         return query.toString();
     }
     
     private String sqlSum(FiltroCaesbDTO filtro) {
         StringBuilder query = new StringBuilder();
-        query.append(" SELECT sum(dg.sal1) as sal1, sum(dg.sal2) as sal2, sum(dg.sal3) as sal3, sum(dg.sal4) as sal4, sum(dg.sal5) as sal5");
+        query.append(" SELECT sum(dg.sal1) as sal1, sum(dg.sal2) as sal2, sum(dg.sal3) as sal3");
         query.append(" FROM salarial.caesb dg ");
         query.append(" where 1= 1 ");
         query.append(montarClausulas(filtro));        
@@ -90,7 +91,7 @@ public class CaesbRepositoryImpl implements CaesbRepositoryCustom {
     		query.append(" and dg.empresa in :empresa ");
         }
         if(!StringUtils.isEmpty(filtro.getCod())){
-    		query.append(" and upper(dg.cod) = upper(:cod) ");
+    		query.append(" and upper(dg.nome) = upper(:cod) ");
         }
         return query.toString();
     }
